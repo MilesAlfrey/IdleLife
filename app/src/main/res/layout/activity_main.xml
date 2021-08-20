@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Background_grey"
+    tools:context=".MainActivity"
+    android:id="@+id/Main">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:visibility="visible"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/NavWill"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:insetLeft="20dp"
+                android:insetTop="20dp"
+                android:insetRight="20dp"
+                android:insetBottom="20dp"
+                android:text="@string/Will"
+                app:backgroundTint="@color/Redlol"
+                app:elevation="0dp"
+                app:rippleColor="#00FFFFFF" />
+
+            <Button
+                android:id="@+id/NavIntelligence"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:insetLeft="20dp"
+                android:insetTop="20dp"
+                android:insetRight="20dp"
+                android:insetBottom="20dp"
+                android:text="@string/Intelligence"
+                app:backgroundTint="@color/Bluelol"
+                app:rippleColor="#00FFFFFF" />
+
+            <Button
+                android:id="@+id/NavSocial"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:insetLeft="20dp"
+                android:insetTop="20dp"
+                android:insetRight="20dp"
+                android:insetBottom="20dp"
+                android:text="@string/Social"
+                app:backgroundTint="@color/Greenlol"
+                app:rippleColor="#00FFFFFF" />
+
+            <Button
+                android:id="@+id/NavMoney"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fadeScrollbars="true"
+                android:insetLeft="20dp"
+                android:insetTop="20dp"
+                android:insetRight="20dp"
+                android:insetBottom="20dp"
+                android:text="@string/Money"
+                app:backgroundTint="@color/teal_200"
+                app:rippleColor="#00FFFFFF" />
+
+            <Button
+                android:id="@+id/NavTests"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fadeScrollbars="true"
+                android:insetLeft="20dp"
+                android:insetTop="20dp"
+                android:insetRight="20dp"
+                android:insetBottom="20dp"
+                android:text="@string/Tests"
+                app:backgroundTint="@color/purple_500"
+                app:rippleColor="#00FFFFFF" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Will"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Like 5 lol" />
+
+        <TextView
+            android:id="@+id/Intelligence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="idk 11" />
+
+        <TextView
+            android:id="@+id/Social"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3?" />
+
+        <TextView
+            android:id="@+id/Money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Background_grey" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/TopBlackLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.206"
+            app:srcCompat="@drawable/thiccerline" />
+
+        <ImageView
+            android:id="@+id/BotBlackLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.863"
+            app:srcCompat="@drawable/thiccerline" />
+
+        <Button
+            android:id="@+id/AgeUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="Button"
+            app:backgroundTint="@color/Bluelol"
+            app:layout_constraintBottom_toTopOf="@+id/BotBlackLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

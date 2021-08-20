@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/WillFragment">
+
+    <fragment
+        android:id="@+id/WillFragment"
+        android:name="com.example.idlelife.WillFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_will">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/IntelligenceFragment" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/IntelligenceFragment"
+        android:name="com.example.idlelife.IntelligenceFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_intelligence">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/WillFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_WillFragment"
+        app:destination="@id/WillFragment" />
+    <action
+        android:id="@+id/action_global_IntelligenceFragment"
+        app:destination="@id/IntelligenceFragment" />
+    <fragment
+        android:id="@+id/socialFragment"
+        android:name="com.example.idlelife.SocialFragment"
+        android:label="SocialFragment" />
+    <action
+        android:id="@+id/action_global_socialFragment"
+        app:destination="@id/socialFragment" />
+    <fragment
+        android:id="@+id/moneyFragment"
+        android:name="com.example.idlelife.MoneyFragment"
+        android:label="MoneyFragment" />
+    <action
+        android:id="@+id/action_global_moneyFragment"
+        app:destination="@id/moneyFragment" />
+    <fragment
+        android:id="@+id/testsFragment"
+        android:name="com.example.idlelife.TestsFragment"
+        android:label="TestsFragment" />
+    <action
+        android:id="@+id/action_global_testsFragment"
+        app:destination="@id/testsFragment" />
+
+
+</navigation>
