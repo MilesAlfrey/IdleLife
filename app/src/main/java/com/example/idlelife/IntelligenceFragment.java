@@ -50,6 +50,7 @@ public class IntelligenceFragment extends Fragment {
                 editor.putInt("Age",0);
                 editor.putLong("Will",0);
                 editor.putInt("Will1",0);
+                editor.putInt("Will2",0);
                 editor.putBoolean("ShowWill2",false);
                 editor.apply();
             }

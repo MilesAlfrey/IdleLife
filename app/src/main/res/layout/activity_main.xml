@@ -92,33 +92,37 @@
     </HorizontalScrollView>
 
     <LinearLayout
-        android:layout_width="153dp"
-        android:layout_height="wrap_content"
+        android:layout_width="171dp"
+        android:layout_height="134dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/Will"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Like 5 lol" />
+            android:layout_height="32dp"
+            android:text="0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/Intelligence"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="idk 11" />
+            android:layout_height="34dp"
+            android:text="idk 11"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/Social"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="3?" />
+            android:layout_height="33dp"
+            android:text="3?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/Money"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2" />
+            android:layout_height="33dp"
+            android:text="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </LinearLayout>
 
     <include

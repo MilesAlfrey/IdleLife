@@ -18,6 +18,16 @@ public class MiscMethods {
         return (int) (level*10+ Math.floor(Math.pow((float)level,2.5)));
     }
 
+    public static int Button2Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Will2",0);
+
+        return (int) (1000+level*100+ Math.floor(Math.pow((float)level,2.5)));
+    }
+
 
 
     public static long[] LevelCost(int age){

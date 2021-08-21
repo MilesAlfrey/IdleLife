@@ -45,10 +45,12 @@ public class MainApplication extends Application {
 
             long currentScore = data.getLong("Will",0);
 
-            int currentButtons = data.getInt("Will1",0);
+            int Will1 = data.getInt("Will1",0);
+
+            int Will2 = data.getInt("Will2",0);
 
 
-            editor.putLong("Will", currentScore + currentButtons);
+            editor.putLong("Will", currentScore + Will1+5*Will2);
 
             editor.apply();
 

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
-    long startTime=0;
 
     private final static int Update_Interval= 50; // IMPORTANT HOW OFTEN APP UPDATES.
 
@@ -118,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fragMgr = getSupportFragmentManager();
 
                 NavHostFragment.findNavController(fragMgr.getFragments().get(0))
-                        .navigate(R.id.action_global_moneyFragment);
+                        .navigate(R.id.action_global_testsFragment);
 
             }
         });
