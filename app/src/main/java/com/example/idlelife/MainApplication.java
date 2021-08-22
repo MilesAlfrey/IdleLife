@@ -43,7 +43,9 @@ public class MainApplication extends Application {
 
             SharedPreferences.Editor editor = data.edit();
 
-            long currentScore = data.getLong("Will",0);
+            long currentWill = data.getLong("Will",0);
+
+            long currentInt = data.getLong("Int",0);
 
             int Will1 = data.getInt("Will1",0);
 
@@ -53,8 +55,14 @@ public class MainApplication extends Application {
 
             int Will4 = data.getInt("Will4",0);
 
+            int Int1 = data.getInt("Int1",0);
 
-            editor.putLong("Will", currentScore + Will1+5*Will2 + 20*Will3+100*Will4);
+            int Int2 = data.getInt("Int2",0);
+
+
+            editor.putLong("Will", currentWill + Will1+5*Will2 + 20*Will3+100*Will4);
+
+            editor.putLong("Int",currentInt+Int1+10*Int2);
 
             editor.apply();
 

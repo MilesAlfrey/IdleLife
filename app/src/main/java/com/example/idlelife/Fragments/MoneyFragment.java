@@ -1,4 +1,4 @@
-package com.example.idlelife;
+package com.example.idlelife.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

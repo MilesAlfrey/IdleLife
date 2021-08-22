@@ -1,8 +1,7 @@
-package com.example.idlelife;
+package com.example.idlelife.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.metrics.Event;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,10 +10,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 
-
+import com.example.idlelife.Dialog.IntroDialog;
+import com.example.idlelife.MiscMethods;
 import com.example.idlelife.databinding.FragmentWillBinding;
 
 public class WillFragment extends Fragment  {
@@ -103,6 +102,12 @@ public class WillFragment extends Fragment  {
         binding.WillBuy1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                //IntroDialog test = new IntroDialog();
+                //test.show(getParentFragmentManager(),"test");
+
+                //TODO: USE DIALOG CORRECTLY
 
                 SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 

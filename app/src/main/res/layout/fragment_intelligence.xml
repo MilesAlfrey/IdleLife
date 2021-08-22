@@ -4,7 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntelligenceFragment">
+    tools:context=".Fragments.IntelligenceFragment">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="338dp"
+        android:layout_height="340dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/IntDescrip1"
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetRight="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/IntBuy1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:insetLeft="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/Redlol"
+                    app:iconTint="#00FFFFFF"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/IntDescrip2"
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetRight="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/IntBuy2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:insetLeft="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/Bluelol"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/IntDescrip3"
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetRight="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/IntBuy3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:insetLeft="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/Redlol"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/IntDescrip4"
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetRight="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/IntBuy4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:insetLeft="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/Redlol"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/Reset"
@@ -13,6 +162,8 @@
         android:text="RESTARTTT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
 </androidx.constraintlayout.widget.ConstraintLayout>

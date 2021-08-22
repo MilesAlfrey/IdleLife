@@ -50,6 +50,50 @@ public class MiscMethods {
 
 
 
+
+    public static int Int1Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int1",0);
+
+        return (int) (100000+level*4000+ Math.floor(Math.pow((float)level,3.8)));
+    }
+
+    public static int Int2Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int2",0);
+
+        return (int) (100+level*200+ Math.floor(Math.pow((float)level,4)));
+    }
+
+    public static int Int3Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int3",0);
+
+        return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5))); //NEED CHANGING
+    }
+
+    public static int Int4Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int4",0);
+
+        return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5))); // Need Changing
+    }
+
+
+
+
     public static long[] LevelCost(int age){
 
 
@@ -82,6 +126,21 @@ public class MiscMethods {
                 break;
             case 3:
                 editor.putBoolean("ShowWill4",true); //On age 2 we show will2
+                editor.putBoolean("ShowInt1",true);
+                break;
+            case 4:
+
+                editor.putBoolean("ShowInt2",true);
+                break;
+            case 5:
+                break;
+            case 6:
+                editor.putBoolean("ShowInt3",true);
+                break;
+            case 7:
+                break;
+            case 8:
+                editor.putBoolean("ShowInt4",true);
                 break;
         }
         editor.apply();

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/WillFragment"
-        android:name="com.example.idlelife.WillFragment"
+        android:name="com.example.idlelife.Fragments.WillFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_will">
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/IntelligenceFragment"
-        android:name="com.example.idlelife.IntelligenceFragment"
+        android:name="com.example.idlelife.Fragments.IntelligenceFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_intelligence">
 
@@ -36,21 +36,21 @@
         app:destination="@id/IntelligenceFragment" />
     <fragment
         android:id="@+id/socialFragment"
-        android:name="com.example.idlelife.SocialFragment"
+        android:name="com.example.idlelife.Fragments.SocialFragment"
         android:label="SocialFragment" />
     <action
         android:id="@+id/action_global_socialFragment"
         app:destination="@id/socialFragment" />
     <fragment
         android:id="@+id/moneyFragment"
-        android:name="com.example.idlelife.MoneyFragment"
+        android:name="com.example.idlelife.Fragments.MoneyFragment"
         android:label="MoneyFragment" />
     <action
         android:id="@+id/action_global_moneyFragment"
         app:destination="@id/moneyFragment" />
     <fragment
         android:id="@+id/testsFragment"
-        android:name="com.example.idlelife.TestsFragment"
+        android:name="com.example.idlelife.Fragments.TestsFragment"
         android:label="TestsFragment" />
     <action
         android:id="@+id/action_global_testsFragment"

@@ -1,8 +1,10 @@
 package com.example.idlelife;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MicrophoneDirection;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Handler;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.idlelife.Dialog.IntroDialog;
 import com.example.idlelife.databinding.ActivityMainBinding;
 
 import android.view.Menu;
@@ -38,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences score = getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            binding.Will.setText(String.valueOf(score.getLong("Will",0)));
+            NumberFormat numFormat = new DecimalFormat("0.###E0"); //Makes it into the right notation
+
+            binding.Will.setText(String.valueOf(numFormat.format(score.getLong("Will",0))));
+
+            binding.Intelligence.setText(String.valueOf(numFormat.format(score.getLong("Int",0))));
 
             binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age",0))[0]));
 
@@ -164,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+
+                //TODO: USE DIALOG CORRECTLY
+
+                //IntroDialog test = new IntroDialog();
+                //test.show(getSupportFragmentManager(),"test");
 
 
 

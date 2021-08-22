@@ -1,9 +1,6 @@
-package com.example.idlelife;
+package com.example.idlelife.Fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.idlelife.databinding.FragmentSocialBinding;
+
+import com.example.idlelife.databinding.FragmentTestsBinding;
 
 
-public class SocialFragment extends Fragment  {
+public class TestsFragment extends Fragment  {
 
 
 
-    private FragmentSocialBinding binding;
+    private FragmentTestsBinding binding;
 
      //To test with view model
 
@@ -30,7 +28,7 @@ public class SocialFragment extends Fragment  {
 
 
 
-        binding = FragmentSocialBinding.inflate(inflater, container, false);
+        binding = FragmentTestsBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -41,7 +39,7 @@ public class SocialFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO: TO EDIT TO MAKE IT SPECIFIC TO SOCIAL.
+        //TODO: TO EDIT TO MAKE IT SPECIFIC TO Tests remember this is unique one so funnnnn.
 
 /*
 
