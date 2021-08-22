@@ -2,6 +2,7 @@ package com.example.idlelife;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MicrophoneDirection;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
             binding.Will.setText(String.valueOf(score.getLong("Will",0)));
 
+            binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age",0))[0]));
+
             timerHandler.postDelayed(this,Update_Interval); //Repeat this runnable in the given time.
         }
     };
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
 
         // Starts timer when the activity is created
+
+
 
         timerHandler.post(timerRunnable);
 
@@ -158,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     MiscMethods.ageResult(MainActivity.super.getBaseContext());
 
                 }
+
 
 
 

@@ -49,8 +49,12 @@ public class MainApplication extends Application {
 
             int Will2 = data.getInt("Will2",0);
 
+            int Will3 = data.getInt("Will3",0);
 
-            editor.putLong("Will", currentScore + Will1+5*Will2);
+            int Will4 = data.getInt("Will4",0);
+
+
+            editor.putLong("Will", currentScore + Will1+5*Will2 + 20*Will3+100*Will4);
 
             editor.apply();
 
