@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.example.idlelife.Dialog.IntroDialog;
 import com.example.idlelife.MiscMethods;
 import com.example.idlelife.databinding.FragmentWillBinding;
+
+import java.lang.reflect.Method;
 
 public class WillFragment extends Fragment  {
 
@@ -73,7 +76,7 @@ public class WillFragment extends Fragment  {
 
 
 
-        binding.WillBuy1.setText(String.valueOf(MiscMethods.Will1Cost(requireContext())));
+        binding.WillBuy1.setText(String.valueOf(MiscMethods.Will1Cost(requireContext()))); //MAy not need as it is in run now.
         binding.WillDescrip1.setText(String.valueOf(score.getInt("Will1",0)));
 
         binding.WillBuy2.setText(String.valueOf(MiscMethods.Will2Cost(requireContext())));
@@ -87,15 +90,7 @@ public class WillFragment extends Fragment  {
 
 
 
-        int cost = MiscMethods.Will1Cost(requireContext());
-        long will = score.getLong("Will", 0);
 
-        if (will >= cost) {//Stops it going on forever.
-            binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
-        }
-        else {
-            binding.WillBuy1.setBackgroundColor(0xff555555);
-        }
 
         timerHandler.post(timerRunnable);
 
@@ -103,6 +98,9 @@ public class WillFragment extends Fragment  {
             @Override
             public void onClick(View view) {
 
+                MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
+
+                /*
 
                 //IntroDialog test = new IntroDialog();
                 //test.show(getParentFragmentManager(),"test");
@@ -140,6 +138,8 @@ public class WillFragment extends Fragment  {
                     binding.WillDescrip1.setText(String.valueOf(Current+1));
                 }
 
+                 */
+
 
             }
         });
@@ -147,6 +147,9 @@ public class WillFragment extends Fragment  {
         binding.WillBuy2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity());
+                /*
 
                 SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
@@ -179,6 +182,8 @@ public class WillFragment extends Fragment  {
                     binding.WillDescrip2.setText(String.valueOf(Current+1));
                 }
 
+                 */
+
 
             }
         });
@@ -186,6 +191,10 @@ public class WillFragment extends Fragment  {
         binding.WillBuy3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                MiscMethods.ButtonPressAction(binding.WillBuy3,MiscMethods.Will3Cost(requireContext()),"Will3","Will",requireActivity());
+
+                /*
 
                 SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
@@ -218,6 +227,8 @@ public class WillFragment extends Fragment  {
                     binding.WillDescrip3.setText(String.valueOf(Current+1));
                 }
 
+                 */
+
 
             }
         });
@@ -225,6 +236,11 @@ public class WillFragment extends Fragment  {
         binding.WillBuy4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Will",requireActivity());
+
+                /*
 
                 SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
@@ -257,8 +273,10 @@ public class WillFragment extends Fragment  {
                     binding.WillDescrip4.setText(String.valueOf(Current+1));
                 }
 
-
+                */
             }
+
+
         });
 
 
@@ -277,6 +295,18 @@ public class WillFragment extends Fragment  {
             int cost3 = MiscMethods.Will3Cost(requireContext());
             int cost4 = MiscMethods.Will4Cost(requireContext());
             long score = saves.getLong("Will", 0);
+
+            binding.WillBuy1.setText(String.valueOf(cost1));
+            binding.WillDescrip1.setText(String.valueOf(saves.getInt("Will1",0)));
+
+            binding.WillBuy2.setText(String.valueOf(cost2));
+            binding.WillDescrip2.setText(String.valueOf(saves.getInt("Will2",0)));
+
+            binding.WillBuy3.setText(String.valueOf(cost3));
+            binding.WillDescrip3.setText(String.valueOf(saves.getInt("Will3",0)));
+
+            binding.WillBuy4.setText(String.valueOf(cost4));
+            binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
 
             if (score >= cost1) {//Stops it going on forever.
                 binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
@@ -336,6 +366,8 @@ public class WillFragment extends Fragment  {
         binding = null;
         timerHandler.removeCallbacks(timerRunnable);
     }
+
+
 
 
 

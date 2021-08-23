@@ -1,9 +1,11 @@
 package com.example.idlelife;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Button;
 
-
+import androidx.fragment.app.FragmentActivity;
 
 
 public class MiscMethods {
@@ -78,7 +80,7 @@ public class MiscMethods {
 
         int level = data.getInt("Int3",0);
 
-        return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5))); //NEED CHANGING
+        return (int) (50000+level*2000+ Math.floor(Math.pow(2.,(float)level))); //NEED CHANGING
     }
 
     public static int Int4Cost(Context context){
@@ -144,6 +146,38 @@ public class MiscMethods {
                 break;
         }
         editor.apply();
+    }
+
+    public static void ButtonPressAction(Button buyButton, int cost , String name, String currency, FragmentActivity activity){
+
+        SharedPreferences UpdateAmount = activity.getSharedPreferences("Values", Context.MODE_PRIVATE );
+
+
+        long CurrentScore = UpdateAmount.getLong(currency,0);
+
+        if (CurrentScore>=cost) {
+
+
+            SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
+
+            long resultScore = CurrentScore- cost;
+
+            AmountEditor.putLong(currency,resultScore);
+
+            int Current = UpdateAmount.getInt(name, 0);
+
+            AmountEditor.putInt(name, Current + 1);
+
+            AmountEditor.apply();
+
+            if (resultScore<cost) {
+                buyButton.setBackgroundColor(0xff555555);
+            }
+
+
+        }
+
+
     }
 
 

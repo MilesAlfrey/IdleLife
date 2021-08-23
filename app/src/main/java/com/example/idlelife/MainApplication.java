@@ -59,10 +59,12 @@ public class MainApplication extends Application {
 
             int Int2 = data.getInt("Int2",0);
 
+            int Int3 = data.getInt("Int3",0);
+
 
             editor.putLong("Will", currentWill + Will1+5*Will2 + 20*Will3+100*Will4);
 
-            editor.putLong("Int",currentInt+Int1+10*Int2);
+            editor.putLong("Int",currentInt+Int1+10*Int2+20*Int3);
 
             editor.apply();
 

@@ -122,8 +122,11 @@ public class IntelligenceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    MiscMethods.ButtonPressAction(binding.IntBuy1,MiscMethods.Int1Cost(requireContext()),"Int1","Will",requireActivity());
 
 
+
+                    /*
 
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
@@ -156,6 +159,8 @@ public class IntelligenceFragment extends Fragment {
                         binding.IntDescrip1.setText(String.valueOf(Current+1));
                     }
 
+                     */
+
 
                 }
             });
@@ -164,6 +169,10 @@ public class IntelligenceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity());
+
+
+                    /*
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
 
@@ -195,6 +204,8 @@ public class IntelligenceFragment extends Fragment {
                         binding.IntDescrip2.setText(String.valueOf(Current+1));
                     }
 
+                     */
+
 
                 }
             });
@@ -203,6 +214,9 @@ public class IntelligenceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Int",requireActivity());
+
+                    /*
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
 
@@ -234,6 +248,8 @@ public class IntelligenceFragment extends Fragment {
                         binding.IntDescrip3.setText(String.valueOf(Current+1));
                     }
 
+                     */
+
 
                 }
             });
@@ -242,6 +258,9 @@ public class IntelligenceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
+                    MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Int",requireActivity());
+
+                    /*
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
 
@@ -272,6 +291,8 @@ public class IntelligenceFragment extends Fragment {
                         binding.IntBuy4.setText(String.valueOf(MiscMethods.Int4Cost(requireContext())));
                         binding.IntDescrip4.setText(String.valueOf(Current+1));
                     }
+
+                     */
 
 
                 }
@@ -311,6 +332,19 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
             int cost4 = MiscMethods.Int4Cost(requireContext());
             long will = saves.getLong("Will", 0);
             long intelligence = saves.getLong("Int", 0);
+
+
+            binding.IntBuy1.setText(String.valueOf(cost1));
+            binding.IntDescrip1.setText(String.valueOf(saves.getInt("Int1",0)));
+
+            binding.IntBuy2.setText(String.valueOf(cost2));
+            binding.IntDescrip2.setText(String.valueOf(saves.getInt("Int2",0)));
+
+            binding.IntBuy3.setText(String.valueOf(cost3));
+            binding.IntDescrip3.setText(String.valueOf(saves.getInt("Int3",0)));
+
+            binding.IntBuy4.setText(String.valueOf(cost4));
+            binding.IntDescrip4.setText(String.valueOf(saves.getInt("Int4",0)));
 
             if (will >= cost1) {//Stops it going on forever.
                 binding.IntBuy1.setBackgroundColor(0xffff0000); //Stop if red
