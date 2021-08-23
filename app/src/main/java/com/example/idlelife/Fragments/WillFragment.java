@@ -94,59 +94,26 @@ public class WillFragment extends Fragment  {
 
         timerHandler.post(timerRunnable);
 
-        binding.WillBuy1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.WillBuy1.setOnClickListener(view1 -> {
 
-                MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
+            MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
 
 
 
-                //IntroDialog test = new IntroDialog();
-                //test.show(getParentFragmentManager(),"test");
+            //IntroDialog test = new IntroDialog();
+            //test.show(getParentFragmentManager(),"test");
 
-                //TODO: USE DIALOG CORRECTLY
+            //TODO: USE DIALOG CORRECTLY
 
-
-
-            }
-        });
-
-        binding.WillBuy2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity());
-
-
-
-            }
-        });
-
-        binding.WillBuy3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                MiscMethods.ButtonPressAction(binding.WillBuy3,MiscMethods.Will3Cost(requireContext()),"Will3","Will",requireActivity());
-
-
-
-
-            }
-        });
-
-        binding.WillBuy4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Will",requireActivity());
-
-
-            }
 
 
         });
+
+        binding.WillBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity()));
+
+        binding.WillBuy3.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.WillBuy3,MiscMethods.Will3Cost(requireContext()),"Will3","Will",requireActivity()));
+
+        binding.WillBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Will",requireActivity()));
 
 
     }
@@ -176,6 +143,7 @@ public class WillFragment extends Fragment  {
 
             binding.WillBuy4.setText(String.valueOf(cost4));
             binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
+
 
             if (score >= cost1) {//Stops it going on forever.
                 binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red

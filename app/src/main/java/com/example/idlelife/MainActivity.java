@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int Update_Interval= 50; // IMPORTANT HOW OFTEN APP UPDATES.
 
     Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
+    final Runnable timerRunnable = new Runnable() {
         @Override
         public void run() {//Updates score Visually
 
@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
             NumberFormat numFormat = new DecimalFormat("0.###E0"); //Makes it into the right notation
 
-            binding.Will.setText(String.valueOf(numFormat.format(score.getLong("Will",0))));
+            binding.Will.setText(numFormat.format(score.getLong("Will", 0)));
 
-            binding.Intelligence.setText(String.valueOf(numFormat.format(score.getLong("Int",0))));
+            binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));
 
-            binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age",0))[0]));
+            binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age", 0))[0]));
 
-            timerHandler.postDelayed(this,Update_Interval); //Repeat this runnable in the given time.
+            timerHandler.postDelayed(this, Update_Interval); //Repeat this runnable in the given time.
         }
     };
 
@@ -66,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         timerHandler.post(timerRunnable);
-
-
-
 
 
         //NAVIGATION

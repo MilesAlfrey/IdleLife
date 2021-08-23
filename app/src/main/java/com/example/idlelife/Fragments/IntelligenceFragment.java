@@ -124,8 +124,6 @@ public class IntelligenceFragment extends Fragment {
 
                     MiscMethods.ButtonPressAction(binding.IntBuy1,MiscMethods.Int1Cost(requireContext()),"Int1","Will",requireActivity());
 
-
-
                     /* Backup
 
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
@@ -160,45 +158,14 @@ public class IntelligenceFragment extends Fragment {
                     }
 
                      */
-
-
                 }
             });
 
-        binding.IntBuy2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        binding.IntBuy2.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity()));
 
-                    MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity());
+        binding.IntBuy3.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Int",requireActivity()));
 
-
-
-                }
-            });
-
-        binding.IntBuy3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Int",requireActivity());
-
-
-
-
-                }
-            });
-
-        binding.IntBuy4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Int",requireActivity());
-
-
-
-
-                }
-            });
+        binding.IntBuy4.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Int",requireActivity()));
 
         timerHandler.post(timerRunnable);
 
