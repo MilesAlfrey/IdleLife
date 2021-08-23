@@ -100,45 +100,13 @@ public class WillFragment extends Fragment  {
 
                 MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
 
-                /*
+
 
                 //IntroDialog test = new IntroDialog();
                 //test.show(getParentFragmentManager(),"test");
 
                 //TODO: USE DIALOG CORRECTLY
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                int cost = MiscMethods.Will1Cost(requireContext());
-
-                long CurrentScore = UpdateAmount.getLong("Will",0);
-
-                if (CurrentScore>=cost) {
-
-
-                    SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                    long resultScore = CurrentScore- cost;
-
-                    AmountEditor.putLong("Will",resultScore);
-
-                    int Current = UpdateAmount.getInt("Will1", 0);
-
-                    AmountEditor.putInt("Will1", Current + 1);
-
-                    AmountEditor.apply();
-
-                    if (resultScore<cost) {
-                        binding.WillBuy1.setBackgroundColor(0xff555555);
-                    }
-
-
-                    binding.WillBuy1.setText(String.valueOf(MiscMethods.Will1Cost(requireContext())));
-                    binding.WillDescrip1.setText(String.valueOf(Current+1));
-                }
-
-                 */
 
 
             }
@@ -149,40 +117,7 @@ public class WillFragment extends Fragment  {
             public void onClick(View view) {
 
                 MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity());
-                /*
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                int cost = MiscMethods.Will2Cost(requireContext());
-
-                long CurrentScore = UpdateAmount.getLong("Will",0);
-
-                if (CurrentScore>=cost) {
-
-
-                    SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                    long resultScore = CurrentScore- cost;
-
-                    AmountEditor.putLong("Will",resultScore);
-
-                    int Current = UpdateAmount.getInt("Will2", 0);
-
-                    AmountEditor.putInt("Will2", Current + 1);
-
-                    AmountEditor.apply();
-
-                    if (resultScore<cost) {
-                        binding.WillBuy2.setBackgroundColor(0xff555555);
-                    }
-
-
-                    binding.WillBuy2.setText(String.valueOf(MiscMethods.Will2Cost(requireContext())));
-                    binding.WillDescrip2.setText(String.valueOf(Current+1));
-                }
-
-                 */
 
 
             }
@@ -194,40 +129,7 @@ public class WillFragment extends Fragment  {
 
                 MiscMethods.ButtonPressAction(binding.WillBuy3,MiscMethods.Will3Cost(requireContext()),"Will3","Will",requireActivity());
 
-                /*
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                int cost = MiscMethods.Will3Cost(requireContext());
-
-                long CurrentScore = UpdateAmount.getLong("Will",0);
-
-                if (CurrentScore>=cost) {
-
-
-                    SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                    long resultScore = CurrentScore- cost;
-
-                    AmountEditor.putLong("Will",resultScore);
-
-                    int Current = UpdateAmount.getInt("Will3", 0);
-
-                    AmountEditor.putInt("Will3", Current + 1);
-
-                    AmountEditor.apply();
-
-                    if (resultScore<cost) {
-                        binding.WillBuy3.setBackgroundColor(0xff555555);
-                    }
-
-
-                    binding.WillBuy3.setText(String.valueOf(MiscMethods.Will3Cost(requireContext())));
-                    binding.WillDescrip3.setText(String.valueOf(Current+1));
-                }
-
-                 */
 
 
             }
@@ -240,40 +142,7 @@ public class WillFragment extends Fragment  {
 
                 MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Will",requireActivity());
 
-                /*
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                int cost = MiscMethods.Will4Cost(requireContext());
-
-                long CurrentScore = UpdateAmount.getLong("Will",0);
-
-                if (CurrentScore>=cost) {
-
-
-                    SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                    long resultScore = CurrentScore- cost;
-
-                    AmountEditor.putLong("Will",resultScore);
-
-                    int Current = UpdateAmount.getInt("Will4", 0);
-
-                    AmountEditor.putInt("Will4", Current + 1);
-
-                    AmountEditor.apply();
-
-                    if (resultScore<cost) {
-                        binding.WillBuy4.setBackgroundColor(0xff555555);
-                    }
-
-
-                    binding.WillBuy4.setText(String.valueOf(MiscMethods.Will4Cost(requireContext())));
-                    binding.WillDescrip4.setText(String.valueOf(Current+1));
-                }
-
-                */
             }
 
 

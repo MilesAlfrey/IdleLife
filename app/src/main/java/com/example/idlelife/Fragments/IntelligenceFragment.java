@@ -126,7 +126,7 @@ public class IntelligenceFragment extends Fragment {
 
 
 
-                    /*
+                    /* Backup
 
                     SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
@@ -172,40 +172,6 @@ public class IntelligenceFragment extends Fragment {
                     MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity());
 
 
-                    /*
-                    SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                    int cost = MiscMethods.Int2Cost(requireContext());
-
-                    long CurrentScore = UpdateAmount.getLong("Int",0);
-
-                    if (CurrentScore>=cost) {
-
-
-                        SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                        long resultScore = CurrentScore- cost;
-
-                        AmountEditor.putLong("Int",resultScore);
-
-                        int Current = UpdateAmount.getInt("Int2", 0);
-
-                        AmountEditor.putInt("Int2", Current + 1);
-
-                        AmountEditor.apply();
-
-                        if (resultScore<cost) {
-                            binding.IntBuy2.setBackgroundColor(0xff555555);
-                        }
-
-
-                        binding.IntBuy2.setText(String.valueOf(MiscMethods.Int2Cost(requireContext())));
-                        binding.IntDescrip2.setText(String.valueOf(Current+1));
-                    }
-
-                     */
-
 
                 }
             });
@@ -216,39 +182,7 @@ public class IntelligenceFragment extends Fragment {
 
                     MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Int",requireActivity());
 
-                    /*
-                    SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
-
-                    int cost = MiscMethods.Will3Cost(requireContext());
-
-                    long CurrentScore = UpdateAmount.getLong("Int",0);
-
-                    if (CurrentScore>=cost) {
-
-
-                        SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                        long resultScore = CurrentScore- cost;
-
-                        AmountEditor.putLong("Int",resultScore);
-
-                        int Current = UpdateAmount.getInt("Int3", 0);
-
-                        AmountEditor.putInt("Int3", Current + 1);
-
-                        AmountEditor.apply();
-
-                        if (resultScore<cost) {
-                            binding.IntBuy3.setBackgroundColor(0xff555555);
-                        }
-
-
-                        binding.IntBuy3.setText(String.valueOf(MiscMethods.Int3Cost(requireContext())));
-                        binding.IntDescrip3.setText(String.valueOf(Current+1));
-                    }
-
-                     */
 
 
                 }
@@ -260,39 +194,7 @@ public class IntelligenceFragment extends Fragment {
 
                     MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Int",requireActivity());
 
-                    /*
-                    SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
 
-
-                    int cost = MiscMethods.Int4Cost(requireContext());
-
-                    long CurrentScore = UpdateAmount.getLong("Int",0);
-
-                    if (CurrentScore>=cost) {
-
-
-                        SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                        long resultScore = CurrentScore- cost;
-
-                        AmountEditor.putLong("Int",resultScore);
-
-                        int Current = UpdateAmount.getInt("Int4", 0);
-
-                        AmountEditor.putInt("Int4", Current + 1);
-
-                        AmountEditor.apply();
-
-                        if (resultScore<cost) {
-                            binding.IntBuy4.setBackgroundColor(0xff555555);
-                        }
-
-
-                        binding.IntBuy4.setText(String.valueOf(MiscMethods.Int4Cost(requireContext())));
-                        binding.IntDescrip4.setText(String.valueOf(Current+1));
-                    }
-
-                     */
 
 
                 }
