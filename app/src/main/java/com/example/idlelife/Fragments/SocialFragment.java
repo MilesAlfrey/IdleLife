@@ -41,6 +41,14 @@ public class SocialFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
+
+
+        SharedPreferences.Editor ButtonRemover = score.edit();
+        ButtonRemover.putBoolean("ShowAgeUp",true);
+        ButtonRemover.apply();
+
         //TODO: TO EDIT TO MAKE IT SPECIFIC TO SOCIAL.
 
 /*

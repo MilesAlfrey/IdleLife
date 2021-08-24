@@ -1,5 +1,7 @@
 package com.example.idlelife.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,11 @@ public class TestsFragment extends Fragment  {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        SharedPreferences buttonRemove = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ButtonRemover = buttonRemove.edit();
+        ButtonRemover.putBoolean("ShowAgeUp",false);
+        ButtonRemover.apply();
 
         //TODO: TO EDIT TO MAKE IT SPECIFIC TO Tests remember this is unique one so funnnnn.
 

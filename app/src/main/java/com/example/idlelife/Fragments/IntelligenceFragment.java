@@ -50,6 +50,11 @@ public class IntelligenceFragment extends Fragment {
 
         SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
+
+        SharedPreferences.Editor ButtonRemover = score.edit();
+        ButtonRemover.putBoolean("ShowAgeUp",true);
+        ButtonRemover.apply();
+
         if(score.getBoolean("ShowInt1",false)){
             binding.IntDescrip1.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.IntBuy1.setVisibility(View.VISIBLE);

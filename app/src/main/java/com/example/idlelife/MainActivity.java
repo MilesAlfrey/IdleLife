@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
             NumberFormat numFormat = new DecimalFormat("0.###E0"); //Makes it into the right notation
 
+            if (score.getBoolean("ShowAgeUp",true)){
+                binding.AgeUp.setVisibility(View.VISIBLE);
+            }
+            else{
+                binding.AgeUp.setVisibility(View.GONE);
+            }
+
             binding.Will.setText(numFormat.format(score.getLong("Will", 0)));
 
             binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));

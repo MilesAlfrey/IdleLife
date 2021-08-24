@@ -1,6 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/NameAndBuffText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDK Description about it or something"
+        android:textColor="@color/Bluelol"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
+
+    <TextView
+        android:id="@+id/PercentageFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20%"
+        android:textColor="@color/Bluelol"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ProgressBarToFill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ProgressBarToFill"
+        app:layout_constraintTop_toTopOf="@+id/ProgressBarToFill"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/ProgressBarToFill"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:contentDescription="An Empty Progress box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33"
+        app:srcCompat="@drawable/outlined_rectangle" />
+
+    <ImageView
+        android:id="@+id/FullBar"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:contentDescription="The bar that will full up"
+        app:layout_constraintBottom_toBottomOf="@+id/ProgressBarToFill"
+        app:layout_constraintStart_toStartOf="@+id/ProgressBarToFill"
+        app:layout_constraintTop_toTopOf="@+id/ProgressBarToFill"
+        app:srcCompat="@drawable/filled_in_rectangle" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        app:srcCompat="@drawable/thiccerline" />
+
+    <Button
+        android:id="@+id/IncreaseSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Button"
+        app:backgroundTint="@color/Bluelol"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProgressBarToFill" />
+
+    <Button
+        android:id="@+id/TakeTest"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Button"
+        app:backgroundTint="@color/Bluelol"
+        app:layout_constraintBottom_toBottomOf="@+id/IncreaseSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IncreaseSpeed"
+        app:layout_constraintTop_toTopOf="@+id/IncreaseSpeed" />
+
+    <ImageView
+        android:id="@+id/ForMeToSeeBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        app:srcCompat="@drawable/thiccerline"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/forMeToSeeTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:srcCompat="@drawable/thiccerline"
+        tools:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="380dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/ForMeToSeeBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Test1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/Test2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/Test3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Test4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/Test5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/Test6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:insetLeft="10dp"
+                    android:insetTop="10dp"
+                    android:insetRight="10dp"
+                    android:insetBottom="10dp"
+                    android:text="Button" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

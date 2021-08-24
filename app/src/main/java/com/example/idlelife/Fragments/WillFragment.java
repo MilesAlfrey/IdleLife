@@ -54,6 +54,12 @@ public class WillFragment extends Fragment  {
 
         SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
+
+        SharedPreferences.Editor ButtonRemover = score.edit();
+        ButtonRemover.putBoolean("ShowAgeUp",true);
+        ButtonRemover.apply();
+
+
         if(score.getBoolean("ShowWill2",false)){
             binding.WillBuy2.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.WillDescrip2.setVisibility(View.VISIBLE);
