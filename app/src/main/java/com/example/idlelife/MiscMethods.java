@@ -147,7 +147,7 @@ public class MiscMethods {
         editor.apply();
     }
 
-    public static void ButtonPressAction(Button buyButton, int cost , String name, String currency, FragmentActivity activity){
+    public static void ButtonPressAction(Button buyButton, long cost , String name, String currency, FragmentActivity activity){
 
         SharedPreferences UpdateAmount = activity.getSharedPreferences("Values", Context.MODE_PRIVATE );
 

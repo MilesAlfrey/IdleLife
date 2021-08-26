@@ -12,4 +12,5 @@
     <color name="Redlol">#FFFF0000</color>
     <color name="Greenlol">#FF00FF00</color>
     <color name="Bluelol">#FF0000FF</color>
+    <color name ="TransparantGrey">#44EEEEEE</color>
 </resources>

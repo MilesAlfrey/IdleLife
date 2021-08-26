@@ -3,24 +3,30 @@ package com.example.idlelife.Fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 
+import com.example.idlelife.MiscMethods;
 import com.example.idlelife.databinding.FragmentTestsBinding;
 
+import java.util.Map;
 
-public class TestsFragment extends Fragment  {
 
+public class TestsFragment extends Fragment {
 
 
     private FragmentTestsBinding binding;
 
-     //To test with view model
+    //To test with view model
 
     @Override
     public View onCreateView(
@@ -29,13 +35,10 @@ public class TestsFragment extends Fragment  {
     ) {
 
 
-
         binding = FragmentTestsBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
-
-
 
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -43,57 +46,44 @@ public class TestsFragment extends Fragment  {
 
         SharedPreferences buttonRemove = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
         SharedPreferences.Editor ButtonRemover = buttonRemove.edit();
-        ButtonRemover.putBoolean("ShowAgeUp",false);
+        ButtonRemover.putBoolean("ShowAgeUp", false);
         ButtonRemover.apply();
 
         //TODO: TO EDIT TO MAKE IT SPECIFIC TO Tests remember this is unique one so funnnnn.
-
-/*
 
 
         //WHERE I WILL PUT ALL OF VISIBILITY SETTINGS
 
         SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-        if(score.getBoolean("ShowWill2",false)){
-            binding.WillBuy2.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
-            binding.WillDescrip2.setVisibility(View.VISIBLE);
-        }
 
         //END OF VISIBILITY SETTINGS
 
 
+        Pair<String, Long> result = new Pair<>("lol", (long) 4);//TODO: SET UP THE THING IN MISCMETHODS THAT STORES THESE.
+
+        String currency = result.first;
+        long cost = result.second;
 
 
+        long owned = score.getLong("currency", 0);
 
-
-
-
-        binding.WillBuy1.setText(String.valueOf(MiscMethods.Button1Cost(requireContext())));
-        binding.WillDescrip1.setText(String.valueOf(score.getInt("Will1",0)));
-
-        int cost = MiscMethods.Button1Cost(requireContext());
-        long will = score.getLong("Will", 0);
-
-        if (will >= cost) {//Stops it going on forever.
-            binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
-        }
-        else {
-            binding.WillBuy1.setBackgroundColor(0xff555555);
+        if (owned >= cost) {//Stops it going on forever.
+            //Colour chagne if can buy it
+        } else {
+            //Colour change if cant buy it
         }
 
         timerHandler.post(timerRunnable);
 
-        binding.WillBuy1.setOnClickListener(new View.OnClickListener() {
+        binding.IncreaseSpeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
+                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
 
-                int cost = MiscMethods.Button1Cost(requireContext());
-
-                long CurrentScore = UpdateAmount.getLong("Will",0);
+                long CurrentScore = UpdateAmount.getLong(currency,0);
 
                 if (CurrentScore>=cost) {
 
@@ -102,33 +92,30 @@ public class TestsFragment extends Fragment  {
 
                     long resultScore = CurrentScore- cost;
 
-                    AmountEditor.putLong("Will",resultScore);
+                    AmountEditor.putLong(currency,resultScore);
 
-                    int Current = UpdateAmount.getInt("Will1", 0);
+                    int Current = UpdateAmount.getInt("TestSpeed", 0);
 
-                    AmountEditor.putInt("Will1", Current + 1);
+                    AmountEditor.putInt("TestSpeed", Current + 1);
 
-                    AmountEditor.apply();
+                    AmountEditor.apply();//Rest should work
+                    //TODO: PUT "BRAIN" IN APPLICATIoN
 
                     if (resultScore<cost) {
-                        binding.WillBuy1.setBackgroundColor(0xff555555);
-                        timerHandler.post(timerRunnable);//Starts the runnable for other way round
+                        binding.IncreaseSpeed.setBackgroundColor(0xff555555);//Make mores specific for the increasde speed button.
                     }
 
 
-                    binding.WillBuy1.setText(String.valueOf(MiscMethods.Button1Cost(requireContext())));
-                    binding.WillDescrip1.setText(String.valueOf(Current+1));
                 }
 
 
             }
-        });*/
-
+        });
 
     }
 
-    /*
-    private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for a change in button colour.
+
+    private final static int Update_Interval = 100; // IMPORTANT HOW OFTEN Checks for a change in button colour.
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -136,38 +123,46 @@ public class TestsFragment extends Fragment  {
         public void run() { //This will just always run and check everything as i am dumb and cant do it better.
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            int cost = MiscMethods.Button1Cost(requireContext());
-            long score = saves.getLong("Will", 0);
+            int currentTest = saves.getInt("Test", 0);// 0 means no test current, and beyond that its numbered
 
-            if (score >= cost) {//Stops it going on forever.
-                binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
-
+            if (currentTest == 0) {
+                // Do whatever is needed if there is no current test.
+            } else {
+                //Do what is needed when a test is actually present.
             }
 
-            int age = saves.getInt("Age",0);
 
-            //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non will things.
-            switch(age){
+            //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non will things. Same way to unlock tests
+            //WILL ALSO NEED TO HIDE THEM IN CASE OF COMPLETION
+
+            int age = saves.getInt("Age", 0);
+
+            switch (age) {
                 case 1:
-                    binding.WillBuy2.setVisibility(View.VISIBLE);
-                    binding.WillDescrip2.setVisibility(View.VISIBLE);//On age 2 we show will2
+                    binding.Test1.setVisibility(View.VISIBLE);
+                    binding.Test2.setVisibility(View.VISIBLE);//On age 2 we show will2
                     break;
                 case 2:
-                    //What do on age 2... and so on
+                    binding.Test3.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    binding.Test4.setVisibility(View.VISIBLE);
+                    break;
+                case 5:
+                    binding.Test5.setVisibility(View.VISIBLE);
+                    binding.Test6.setVisibility(View.VISIBLE);
             }
 
-            timerHandler.postDelayed(timerRunnable,Update_Interval);
+            timerHandler.postDelayed(timerRunnable, Update_Interval);
         }
     };
 
-*/
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
         //timerHandler.removeCallbacks(timerRunnable);
     }
-
-
 
 }
