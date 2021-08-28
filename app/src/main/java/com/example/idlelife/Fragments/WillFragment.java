@@ -105,7 +105,6 @@ public class WillFragment extends Fragment  {
             MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
 
 
-
             //IntroDialog test = new IntroDialog();
             //test.show(getParentFragmentManager(),"test");
 

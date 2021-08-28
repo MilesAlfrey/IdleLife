@@ -2,6 +2,7 @@ package com.example.idlelife;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Pair;
 import android.widget.Button;
 
 import androidx.fragment.app.FragmentActivity;
@@ -109,6 +110,27 @@ public class MiscMethods {
         else{
             return new long[]{100000,0,0,0};
         }
+    }
+
+    public static Pair<String,Long> SpeedUpCost(int Test, int amountBought){
+
+        long cost = 0;
+        switch (Test){
+            case 1:
+                cost = 10000+5000*amountBought+amountBought*amountBought*1000;
+                return new Pair<>("Will",cost);
+            case 2:
+                cost = 1000+5000*amountBought+amountBought*amountBought*1000;
+                return new Pair<>("Intelligence",cost);
+                    //TODO: ADD A FORMULA FOR EVERY TEST
+        }
+        return new Pair<>("Will", (long) 0);
+        //Create individual costs for each test, similar to cost of bars.
+
+        //First will have a will cost for now
+
+
+
     }
 
 

@@ -61,10 +61,16 @@ public class MainApplication extends Application {
 
             int Int3 = data.getInt("Int3",0);
 
+            int TestSpeed= data.getInt("TestSpeed",0);
+
+            int TestProgress=data.getInt("TestProgress",0);
+
 
             editor.putLong("Will", currentWill + Will1+5*Will2 + 20*Will3+100*Will4);
 
             editor.putLong("Int",currentInt+Int1+10*Int2+20*Int3);
+
+            editor.putInt("TestProgress",TestProgress+TestSpeed);//May want to change this to help adjust for smaller values
 
             editor.apply();
 

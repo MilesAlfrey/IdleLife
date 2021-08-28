@@ -117,6 +117,10 @@ public class IntelligenceFragment extends Fragment {
                 editor.putBoolean("ShowInt3", false);
                 editor.putBoolean("ShowInt4", false);
 
+                editor.putInt("TestSpeed",0);
+                editor.putInt("Test",1);
+                editor.putInt("TestProgress",0);
+
                 editor.apply();
             }
         });
