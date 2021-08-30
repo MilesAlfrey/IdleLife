@@ -65,10 +65,25 @@ public class MainApplication extends Application {
 
             int TestProgress=data.getInt("TestProgress",0);
 
+            boolean Test1 = data.getBoolean("Test1Completed",false);
+            boolean Test2 = data.getBoolean("Test2Completed",false);
+            boolean Test3 = data.getBoolean("Test3Completed",false);
+            boolean Test4 = data.getBoolean("Test4Completed",false);
+            boolean Test5 = data.getBoolean("Test5Completed",false);
+            boolean Test6 = data.getBoolean("Test6Completed",false);
 
-            editor.putLong("Will", currentWill + Will1+5*Will2 + 20*Will3+100*Will4);
 
-            editor.putLong("Int",currentInt+Int1+10*Int2+20*Int3);
+            long WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
+
+            if (Test1) {
+                WillAdd*=4; //Can just add effects like this
+            }
+
+            editor.putLong("Will", currentWill + WillAdd);
+
+            long IntAdd = Int1+10*Int2+20*Int3;
+
+            editor.putLong("Int",currentInt+IntAdd);
 
             editor.putInt("TestProgress",TestProgress+TestSpeed);//May want to change this to help adjust for smaller values
 

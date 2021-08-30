@@ -131,6 +131,54 @@ public class TestsFragment extends Fragment {
             }
         });
 
+        binding.TakeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+
+                int currentTest = Values.getInt("Test",0); //Gets the current test being performed
+
+                if (currentTest!=0) {
+
+                    int ran = (int) Math.floor(Math.random() * 100) + 1;//GIVES A RANDOM NUMBER BETWEEN 1 and 100
+
+                    int total = Values.getInt("TestLength", 0); //NOTE HAVENT FORMALLY SET TEST LENGTHS YET
+                    int current = Values.getInt("TestProgress", 0);
+                    int percentage = (int) Math.floor(((float) current / (float) total)*100);//Gives a number between 0 and 100
+                    SharedPreferences.Editor change = Values.edit();
+                    if (percentage>=ran){//Will only succeed the percentage number of times
+                        //On pass
+
+                        String TestCompleted = "Test"+currentTest+"Completed";
+                        System.out.println(TestCompleted);
+                        change.putBoolean(TestCompleted,true);
+
+                        change.apply();//TODO: ACTUALLY USE THESE COMPLETED TESTS and "Stop" the current test
+
+                        greyCompleted(currentTest);
+                    }
+                    else{
+                        System.out.println("LOOOSERRRR");
+                        change.putInt("TestProgress",0);
+                        change.putInt("TestSpeed",0);//RESET TO 0
+                        change.apply();
+
+                        Pair<String, Long> result2 = MiscMethods.SpeedUpCost(currentTest,0);
+                        binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
+
+                    }
+
+
+                }
+
+
+
+
+
+            }
+        });
+
         timerHandler.post(timerRunnable);
     }
 
@@ -143,6 +191,27 @@ public class TestsFragment extends Fragment {
         public void run() { //This will just always run and check everything as i am dumb and cant do it better.
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
+
+
+            //GREYS OUT COMPLETED TESTS
+            if (saves.getBoolean("Test1Completed",false)){
+                greyCompleted(1);
+            }
+            if (saves.getBoolean("Test2Completed",false)){
+                greyCompleted(2);
+            }
+            if (saves.getBoolean("Test3Completed",false)){
+                greyCompleted(3);
+            }
+            if (saves.getBoolean("Test4Completed",false)){
+                greyCompleted(4);
+            }
+            if (saves.getBoolean("Test5Completed",false)){
+                greyCompleted(5);
+            }
+            if (saves.getBoolean("Test6Completed",false)){
+                greyCompleted(6);
+            }
 
 
             //FOR THE CURRENT TEST, SPEEDING UP AND SETTING LENGTH OF THE BAR
@@ -161,7 +230,7 @@ public class TestsFragment extends Fragment {
 
                 int TestProgress = saves.getInt("TestProgress",0);
 
-                System.out.println(TestProgress);
+                //System.out.println(TestProgress);
 
                 if (TestProgress>=TestLength){
                     //I guess do nothing?
@@ -174,16 +243,13 @@ public class TestsFragment extends Fragment {
                 }
                 else{
                     int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width; //Can sometimes crash ):
-                    System.out.println(MaxWidth);
                     float divide = (float) TestProgress / (float) TestLength;
-                    System.out.println(divide);
-                    int ProgressWidth = (int) Math.floor(divide * (float) MaxWidth);
-                    System.out.println(ProgressWidth);
 
-                    binding.FullBar.getLayoutParams().width= ProgressWidth;
+
+                    binding.FullBar.getLayoutParams().width= (int) Math.floor(divide * (float) MaxWidth);
                     binding.FullBar.requestLayout(); // Simple division to set a fraction (CHECK MORE ON MAXWIDTH)
 
-                    System.out.println((int) Math.floor(divide*100));
+                    //System.out.println((int) Math.floor(divide*100));
 
                     binding.PercentageFill.setText(getString(R.string.Percentage,(int) Math.floor(divide*100)));
                 }
@@ -200,21 +266,26 @@ public class TestsFragment extends Fragment {
 
             int age = saves.getInt("Age", 0);
 
-            switch (age) {
+            switch (age) { //TODO: FIX THIS HACKY WAY OF DOING IT
+                case 5:
+                    binding.Test5.setVisibility(View.VISIBLE); //May need to change the visibility of layouts to stop scrolling?
+                    binding.Test6.setVisibility(View.VISIBLE);//TODO: Also could just but this in on created as cant age up in here
+                case 4:
+                    //Nothing lol
+
+                case 3:
+                    binding.Test4.setVisibility(View.VISIBLE);
+
+                case 2:
+                    binding.Test3.setVisibility(View.VISIBLE);
+
                 case 1:
                     binding.Test1.setVisibility(View.VISIBLE);
                     binding.Test2.setVisibility(View.VISIBLE);//On age 2 we show will2
-                    break;
-                case 2:
-                    binding.Test3.setVisibility(View.VISIBLE);
-                    break;
-                case 3:
-                    binding.Test4.setVisibility(View.VISIBLE);
-                    break;
-                case 5:
-                    binding.Test5.setVisibility(View.VISIBLE);
-                    binding.Test6.setVisibility(View.VISIBLE);
-                    break;
+
+
+
+
             }
 
 
@@ -233,6 +304,29 @@ public class TestsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         timerHandler.removeCallbacks(timerRunnable);
+    }
+
+    private void greyCompleted(int completedTest){
+        switch(completedTest) {
+            case (1):
+                binding.Test1.setBackgroundColor(0x44EEEEEE);
+                break;
+            case (2):
+                binding.Test2.setBackgroundColor(0x44EEEEEE);
+                break;
+            case (3):
+                binding.Test3.setBackgroundColor(0x44EEEEEE);
+                break;
+            case (4):
+                binding.Test4.setBackgroundColor(0x44EEEEEE);
+                break;
+            case (5):
+                binding.Test5.setBackgroundColor(0x44EEEEEE);
+                break;
+            case (6):
+                binding.Test6.setBackgroundColor(0x44EEEEEE);
+                break;
+        }
     }
 
 }
