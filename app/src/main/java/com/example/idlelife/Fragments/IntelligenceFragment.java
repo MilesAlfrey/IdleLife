@@ -95,7 +95,7 @@ public class IntelligenceFragment extends Fragment {
                 SharedPreferences.Editor editor = toReset.edit();
                 editor.putInt("Age", 0);
 
-                editor.putLong("Will", 0);
+                editor.putLong("Will", 10000000);
                 editor.putLong("Int", 0);
 
                 editor.putInt("Will1", 0);

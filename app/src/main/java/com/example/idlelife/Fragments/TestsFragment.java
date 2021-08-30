@@ -79,6 +79,29 @@ public class TestsFragment extends Fragment {
             //Colour change if cant buy it
         }
 
+        int age = score.getInt("Age", 0);
+
+        switch (age) { //TODO: FIX THIS HACKY WAY OF DOING IT
+            case 5:
+                binding.Test5.setVisibility(View.VISIBLE); //May need to change the visibility of layouts to stop scrolling?
+                binding.Test6.setVisibility(View.VISIBLE);
+            case 4:
+                //Nothing lol
+
+            case 3:
+                binding.Test4.setVisibility(View.VISIBLE);
+
+            case 2:
+                binding.Test3.setVisibility(View.VISIBLE);
+
+            case 1:
+                binding.Test1.setVisibility(View.VISIBLE);
+                binding.Test2.setVisibility(View.VISIBLE);//On age 2 we show will2
+
+
+
+
+        }
 
 
         binding.IncreaseSpeed.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +255,7 @@ public class TestsFragment extends Fragment {
 
                 //System.out.println(TestProgress);
 
-                if (TestProgress>=TestLength){
+                if (TestProgress>=TestLength){//TODO: DO THE SET THING ON START SO IT DOESNT JUMP SO WHEN ENTERING TAB
                     //I guess do nothing?
 
                     binding.FullBar.getLayoutParams().width= binding.ProgressBarToFill.getLayoutParams().width;
@@ -264,29 +287,9 @@ public class TestsFragment extends Fragment {
             //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non will things. Same way to unlock tests
             //WILL ALSO NEED TO HIDE THEM IN CASE OF COMPLETION
 
-            int age = saves.getInt("Age", 0);
-
-            switch (age) { //TODO: FIX THIS HACKY WAY OF DOING IT
-                case 5:
-                    binding.Test5.setVisibility(View.VISIBLE); //May need to change the visibility of layouts to stop scrolling?
-                    binding.Test6.setVisibility(View.VISIBLE);//TODO: Also could just but this in on created as cant age up in here
-                case 4:
-                    //Nothing lol
-
-                case 3:
-                    binding.Test4.setVisibility(View.VISIBLE);
-
-                case 2:
-                    binding.Test3.setVisibility(View.VISIBLE);
-
-                case 1:
-                    binding.Test1.setVisibility(View.VISIBLE);
-                    binding.Test2.setVisibility(View.VISIBLE);//On age 2 we show will2
 
 
 
-
-            }
 
 
 
