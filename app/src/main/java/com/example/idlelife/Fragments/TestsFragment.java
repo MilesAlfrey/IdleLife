@@ -57,6 +57,26 @@ public class TestsFragment extends Fragment {
 
         SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
+        //GREYS OUT COMPLETED TESTS
+        if (score.getBoolean("Test1Completed",false)){
+            greyCompleted(1);
+        }
+        if (score.getBoolean("Test2Completed",false)){
+            greyCompleted(2);
+        }
+        if (score.getBoolean("Test3Completed",false)){
+            greyCompleted(3);
+        }
+        if (score.getBoolean("Test4Completed",false)){
+            greyCompleted(4);
+        }
+        if (score.getBoolean("Test5Completed",false)){
+            greyCompleted(5);
+        }
+        if (score.getBoolean("Test6Completed",false)){
+            greyCompleted(6);
+        }
+
 
         //END OF VISIBILITY SETTINGS
 
@@ -64,7 +84,7 @@ public class TestsFragment extends Fragment {
 
         int TestSpeed = score.getInt("TestSpeed",0);
 
-        Pair<String, Long> result = MiscMethods.SpeedUpCost(currentTest,TestSpeed);
+        Pair<String, Long> result = SpeedUpCost(currentTest,TestSpeed);
 
         String currency = result.first;
         long cost = result.second;
@@ -81,7 +101,9 @@ public class TestsFragment extends Fragment {
 
         int age = score.getInt("Age", 0);
 
-        switch (age) { //TODO: FIX THIS HACKY WAY OF DOING IT
+        switch (age) {
+            default:
+                //Just makes sure everything runs.
             case 5:
                 binding.Test5.setVisibility(View.VISIBLE); //May need to change the visibility of layouts to stop scrolling?
                 binding.Test6.setVisibility(View.VISIBLE);
@@ -90,15 +112,17 @@ public class TestsFragment extends Fragment {
 
             case 3:
                 binding.Test4.setVisibility(View.VISIBLE);
+                binding.SecondRow.setVisibility(View.VISIBLE);
 
             case 2:
                 binding.Test3.setVisibility(View.VISIBLE);
 
             case 1:
+                binding.FirstRow.setVisibility(View.VISIBLE);
                 binding.Test1.setVisibility(View.VISIBLE);
                 binding.Test2.setVisibility(View.VISIBLE);//On age 2 we show will2
-
-
+            case 0:
+                //None shows
 
 
         }
@@ -113,7 +137,7 @@ public class TestsFragment extends Fragment {
                 int TestSpeed = UpdateAmount.getInt("TestSpeed",0);
                 int currentTest = UpdateAmount.getInt("Test",0);
 
-                Pair<String, Long> result = MiscMethods.SpeedUpCost(currentTest,TestSpeed);
+                Pair<String, Long> result = SpeedUpCost(currentTest,TestSpeed);
 
                 long CurrentScore = UpdateAmount.getLong(result.first,0);
 
@@ -134,7 +158,7 @@ public class TestsFragment extends Fragment {
 
 
 
-                    Pair<String, Long> result2 = MiscMethods.SpeedUpCost(currentTest,Current+1); //TO GET THE NEW PRICE
+                    Pair<String, Long> result2 = SpeedUpCost(currentTest,Current+1); //TO GET THE NEW PRICE
 
 
 
@@ -187,7 +211,7 @@ public class TestsFragment extends Fragment {
                         change.putInt("TestSpeed",0);//RESET TO 0
                         change.apply();
 
-                        Pair<String, Long> result2 = MiscMethods.SpeedUpCost(currentTest,0);
+                        Pair<String, Long> result2 = SpeedUpCost(currentTest,0);
                         binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
 
                     }
@@ -201,6 +225,19 @@ public class TestsFragment extends Fragment {
 
             }
         });
+
+        binding.Test1.setOnClickListener(view16 -> changeTest(1));
+
+        binding.Test2.setOnClickListener(view15 -> changeTest(2));
+
+        binding.Test3.setOnClickListener(view14 -> changeTest(3));
+
+        binding.Test4.setOnClickListener(view13 -> changeTest(4));
+
+        binding.Test5.setOnClickListener(view12 -> changeTest(5));
+
+        binding.Test6.setOnClickListener(view1 -> changeTest(6));
+        //Sets all of the buttons to run the appropriate change test
 
         timerHandler.post(timerRunnable);
     }
@@ -216,25 +253,7 @@ public class TestsFragment extends Fragment {
 
 
 
-            //GREYS OUT COMPLETED TESTS
-            if (saves.getBoolean("Test1Completed",false)){
-                greyCompleted(1);
-            }
-            if (saves.getBoolean("Test2Completed",false)){
-                greyCompleted(2);
-            }
-            if (saves.getBoolean("Test3Completed",false)){
-                greyCompleted(3);
-            }
-            if (saves.getBoolean("Test4Completed",false)){
-                greyCompleted(4);
-            }
-            if (saves.getBoolean("Test5Completed",false)){
-                greyCompleted(5);
-            }
-            if (saves.getBoolean("Test6Completed",false)){
-                greyCompleted(6);
-            }
+
 
 
             //FOR THE CURRENT TEST, SPEEDING UP AND SETTING LENGTH OF THE BAR
@@ -242,14 +261,14 @@ public class TestsFragment extends Fragment {
 
             int currentTest = saves.getInt("Test", 0);// 0 means no test current, and beyond that its numbered
 
+            binding.NameAndBuffText.setText(String.valueOf(currentTest));
 
             if (currentTest == 0) {
                 // Do whatever is needed if there is no current test.
             } else {
 
-                int TestLength  = saves.getInt("TestLength",0); //TODO:Properly make a way to set the length and test
+                int TestLength  = saves.getInt("TestLength",0);
 
-                TestLength = 10000;// REMOVE THIS TOO
 
                 int TestProgress = saves.getInt("TestProgress",0);
 
@@ -313,23 +332,90 @@ public class TestsFragment extends Fragment {
         switch(completedTest) {
             case (1):
                 binding.Test1.setBackgroundColor(0x44EEEEEE);
+                binding.Test1.setEnabled(false);
                 break;
             case (2):
                 binding.Test2.setBackgroundColor(0x44EEEEEE);
+                binding.Test2.setEnabled(false);
                 break;
             case (3):
                 binding.Test3.setBackgroundColor(0x44EEEEEE);
+                binding.Test3.setEnabled(false);
                 break;
             case (4):
                 binding.Test4.setBackgroundColor(0x44EEEEEE);
+                binding.Test4.setEnabled(false);
                 break;
             case (5):
                 binding.Test5.setBackgroundColor(0x44EEEEEE);
+                binding.Test5.setEnabled(false);
                 break;
             case (6):
                 binding.Test6.setBackgroundColor(0x44EEEEEE);
+                binding.Test6.setEnabled(false);
                 break;
         }
+    }
+
+    private void changeTest(int newTest){
+        SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = Values.edit();
+        editor.putInt("TestProgress",0);
+        editor.putInt("Test",newTest);
+        editor.putInt("TestSpeed",0);
+        editor.putInt("TestLength",getTestLength(newTest));//TODO: ADD DIALOG OR SOMETHING IDK
+        binding.IncreaseSpeed.setText(String.valueOf(SpeedUpCost(newTest,0).second));
+        editor.apply();
+    }
+
+    private static int getTestLength(int TestNum){
+        switch (TestNum) {
+            case 1:
+                return 10000;
+            case 2:
+                return 50000;
+            case 3:
+                return 10001;
+            case 4:
+                return 50002;
+            case 5:
+                return 10005;
+            case 6:
+                return 50005;
+        }
+        return 0;
+
+    }
+
+    public static Pair<String,Long> SpeedUpCost(int Test, int amountBought){
+
+        long cost = 0;
+        switch (Test){
+            case 1:
+                cost = 10000+5000*amountBought+amountBought*amountBought*1000;
+                return new Pair<>("Will",cost);
+            case 2:
+                cost = 1000+5000*amountBought+amountBought*amountBought*1000;
+                return new Pair<>("Int",cost);
+            case 3:
+                cost = 1;
+                return  new Pair<>("Will",cost);
+            case 4:
+                cost = 2;
+                return  new Pair<>("Will",cost);
+            case 5:
+                cost = 13;
+                return  new Pair<>("Will",cost);
+            case 6:
+                cost = 4;
+                return  new Pair<>("Will",cost);
+            //TODO: ADD A FORMULA FOR EVERY TEST
+        }
+        return new Pair<>("Will", (long) 0);
+        //Create individual costs for each test, similar to cost of bars.
+
+        //First will have a will cost for now
+
     }
 
 }

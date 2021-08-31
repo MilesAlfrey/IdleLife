@@ -118,9 +118,9 @@ public class IntelligenceFragment extends Fragment {
                 editor.putBoolean("ShowInt4", false);
 
                 editor.putInt("TestSpeed",0);
-                editor.putInt("Test",1);
+                editor.putInt("Test",0);
                 editor.putInt("TestProgress",0);
-                editor.putInt("TestLength",10000);
+                //editor.putInt("TestLength",10000); Shouldnt be needed
 
                 editor.putBoolean("Test1Completed",false);
                 editor.putBoolean("Test2Completed",false);

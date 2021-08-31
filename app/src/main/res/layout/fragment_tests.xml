@@ -22,7 +22,7 @@
         android:id="@+id/PercentageFill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20%"
+        android:text="0%"
         android:textColor="@color/Bluelol"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/ProgressBarToFill"
@@ -46,7 +46,7 @@
 
     <ImageView
         android:id="@+id/FullBar"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:contentDescription="The bar that will full up"
         app:layout_constraintBottom_toBottomOf="@+id/ProgressBarToFill"
@@ -130,9 +130,12 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/FirstRow"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <Button
                     android:id="@+id/Test1"
@@ -175,9 +178,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/SecondRow"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <Button
                     android:id="@+id/Test4"
@@ -189,7 +195,7 @@
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
                     android:text="Button"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     tools:visibility="visible" />
 
                 <Button
@@ -202,7 +208,7 @@
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
                     android:text="Button"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     tools:visibility="visible" />
 
                 <Button
@@ -215,7 +221,7 @@
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
                     android:text="Button"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     tools:visibility="visible" />
             </LinearLayout>
         </LinearLayout>
