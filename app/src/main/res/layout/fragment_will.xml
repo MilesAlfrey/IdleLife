@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:insetLeft="2dp"
                     android:text="Button"
-                    app:backgroundTint="@color/Redlol"
+                    app:backgroundTint="@color/WillColour"
                     app:iconTint="#00FFFFFF"
                     app:rippleColor="#00FFFFFF" />
             </LinearLayout>
@@ -75,7 +75,7 @@
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
-                    app:backgroundTint="@color/Redlol"
+                    app:backgroundTint="@color/WillColour"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>
@@ -106,7 +106,7 @@
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
-                    app:backgroundTint="@color/Redlol"
+                    app:backgroundTint="@color/WillColour"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>
@@ -137,7 +137,7 @@
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
-                    app:backgroundTint="@color/Redlol"
+                    app:backgroundTint="@color/WillColour"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>

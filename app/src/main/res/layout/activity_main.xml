@@ -31,7 +31,7 @@
                 android:insetRight="20dp"
                 android:insetBottom="20dp"
                 android:text="@string/Will"
-                app:backgroundTint="@color/Redlol"
+                app:backgroundTint="@color/WillColour"
                 app:elevation="0dp"
                 app:rippleColor="#00FFFFFF" />
 
@@ -45,7 +45,7 @@
                 android:insetRight="20dp"
                 android:insetBottom="20dp"
                 android:text="@string/Intelligence"
-                app:backgroundTint="@color/Bluelol"
+                app:backgroundTint="@color/IntColour"
                 app:rippleColor="#00FFFFFF" />
 
             <Button
@@ -58,7 +58,7 @@
                 android:insetRight="20dp"
                 android:insetBottom="20dp"
                 android:text="@string/Social"
-                app:backgroundTint="@color/Greenlol"
+                app:backgroundTint="@color/SocialColour"
                 app:rippleColor="#00FFFFFF" />
 
             <Button
@@ -72,7 +72,7 @@
                 android:insetRight="20dp"
                 android:insetBottom="20dp"
                 android:text="@string/Money"
-                app:backgroundTint="@color/teal_200"
+                app:backgroundTint="@color/MoneyColour"
                 app:rippleColor="#00FFFFFF" />
 
             <Button
@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:text="HEllo?"
-            app:backgroundTint="@color/Bluelol"
+            app:backgroundTint="@color/IntColour"
             app:layout_constraintBottom_toTopOf="@+id/BotBlackLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -9,8 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Background_grey">#FF555555</color>
     <color name="Darker_Grey">#FF444444</color>
-    <color name="Redlol">#FFFF0000</color>
-    <color name="Greenlol">#FF00FF00</color>
-    <color name="Bluelol">#FF0000FF</color>
+    <color name="WillColour">#FFFF0000</color>
+    <color name="MoneyColour">#FF00FF00</color>
+    <color name="IntColour">#FF0000FF</color>
+    <color name="SocialColour">#FFFFFF00</color>
     <color name ="TransparantGrey">#44EEEEEE</color>
+    <color name ="Nothing">#00000000</color>
+    <color name ="DarkWill">#FF770000</color>
+    <color name ="DarkInt">#FF000088</color>
+    <color name ="DarkMoney">#ff006600</color>
+    <color name ="DarkSocial">#ff888800</color>
+
 </resources>

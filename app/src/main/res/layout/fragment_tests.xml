@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="IDK Description about it or something"
-        android:textColor="@color/Bluelol"
+        android:textColor="@color/IntColour"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
-        android:textColor="@color/Bluelol"
+        android:textColor="@color/IntColour"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/ProgressBarToFill"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,23 +70,25 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:text="Button"
-        app:backgroundTint="@color/Bluelol"
+        app:backgroundTint="@color/IntColour"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.26"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProgressBarToFill" />
+        app:layout_constraintTop_toBottomOf="@+id/ProgressBarToFill"
+        app:rippleColor="@color/Nothing" />
 
     <Button
         android:id="@+id/TakeTest"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:text="Take Test"
-        app:backgroundTint="@color/Bluelol"
+        app:backgroundTint="@color/IntColour"
         app:layout_constraintBottom_toBottomOf="@+id/IncreaseSpeed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/IncreaseSpeed"
-        app:layout_constraintTop_toTopOf="@+id/IncreaseSpeed" />
+        app:layout_constraintTop_toTopOf="@+id/IncreaseSpeed"
+        app:rippleColor="@color/Nothing" />
 
     <ImageView
         android:id="@+id/ForMeToSeeBottom"
@@ -148,6 +150,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/WillColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
 
                 <Button
@@ -161,6 +165,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/IntColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
 
                 <Button
@@ -174,6 +180,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/WillColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
             </LinearLayout>
 
@@ -196,6 +204,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/WillColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
 
                 <Button
@@ -209,6 +219,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/WillColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
 
                 <Button
@@ -222,6 +234,8 @@
                     android:insetBottom="10dp"
                     android:text="Button"
                     android:visibility="invisible"
+                    app:backgroundTint="@color/WillColour"
+                    app:rippleColor="@color/Nothing"
                     tools:visibility="visible" />
             </LinearLayout>
         </LinearLayout>

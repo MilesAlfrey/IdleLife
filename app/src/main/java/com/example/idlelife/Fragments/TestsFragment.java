@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -81,6 +82,8 @@ public class TestsFragment extends Fragment {
 
         int currentTest = score.getInt("Test",0);
 
+        binding.NameAndBuffText.setText(String.valueOf(currentTest));
+
         int TestSpeed = score.getInt("TestSpeed",0);
 
         Pair<String, Long> result = SpeedUpCost(currentTest,TestSpeed);
@@ -92,15 +95,12 @@ public class TestsFragment extends Fragment {
 
         //For editing the increase speed button
 
-        binding.IncreaseSpeed.setText(String.valueOf(cost)); //TODO: IMPROVE THIS AND ADD COLOURING
+        binding.IncreaseSpeed.setText(String.valueOf(cost));
 
         long owned = score.getLong(currency, 0);
 
-        if (owned >= cost) {//Stops it going on forever.
-            //Colour chagne if can buy it
-        } else {
-            //Colour change if cant buy it
-        }
+
+        colourChange(cost,owned,currency); //changes the colours depending on currency and amount owned
 
 
         //Tests whether the increase speed and take test buttons can be pressed
@@ -198,13 +198,9 @@ public class TestsFragment extends Fragment {
 
 
 
-                    binding.IncreaseSpeed.setText(String.valueOf(result2.second)); //TODO: IMPROVE THIS AND ADD COLOURING
+                    binding.IncreaseSpeed.setText(String.valueOf(result2.second)); //TODO: IMPROVE THIS AND ADD COLOURING for can afford/cant
 
-
-
-                    //if (resultScore<cost) {
-                    //    binding.IncreaseSpeed.setBackgroundColor(0xff555555);//Make mores specific for the increasde speed button.
-                    //}
+                    colourChange(result2.second,resultScore,result2.first);
 
 
                 }
@@ -298,7 +294,12 @@ public class TestsFragment extends Fragment {
         public void run() { //This will just always run and check everything as i am dumb and cant do it better.
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
+            int currentTest = saves.getInt("Test", 0);// 0 means no test current, and beyond that its numbered
+            int TestSpeed = saves.getInt("TestSpeed", 0);
 
+
+            Pair<String, Long> Cost = SpeedUpCost(currentTest,TestSpeed);
+            colourChange(Cost.second,saves.getLong(Cost.first, 0), Cost.first);//Checks and sets the colour if  it can be bought or not
 
 
 
@@ -306,7 +307,6 @@ public class TestsFragment extends Fragment {
             //FOR THE CURRENT TEST, SPEEDING UP AND SETTING LENGTH OF THE BAR
 
 
-            int currentTest = saves.getInt("Test", 0);// 0 means no test current, and beyond that its numbered
 
             binding.NameAndBuffText.setText(String.valueOf(currentTest));
 
@@ -344,20 +344,6 @@ public class TestsFragment extends Fragment {
                 }
                 //Do what is needed when a test is actually present.
             }
-
-
-
-            //SETS WHAT IS VISIBLE IN TERMS OF AVAILABLE TESTS
-
-
-            //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non will things. Same way to unlock tests
-            //WILL ALSO NEED TO HIDE THEM IN CASE OF COMPLETION
-
-
-
-
-
-
 
 
 
@@ -411,10 +397,31 @@ public class TestsFragment extends Fragment {
         editor.putInt("Test",newTest);
         editor.putInt("TestSpeed",0);
         editor.putInt("TestLength",getTestLength(newTest));//TODO: ADD DIALOG OR SOMETHING IDK
-        binding.IncreaseSpeed.setText(String.valueOf(SpeedUpCost(newTest,0).second));
+        Pair<String, Long> cost = SpeedUpCost(newTest,0);
+        binding.IncreaseSpeed.setText(String.valueOf(cost.second));
         editor.putBoolean("EnableTestButtons",true);
         binding.TakeTest.setEnabled(true);
         binding.IncreaseSpeed.setEnabled(true);
+
+        switch (cost.first){
+            case("Will"):
+                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                break;
+            case("Int"):
+                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                break;
+            case("Money"):
+                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                break;
+            case("Social"):
+                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                break;
+        }
+
         editor.apply();
     }
 
@@ -466,6 +473,54 @@ public class TestsFragment extends Fragment {
 
         //First will have a will cost for now
 
+    }
+
+
+    private void colourChange(Long Cost, Long Owned, String Currency){
+        SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+
+        if (!Values.getBoolean("EnableTestButtons",true)){
+            binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Darker_Grey));
+            binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Darker_Grey));
+        }
+        else if (Owned >= Cost) {//Stops it going on forever.
+            //Colour chagne if can buy it
+
+            switch (Currency) {
+                case ("Will"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    break;
+                case ("Int"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    break;
+                case ("Money"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    break;
+                case ("Social"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    break;
+            }
+        }
+        else {
+            switch (Currency) {
+                case ("Will"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkWill));
+                    break;
+                case ("Int"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkInt));
+                    break;
+                case ("Money"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkMoney));
+                    break;
+                case ("Social"):
+                    binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkSocial));
+                    break;
+            }
+        }
     }
 
 }
