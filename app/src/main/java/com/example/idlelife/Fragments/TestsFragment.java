@@ -50,7 +50,6 @@ public class TestsFragment extends Fragment {
         ButtonRemover.putBoolean("ShowAgeUp", false);
         ButtonRemover.apply();
 
-        //TODO: TO EDIT TO MAKE IT SPECIFIC TO Tests remember this is unique one so funnnnn.
 
 
         //WHERE I WILL PUT ALL OF VISIBILITY SETTINGS
@@ -89,6 +88,10 @@ public class TestsFragment extends Fragment {
         String currency = result.first;
         long cost = result.second;
 
+
+
+        //For editing the increase speed button
+
         binding.IncreaseSpeed.setText(String.valueOf(cost)); //TODO: IMPROVE THIS AND ADD COLOURING
 
         long owned = score.getLong(currency, 0);
@@ -98,6 +101,38 @@ public class TestsFragment extends Fragment {
         } else {
             //Colour change if cant buy it
         }
+
+
+        //Tests whether the increase speed and take test buttons can be pressed
+        if (!score.getBoolean("EnableTestButtons",true)){
+            binding.IncreaseSpeed.setEnabled(false);
+            binding.TakeTest.setEnabled(false);
+        }
+
+
+
+        //Set bar length and percentage amount to prevent jitter on new tab selection
+        int TestProgress = score.getInt("TestProgress",0);
+        int TestLength = score.getInt("TestLength",0);
+
+        int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width;
+        float divide = (float) TestProgress / (float) TestLength;
+
+        if (divide >=1){ //Runs if the test is complete, setting it to 100 as maximum
+            binding.FullBar.getLayoutParams().width = MaxWidth;
+            binding.FullBar.requestLayout();
+            binding.PercentageFill.setText(getString(R.string.Percentage, 100));
+        }
+        else {
+            binding.FullBar.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
+            binding.FullBar.requestLayout();
+            binding.PercentageFill.setText(getString(R.string.Percentage, (int) Math.floor(divide * 100)));
+        }
+
+
+
+
+        //Makes sure the correct tests are available at the right time
 
         int age = score.getInt("Age", 0);
 
@@ -190,7 +225,7 @@ public class TestsFragment extends Fragment {
 
                     int ran = (int) Math.floor(Math.random() * 100) + 1;//GIVES A RANDOM NUMBER BETWEEN 1 and 100
 
-                    int total = Values.getInt("TestLength", 0); //NOTE HAVENT FORMALLY SET TEST LENGTHS YET
+                    int total = Values.getInt("TestLength", 0);
                     int current = Values.getInt("TestProgress", 0);
                     int percentage = (int) Math.floor(((float) current / (float) total)*100);//Gives a number between 0 and 100
                     SharedPreferences.Editor change = Values.edit();
@@ -201,7 +236,19 @@ public class TestsFragment extends Fragment {
                         System.out.println(TestCompleted);
                         change.putBoolean(TestCompleted,true);
 
-                        change.apply();//TODO: ACTUALLY USE THESE COMPLETED TESTS and "Stop" the current test
+                        change.putInt("TestProgress",total);
+
+                        binding.FullBar.getLayoutParams().width = binding.ProgressBarToFill.getLayoutParams().width;
+                        binding.FullBar.requestLayout();//Set bar to appear full upon test completion
+                        binding.PercentageFill.setText(getString(R.string.Percentage,100));
+
+
+
+                        binding.IncreaseSpeed.setEnabled(false);
+                        binding.TakeTest.setEnabled(false);//WONT WORK WHEN LEAVING AND REJOINING
+                        change.putBoolean("EnableTestButtons",false);
+
+                        change.apply();
 
                         greyCompleted(currentTest);
                     }
@@ -274,7 +321,7 @@ public class TestsFragment extends Fragment {
 
                 //System.out.println(TestProgress);
 
-                if (TestProgress>=TestLength){//TODO: DO THE SET THING ON START SO IT DOESNT JUMP SO WHEN ENTERING TAB
+                if (TestProgress>=TestLength){
                     //I guess do nothing?
 
                     binding.FullBar.getLayoutParams().width= binding.ProgressBarToFill.getLayoutParams().width;
@@ -284,12 +331,12 @@ public class TestsFragment extends Fragment {
 
                 }
                 else{
-                    int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width; //Can sometimes crash ):
+                    int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width;
                     float divide = (float) TestProgress / (float) TestLength;
 
 
                     binding.FullBar.getLayoutParams().width= (int) Math.floor(divide * (float) MaxWidth);
-                    binding.FullBar.requestLayout(); // Simple division to set a fraction (CHECK MORE ON MAXWIDTH)
+                    binding.FullBar.requestLayout(); // Simple division to set a fraction
 
                     //System.out.println((int) Math.floor(divide*100));
 
@@ -365,6 +412,9 @@ public class TestsFragment extends Fragment {
         editor.putInt("TestSpeed",0);
         editor.putInt("TestLength",getTestLength(newTest));//TODO: ADD DIALOG OR SOMETHING IDK
         binding.IncreaseSpeed.setText(String.valueOf(SpeedUpCost(newTest,0).second));
+        editor.putBoolean("EnableTestButtons",true);
+        binding.TakeTest.setEnabled(true);
+        binding.IncreaseSpeed.setEnabled(true);
         editor.apply();
     }
 
