@@ -2,6 +2,7 @@ package com.example.idlelife.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Pair;
@@ -403,24 +404,8 @@ public class TestsFragment extends Fragment {
         binding.TakeTest.setEnabled(true);
         binding.IncreaseSpeed.setEnabled(true);
 
-        switch (cost.first){
-            case("Will"):
-                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                break;
-            case("Int"):
-                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                break;
-            case("Money"):
-                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                break;
-            case("Social"):
-                binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                break;
-        }
+        colourChange(cost.second,Values.getLong(cost.first,0),cost.first);
+
 
         editor.apply();
     }
@@ -490,18 +475,34 @@ public class TestsFragment extends Fragment {
                 case ("Will"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
                     break;
                 case ("Int"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
                     break;
                 case ("Money"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
                     break;
                 case ("Social"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
                     break;
             }
         }
@@ -509,15 +510,35 @@ public class TestsFragment extends Fragment {
             switch (Currency) {
                 case ("Will"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkWill));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
                     break;
                 case ("Int"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkInt));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
                     break;
                 case ("Money"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkMoney));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
                     break;
                 case ("Social"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkSocial));
+                    binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
                     break;
             }
         }
