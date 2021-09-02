@@ -1,5 +1,6 @@
 package com.example.idlelife.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -9,19 +10,17 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 
-import com.example.idlelife.MiscMethods;
 import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentTestsBinding;
 
-import java.util.Map;
+
 
 
 public class TestsFragment extends Fragment {
@@ -53,45 +52,43 @@ public class TestsFragment extends Fragment {
         ButtonRemover.apply();
 
 
-
         //WHERE I WILL PUT ALL OF VISIBILITY SETTINGS
 
         SharedPreferences score = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
         //GREYS OUT COMPLETED TESTS
-        if (score.getBoolean("Test1Completed",false)){
+        if (score.getBoolean("Test1Completed", false)) {
             greyCompleted(1);
         }
-        if (score.getBoolean("Test2Completed",false)){
+        if (score.getBoolean("Test2Completed", false)) {
             greyCompleted(2);
         }
-        if (score.getBoolean("Test3Completed",false)){
+        if (score.getBoolean("Test3Completed", false)) {
             greyCompleted(3);
         }
-        if (score.getBoolean("Test4Completed",false)){
+        if (score.getBoolean("Test4Completed", false)) {
             greyCompleted(4);
         }
-        if (score.getBoolean("Test5Completed",false)){
+        if (score.getBoolean("Test5Completed", false)) {
             greyCompleted(5);
         }
-        if (score.getBoolean("Test6Completed",false)){
+        if (score.getBoolean("Test6Completed", false)) {
             greyCompleted(6);
         }
 
 
         //END OF VISIBILITY SETTINGS
 
-        int currentTest = score.getInt("Test",0);
+        int currentTest = score.getInt("Test", 0);
 
         binding.NameAndBuffText.setText(String.valueOf(currentTest));
 
-        int TestSpeed = score.getInt("TestSpeed",0);
+        int TestSpeed = score.getInt("TestSpeed", 0);
 
-        Pair<String, Long> result = SpeedUpCost(currentTest,TestSpeed);
+        Pair<String, Long> result = SpeedUpCost(currentTest, TestSpeed);
 
         String currency = result.first;
         long cost = result.second;
-
 
 
         //For editing the increase speed button
@@ -101,36 +98,32 @@ public class TestsFragment extends Fragment {
         long owned = score.getLong(currency, 0);
 
 
-        colourChange(cost,owned,currency); //changes the colours depending on currency and amount owned
+        colourChange(cost, owned, currency); //changes the colours depending on currency and amount owned
 
 
         //Tests whether the increase speed and take test buttons can be pressed
-        if (!score.getBoolean("EnableTestButtons",true)){
+        if (!score.getBoolean("EnableTestButtons", true)) {
             binding.IncreaseSpeed.setEnabled(false);
             binding.TakeTest.setEnabled(false);
         }
 
 
-
         //Set bar length and percentage amount to prevent jitter on new tab selection
-        int TestProgress = score.getInt("TestProgress",0);
-        int TestLength = score.getInt("TestLength",0);
+        int TestProgress = score.getInt("TestProgress", 0);
+        int TestLength = score.getInt("TestLength", 0);
 
         int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width;
         float divide = (float) TestProgress / (float) TestLength;
 
-        if (divide >=1){ //Runs if the test is complete, setting it to 100 as maximum
+        if (divide >= 1) { //Runs if the test is complete, setting it to 100 as maximum
             binding.FullBar.getLayoutParams().width = MaxWidth;
             binding.FullBar.requestLayout();
             binding.PercentageFill.setText(getString(R.string.Percentage, 100));
-        }
-        else {
+        } else {
             binding.FullBar.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
             binding.FullBar.requestLayout();
             binding.PercentageFill.setText(getString(R.string.Percentage, (int) Math.floor(divide * 100)));
         }
-
-
 
 
         //Makes sure the correct tests are available at the right time
@@ -164,123 +157,110 @@ public class TestsFragment extends Fragment {
         }
 
 
-        binding.IncreaseSpeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.IncreaseSpeed.setOnClickListener(view18 -> {
 
-                SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+            SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-                int TestSpeed = UpdateAmount.getInt("TestSpeed",0);
-                int currentTest = UpdateAmount.getInt("Test",0);
+            int TestSpeed1 = UpdateAmount.getInt("TestSpeed", 0);
+            int currentTest12 = UpdateAmount.getInt("Test", 0);
 
-                Pair<String, Long> result = SpeedUpCost(currentTest,TestSpeed);
+            Pair<String, Long> result1 = SpeedUpCost(currentTest12, TestSpeed1);
 
-                long CurrentScore = UpdateAmount.getLong(result.first,0);
+            long CurrentScore = UpdateAmount.getLong(result1.first, 0);
 
-                if (CurrentScore>=result.second) {
+            if (CurrentScore >= result1.second) {
 
 
-                    SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
+                SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
 
-                    long resultScore = CurrentScore- result.second;
+                long resultScore = CurrentScore - result1.second;
 
-                    AmountEditor.putLong(result.first,resultScore);
+                AmountEditor.putLong(result1.first, resultScore);
 
-                    int Current = UpdateAmount.getInt("TestSpeed", 0);
+                int Current = UpdateAmount.getInt("TestSpeed", 0);
 
-                    AmountEditor.putInt("TestSpeed", Current + 1);
+                AmountEditor.putInt("TestSpeed", Current + 1);
 
-                    AmountEditor.apply();//Rest should work
-
-
-
-                    Pair<String, Long> result2 = SpeedUpCost(currentTest,Current+1); //TO GET THE NEW PRICE
+                AmountEditor.apply();//Rest should work
 
 
+                Pair<String, Long> result2 = SpeedUpCost(currentTest12, Current + 1); //TO GET THE NEW PRICE
 
 
-                    binding.IncreaseSpeed.setText(String.valueOf(result2.second)); //TODO: IMPROVE THIS AND ADD COLOURING for can afford/cant
+                binding.IncreaseSpeed.setText(String.valueOf(result2.second));
 
-                    colourChange(result2.second,resultScore,result2.first);
+                colourChange(result2.second, resultScore, result2.first);
 
+
+            }
+
+
+        });
+
+        binding.TakeTest.setOnClickListener(view17 -> {
+
+            SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+
+            int currentTest1 = Values.getInt("Test", 0); //Gets the current test being performed
+
+            if (currentTest1 != 0) {
+
+                int ran = (int) Math.floor(Math.random() * 100) + 1;//GIVES A RANDOM NUMBER BETWEEN 1 and 100
+
+                int total = Values.getInt("TestLength", 0);
+                int current = Values.getInt("TestProgress", 0);
+                int percentage = (int) Math.floor(((float) current / (float) total) * 100);//Gives a number between 0 and 100
+                SharedPreferences.Editor change = Values.edit();
+                if (percentage >= ran) {//Will only succeed the percentage number of times
+                    //On pass
+
+                    String TestCompleted = "Test" + currentTest1 + "Completed";
+                    System.out.println(TestCompleted);
+                    change.putBoolean(TestCompleted, true);
+
+                    change.putInt("TestProgress", total);
+
+                    binding.FullBar.getLayoutParams().width = binding.ProgressBarToFill.getLayoutParams().width;
+                    binding.FullBar.requestLayout();//Set bar to appear full upon test completion
+                    binding.PercentageFill.setText(getString(R.string.Percentage, 100));
+
+
+                    binding.IncreaseSpeed.setEnabled(false);
+                    binding.TakeTest.setEnabled(false);//WONT WORK WHEN LEAVING AND REJOINING
+                    change.putBoolean("EnableTestButtons", false);
+
+                    change.apply();
+
+                    greyCompleted(currentTest1);
+                } else {
+                    System.out.println("LOOOSERRRR");
+                    change.putInt("TestProgress", 0);
+                    change.putInt("TestSpeed", 0);//RESET TO 0
+                    change.apply();
+
+                    Pair<String, Long> result2 = SpeedUpCost(currentTest1, 0);
+                    binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
 
                 }
 
 
             }
+
+
         });
 
-        binding.TakeTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
+        binding.Test1.setOnClickListener(view16 -> ConfirmationDialog(1));
 
-                int currentTest = Values.getInt("Test",0); //Gets the current test being performed
+        binding.Test2.setOnClickListener(view15 -> ConfirmationDialog(2));
 
-                if (currentTest!=0) {
+        binding.Test3.setOnClickListener(view14 -> ConfirmationDialog(3));
 
-                    int ran = (int) Math.floor(Math.random() * 100) + 1;//GIVES A RANDOM NUMBER BETWEEN 1 and 100
+        binding.Test4.setOnClickListener(view13 -> ConfirmationDialog(4));
 
-                    int total = Values.getInt("TestLength", 0);
-                    int current = Values.getInt("TestProgress", 0);
-                    int percentage = (int) Math.floor(((float) current / (float) total)*100);//Gives a number between 0 and 100
-                    SharedPreferences.Editor change = Values.edit();
-                    if (percentage>=ran){//Will only succeed the percentage number of times
-                        //On pass
+        binding.Test5.setOnClickListener(view12 -> ConfirmationDialog(5));
 
-                        String TestCompleted = "Test"+currentTest+"Completed";
-                        System.out.println(TestCompleted);
-                        change.putBoolean(TestCompleted,true);
-
-                        change.putInt("TestProgress",total);
-
-                        binding.FullBar.getLayoutParams().width = binding.ProgressBarToFill.getLayoutParams().width;
-                        binding.FullBar.requestLayout();//Set bar to appear full upon test completion
-                        binding.PercentageFill.setText(getString(R.string.Percentage,100));
-
-
-
-                        binding.IncreaseSpeed.setEnabled(false);
-                        binding.TakeTest.setEnabled(false);//WONT WORK WHEN LEAVING AND REJOINING
-                        change.putBoolean("EnableTestButtons",false);
-
-                        change.apply();
-
-                        greyCompleted(currentTest);
-                    }
-                    else{
-                        System.out.println("LOOOSERRRR");
-                        change.putInt("TestProgress",0);
-                        change.putInt("TestSpeed",0);//RESET TO 0
-                        change.apply();
-
-                        Pair<String, Long> result2 = SpeedUpCost(currentTest,0);
-                        binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
-
-                    }
-
-
-                }
-
-
-
-
-
-            }
-        });
-
-        binding.Test1.setOnClickListener(view16 -> changeTest(1));
-
-        binding.Test2.setOnClickListener(view15 -> changeTest(2));
-
-        binding.Test3.setOnClickListener(view14 -> changeTest(3));
-
-        binding.Test4.setOnClickListener(view13 -> changeTest(4));
-
-        binding.Test5.setOnClickListener(view12 -> changeTest(5));
-
-        binding.Test6.setOnClickListener(view1 -> changeTest(6));
+        binding.Test6.setOnClickListener(view1 -> ConfirmationDialog(6));
         //Sets all of the buttons to run the appropriate change test
 
         timerHandler.post(timerRunnable);
@@ -299,53 +279,46 @@ public class TestsFragment extends Fragment {
             int TestSpeed = saves.getInt("TestSpeed", 0);
 
 
-            Pair<String, Long> Cost = SpeedUpCost(currentTest,TestSpeed);
-            colourChange(Cost.second,saves.getLong(Cost.first, 0), Cost.first);//Checks and sets the colour if  it can be bought or not
-
-
+            Pair<String, Long> Cost = SpeedUpCost(currentTest, TestSpeed);
+            colourChange(Cost.second, saves.getLong(Cost.first, 0), Cost.first);//Checks and sets the colour if  it can be bought or not
 
 
             //FOR THE CURRENT TEST, SPEEDING UP AND SETTING LENGTH OF THE BAR
 
 
-
             binding.NameAndBuffText.setText(String.valueOf(currentTest));
 
-            if (currentTest == 0) {
-                // Do whatever is needed if there is no current test.
-            } else {
+            if (currentTest != 0){
 
-                int TestLength  = saves.getInt("TestLength",0);
+                int TestLength = saves.getInt("TestLength", 0);
 
 
-                int TestProgress = saves.getInt("TestProgress",0);
+                int TestProgress = saves.getInt("TestProgress", 0);
 
                 //System.out.println(TestProgress);
 
-                if (TestProgress>=TestLength){
+                if (TestProgress >= TestLength) {
                     //I guess do nothing?
 
-                    binding.FullBar.getLayoutParams().width= binding.ProgressBarToFill.getLayoutParams().width;
+                    binding.FullBar.getLayoutParams().width = binding.ProgressBarToFill.getLayoutParams().width;
                     binding.FullBar.requestLayout(); //Just set bar to full
 
-                    binding.PercentageFill.setText(getString(R.string.Percentage,100)); //And percentage to 100
+                    binding.PercentageFill.setText(getString(R.string.Percentage, 100)); //And percentage to 100
 
-                }
-                else{
+                } else {
                     int MaxWidth = binding.ProgressBarToFill.getLayoutParams().width;
                     float divide = (float) TestProgress / (float) TestLength;
 
 
-                    binding.FullBar.getLayoutParams().width= (int) Math.floor(divide * (float) MaxWidth);
+                    binding.FullBar.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
                     binding.FullBar.requestLayout(); // Simple division to set a fraction
 
                     //System.out.println((int) Math.floor(divide*100));
 
-                    binding.PercentageFill.setText(getString(R.string.Percentage,(int) Math.floor(divide*100)));
+                    binding.PercentageFill.setText(getString(R.string.Percentage, (int) Math.floor(divide * 100)));
                 }
                 //Do what is needed when a test is actually present.
             }
-
 
 
             //RESTARTS THE RUNNER
@@ -362,8 +335,8 @@ public class TestsFragment extends Fragment {
         timerHandler.removeCallbacks(timerRunnable);
     }
 
-    private void greyCompleted(int completedTest){
-        switch(completedTest) {
+    private void greyCompleted(int completedTest) {
+        switch (completedTest) {
             case (1):
                 binding.Test1.setBackgroundColor(0x44EEEEEE);
                 binding.Test1.setEnabled(false);
@@ -391,26 +364,26 @@ public class TestsFragment extends Fragment {
         }
     }
 
-    private void changeTest(int newTest){
+    private void changeTest(int newTest) {
         SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = Values.edit();
-        editor.putInt("TestProgress",0);
-        editor.putInt("Test",newTest);
-        editor.putInt("TestSpeed",0);
-        editor.putInt("TestLength",getTestLength(newTest));//TODO: ADD DIALOG OR SOMETHING IDK
-        Pair<String, Long> cost = SpeedUpCost(newTest,0);
+        editor.putInt("TestProgress", 0);
+        editor.putInt("Test", newTest);
+        editor.putInt("TestSpeed", 0);
+        editor.putInt("TestLength", getTestLength(newTest));
+        Pair<String, Long> cost = SpeedUpCost(newTest, 0);
         binding.IncreaseSpeed.setText(String.valueOf(cost.second));
-        editor.putBoolean("EnableTestButtons",true);
+        editor.putBoolean("EnableTestButtons", true);
         binding.TakeTest.setEnabled(true);
         binding.IncreaseSpeed.setEnabled(true);
 
-        colourChange(cost.second,Values.getLong(cost.first,0),cost.first);
+        colourChange(cost.second, Values.getLong(cost.first, 0), cost.first);
 
 
         editor.apply();
     }
 
-    private static int getTestLength(int TestNum){
+    private static int getTestLength(int TestNum) {
         switch (TestNum) {
             case 1:
                 return 10000;
@@ -429,28 +402,28 @@ public class TestsFragment extends Fragment {
 
     }
 
-    public static Pair<String,Long> SpeedUpCost(int Test, int amountBought){
+    public static Pair<String, Long> SpeedUpCost(int Test, int amountBought) {
 
-        long cost = 0;
-        switch (Test){
+        long cost;
+        switch (Test) {
             case 1:
-                cost = 10000+5000*amountBought+amountBought*amountBought*1000;
-                return new Pair<>("Will",cost);
+                cost = 10000 + 5000 * amountBought + amountBought * amountBought * 1000;
+                return new Pair<>("Will", cost);
             case 2:
-                cost = 1000+5000*amountBought+amountBought*amountBought*1000;
-                return new Pair<>("Int",cost);
+                cost = 1000 + 5000 * amountBought + amountBought * amountBought * 1000;
+                return new Pair<>("Int", cost);
             case 3:
                 cost = 1;
-                return  new Pair<>("Will",cost);
+                return new Pair<>("Will", cost);
             case 4:
                 cost = 2;
-                return  new Pair<>("Will",cost);
+                return new Pair<>("Will", cost);
             case 5:
                 cost = 13;
-                return  new Pair<>("Will",cost);
+                return new Pair<>("Will", cost);
             case 6:
                 cost = 4;
-                return  new Pair<>("Will",cost);
+                return new Pair<>("Will", cost);
             //TODO: ADD A FORMULA FOR EVERY TEST
         }
         return new Pair<>("Will", (long) 0);
@@ -461,87 +434,105 @@ public class TestsFragment extends Fragment {
     }
 
 
-    private void colourChange(Long Cost, Long Owned, String Currency){
+    private void colourChange(Long Cost, Long Owned, String Currency) {
         SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-        if (!Values.getBoolean("EnableTestButtons",true)){
+        if (!Values.getBoolean("EnableTestButtons", true)) {
             binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Darker_Grey));
             binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Darker_Grey));
-        }
-        else if (Owned >= Cost) {//Stops it going on forever.
-            //Colour chagne if can buy it
+        } else if (Owned >= Cost) {//Stops it going on forever.
+            //Colour change if can buy it
 
             switch (Currency) {
                 case ("Will"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.WillColour), PorterDuff.Mode.SRC_IN);
                     break;
                 case ("Int"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.IntColour));
                     break;
                 case ("Money"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
                     break;
                 case ("Social"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.SocialColour));
                     break;
             }
-        }
-        else {
+        } else {
             switch (Currency) {
                 case ("Will"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkWill));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.WillColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.WillColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.WillColour), PorterDuff.Mode.SRC_IN);
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.WillColour), PorterDuff.Mode.SRC_IN);
                     break;
                 case ("Int"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkInt));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.IntColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.IntColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.IntColour));
                     break;
                 case ("Money"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkMoney));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.MoneyColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.MoneyColour));
                     break;
                 case ("Social"):
                     binding.IncreaseSpeed.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.DarkSocial));
                     binding.TakeTest.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
-                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
-                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(),R.color.SocialColour));
+                    binding.PercentageFill.setTextColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.NameAndBuffText.setTextColor(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.FullBar.setColorFilter(ContextCompat.getColor(requireContext(), R.color.SocialColour));
+                    binding.ProgressBarToFill.setColorFilter(ContextCompat.getColor(requireContext(), R.color.SocialColour));
                     break;
             }
         }
     }
 
+    private void ConfirmationDialog(int TestChoice){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder
+                .setMessage("Change the current test to test "+TestChoice+"?")//Maybe make it a name not a number
+                .setPositiveButton(R.string.Yes, (dialogInterface, i) ->
+                        changeTest(TestChoice))
+                .setNegativeButton(R.string.No,(dialogInterface, i) -> {
+                    //Do Nothing
+                });
+        builder.show();
+
+
+    }
+
 }
+
+
+
+
+
+
