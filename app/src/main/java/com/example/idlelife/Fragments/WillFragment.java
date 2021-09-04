@@ -7,17 +7,16 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-import com.example.idlelife.Dialog.IntroDialog;
 import com.example.idlelife.MiscMethods;
 import com.example.idlelife.databinding.FragmentWillBinding;
 
-import java.lang.reflect.Method;
+
 
 public class WillFragment extends Fragment  {
 
@@ -100,19 +99,7 @@ public class WillFragment extends Fragment  {
 
         timerHandler.post(timerRunnable);
 
-        binding.WillBuy1.setOnClickListener(view1 -> {
-
-            MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity());
-
-
-            //IntroDialog test = new IntroDialog();
-            //test.show(getParentFragmentManager(),"test");
-
-            //TODO: USE DIALOG CORRECTLY
-
-
-
-        });
+        binding.WillBuy1.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity()));
 
         binding.WillBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity()));
 

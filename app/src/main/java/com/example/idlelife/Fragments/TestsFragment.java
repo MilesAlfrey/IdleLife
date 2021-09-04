@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -519,6 +520,7 @@ public class TestsFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder
                 .setMessage("Change the current test to test "+TestChoice+"?")//Maybe make it a name not a number
+
                 .setPositiveButton(R.string.Yes, (dialogInterface, i) ->
                         changeTest(TestChoice))
                 .setNegativeButton(R.string.No,(dialogInterface, i) -> {
