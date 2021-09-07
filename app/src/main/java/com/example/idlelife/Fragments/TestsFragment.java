@@ -518,9 +518,15 @@ public class TestsFragment extends Fragment {
 
     private void ConfirmationDialog(int TestChoice){
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder
-                .setMessage("Change the current test to test "+TestChoice+"?")//Maybe make it a name not a number
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View Message = inflater.inflate(R.layout.dialog_layout,null);
+        TextView text = Message.findViewById(R.id.confirmationText);
+        text.setText(getString(R.string.SwitchConfirmation, TestChoice));
 
+
+
+        builder
+                .setView(Message)
                 .setPositiveButton(R.string.Yes, (dialogInterface, i) ->
                         changeTest(TestChoice))
                 .setNegativeButton(R.string.No,(dialogInterface, i) -> {

@@ -22,6 +22,7 @@
     <string name="textview">TextView</string>
     <string name="Percentage">%1$d%%</string>
     <string name="ConfirmationCheck">Are you sure you want to do that?</string>
+    <string name="SwitchConfirmation">Change the current test to test %1$d?</string>
 
     <string name="Yes">Yep!</string>
     <string name="No">Nope!</string>
