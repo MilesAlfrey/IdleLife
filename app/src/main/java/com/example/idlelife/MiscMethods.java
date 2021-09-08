@@ -174,6 +174,8 @@ public class MiscMethods {
 
             AmountEditor.apply();
 
+
+            /*
             switch (currency){
                 case("Will"):
                     ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkWill)));
@@ -188,6 +190,8 @@ public class MiscMethods {
                     ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkMoney)));
                     break;
             }
+
+             */
 
 
         }

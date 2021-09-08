@@ -20,5 +20,6 @@
     <color name ="DarkInt">#FF000088</color>
     <color name ="DarkMoney">#ff006600</color>
     <color name ="DarkSocial">#ff888800</color>
+    <color name ="CompleteTestGrey">#44EEEEEE</color>
 
 </resources>

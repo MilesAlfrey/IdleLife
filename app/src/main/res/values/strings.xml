@@ -23,6 +23,7 @@
     <string name="Percentage">%1$d%%</string>
     <string name="ConfirmationCheck">Are you sure you want to do that?</string>
     <string name="SwitchConfirmation">Change the current test to test %1$d?</string>
+    <string name="AgeUpText">Age up? Cost: </string>
 
     <string name="Yes">Yep!</string>
     <string name="No">Nope!</string>

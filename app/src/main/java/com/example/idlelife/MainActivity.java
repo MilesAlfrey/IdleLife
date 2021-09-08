@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
@@ -53,7 +54,28 @@ public class MainActivity extends AppCompatActivity {
 
             binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));
 
-            binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age", 0))[0]));
+            long[] levelCost = MiscMethods.LevelCost(score.getInt("Age", 0));
+
+            if (levelCost[1] == 0){
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"));
+            }
+            else if (levelCost[2]==0){
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"+
+                        ", <font color='blue'>" + levelCost[1]  + "</font>"));
+            }
+            else if (levelCost[3]==0){
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"+
+                        ", <font color='blue'>" + levelCost[1]  + "</font>" +
+                        ", <font color='yellow'>" + levelCost[2]  + "</font>"));
+            }
+            else {
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0] + "</font>" +
+                        ", <font color='blue'>" + levelCost[1] + "</font>" +
+                        ", <font color='yellow'>" + levelCost[2] + "</font>" +
+                        ", <font color='green'>" + levelCost[3] + "</font>"));
+            }
+
+            //binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age", 0))[0]));
 
             timerHandler.postDelayed(this, Update_Interval); //Repeat this runnable in the given time.
         }
