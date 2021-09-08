@@ -2,9 +2,11 @@ package com.example.idlelife;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.util.Pair;
 import android.widget.Button;
 
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 
 
@@ -172,8 +174,19 @@ public class MiscMethods {
 
             AmountEditor.apply();
 
-            if (resultScore<cost) {
-                buyButton.setBackgroundColor(0xff555555);
+            switch (currency){
+                case("Will"):
+                    ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkWill)));
+                    break;
+                case("Int"):
+                    ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkInt)));
+                    break;
+                case("Social"):
+                    ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkSocial)));
+                    break;
+                case("Money"):
+                    ViewCompat.setBackgroundTintList(buyButton, ColorStateList.valueOf(activity.getResources().getColor(R.color.DarkMoney)));
+                    break;
             }
 
 

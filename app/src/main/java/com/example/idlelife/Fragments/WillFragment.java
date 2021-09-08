@@ -2,6 +2,7 @@ package com.example.idlelife.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -10,10 +11,12 @@ import android.view.ViewGroup;
 
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 
 import com.example.idlelife.MiscMethods;
+import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentWillBinding;
 
 
@@ -138,31 +141,39 @@ public class WillFragment extends Fragment  {
 
 
             if (score >= cost1) {//Stops it going on forever.
-                binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
+                ViewCompat.setBackgroundTintList(binding.WillBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+                //binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                binding.WillBuy1.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.WillBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                //binding.WillBuy1.setBackgroundColor(0xff555555);
             }
 
             if (score >= cost2) {//Stops it going on forever.
-                binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
+                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+                //binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                binding.WillBuy2.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                //binding.WillBuy2.setBackgroundColor(0xff555555);
             }
 
             if (score >= cost3) {//Stops it going on forever.
-                binding.WillBuy3.setBackgroundColor(0xffff0000); //Stop if red
+                ViewCompat.setBackgroundTintList(binding.WillBuy3,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+                //binding.WillBuy3.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                binding.WillBuy3.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.WillBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                //binding.WillBuy3.setBackgroundColor(0xff555555);
             }
 
             if (score >= cost4) {//Stops it going on forever.
-                binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
+                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+                //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                binding.WillBuy4.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                //binding.WillBuy4.setBackgroundColor(0xff555555);
             }
 
             int age = saves.getInt("Age",0);

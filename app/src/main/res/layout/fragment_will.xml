@@ -60,13 +60,16 @@
 
                 <Button
                     android:id="@+id/WillDescrip1"
-                    android:layout_width="168dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:checkable="false"
                     android:clickable="false"
-                    android:insetRight="2dp"
+                    android:insetRight="4dp"
                     android:text="Button"
+                    app:backgroundTint="@color/Darker_Grey"
+                    app:backgroundTintMode="src_in"
                     app:rippleColor="#00FFFFFF" />
 
                 <Button
@@ -74,10 +77,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:insetLeft="2dp"
+                    android:background="@drawable/buttonwithoutside"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetLeft="4dp"
                     android:text="Button"
                     app:backgroundTint="@color/WillColour"
-                    app:iconTint="#00FFFFFF"
+                    app:backgroundTintMode="src_in"
                     app:rippleColor="#00FFFFFF" />
             </LinearLayout>
 
@@ -91,11 +97,13 @@
                     android:layout_width="168dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:checkable="false"
                     android:clickable="false"
                     android:insetRight="2dp"
                     android:text="Button"
                     android:visibility="gone"
+                    app:backgroundTint="@color/Darker_Grey"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
 
@@ -104,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
@@ -122,11 +131,13 @@
                     android:layout_width="168dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:checkable="false"
                     android:clickable="false"
                     android:insetRight="2dp"
                     android:text="Button"
                     android:visibility="gone"
+                    app:backgroundTint="@color/Darker_Grey"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
 
@@ -135,6 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
@@ -153,11 +165,13 @@
                     android:layout_width="168dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:checkable="false"
                     android:clickable="false"
                     android:insetRight="2dp"
                     android:text="Button"
                     android:visibility="gone"
+                    app:backgroundTint="@color/Darker_Grey"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
 
@@ -166,6 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
@@ -173,6 +188,7 @@
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
