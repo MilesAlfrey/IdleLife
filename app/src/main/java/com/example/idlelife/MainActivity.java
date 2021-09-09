@@ -50,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 binding.AgeUp.setVisibility(View.GONE);
             }
 
-            binding.Will.setText(numFormat.format(score.getLong("Will", 0)));
 
-            binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));
+
+
+
+
+            //binding.imageView2.setColorFilter(new );
 
             long[] levelCost = MiscMethods.LevelCost(score.getInt("Age", 0));
 
@@ -75,7 +78,39 @@ public class MainActivity extends AppCompatActivity {
                         ", <font color='green'>" + levelCost[3] + "</font>"));
             }
 
-            //binding.AgeUp.setText(String.valueOf((int) MiscMethods.LevelCost(score.getInt("Age", 0))[0]));
+            binding.Will.setText(numFormat.format(score.getLong("Will", 0)));
+
+            binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));
+
+
+            int currentTest = score.getInt("Test",0);
+
+            if (currentTest != 0){
+                int TestLength = score.getInt("TestLength", 0);
+                int TestProgress = score.getInt("TestProgress", 0);
+
+                // Simple division to set a fraction
+                if (TestProgress >= TestLength) {
+                    binding.BlockColor.getLayoutParams().width = binding.Outlines.getLayoutParams().width;
+
+                } else {
+                    int MaxWidth = binding.Outlines.getLayoutParams().width;
+
+
+                    float divide = (float) TestProgress / (float) TestLength;
+
+
+
+                    binding.BlockColor.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
+
+                }
+                binding.BlockColor.requestLayout(); //Either way the new width is updated
+            }
+            else{
+                binding.BlockColor.getLayoutParams().width = 1;
+                binding.BlockColor.requestLayout(); // Sets it back to empty if there is no test, resetting it.
+            }
+
 
             timerHandler.postDelayed(this, Update_Interval); //Repeat this runnable in the given time.
         }
