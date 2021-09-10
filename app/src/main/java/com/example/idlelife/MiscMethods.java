@@ -22,6 +22,22 @@ public class MiscMethods {
         return (int) (level*10+ Math.floor(Math.pow((float)level,2.5)));
     }
 
+    public static long Will1Gain(Context context){
+
+        //Returns the total amount of will per second that will1 will give.
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+        int will1Amount = data.getInt("Will1",0);
+        boolean Test1 = data.getBoolean("Test1Completed",false);
+
+
+        if (Test1){
+            return 4*will1Amount*20;//Times 20 because 20 updates a second and each update gives 1;
+        }
+        else{
+            return will1Amount*20;
+        }
+    }
+
     public static int Will2Cost(Context context){
 
 
@@ -30,6 +46,22 @@ public class MiscMethods {
         int level = data.getInt("Will2",0);
 
         return (int) (1000+level*100+ Math.floor(Math.pow((float)level,2.5)));
+    }
+
+    public static long Will2Gain(Context context){
+
+        //Returns the total amount of will per second that will1 will give.
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+        int will2Amount = data.getInt("Will2",0);
+        boolean Test1 = data.getBoolean("Test1Completed",false);
+
+
+        if (Test1){
+            return 4*will2Amount*100;
+        }
+        else{
+            return will2Amount*100;
+        }
     }
 
     public static int Will3Cost(Context context){
@@ -42,6 +74,22 @@ public class MiscMethods {
         return (int) (10000+level*1000+ Math.floor(Math.pow((float)level,3)));
     }
 
+    public static long Will3Gain(Context context){
+
+        //Returns the total amount of will per second that will1 will give.
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+        int will1Amount = data.getInt("Will3",0);
+        boolean Test1 = data.getBoolean("Test1Completed",false);
+
+
+        if (Test1){
+            return 4*will1Amount*400;
+        }
+        else{
+            return will1Amount*400;
+        }
+    }
+
     public static int Will4Cost(Context context){
 
 
@@ -50,6 +98,22 @@ public class MiscMethods {
         int level = data.getInt("Will4",0);
 
         return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5)));
+    }
+
+    public static long Will4Gain(Context context){
+
+        //Returns the total amount of will per second that will1 will give.
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+        int will1Amount = data.getInt("Will4",0);
+        boolean Test1 = data.getBoolean("Test1Completed",false);
+
+
+        if (Test1){
+            return 4*will1Amount*2000;//Times 20 because 20 updates a second and each update gives 1;
+        }
+        else{
+            return will1Amount*2000;
+        }
     }
 
 

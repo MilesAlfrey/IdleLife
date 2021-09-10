@@ -19,6 +19,8 @@ import com.example.idlelife.MiscMethods;
 import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentWillBinding;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 public class WillFragment extends Fragment  {
@@ -119,9 +121,13 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy4.setBackgroundColor(0xff555555);
         }
 
+        NumberFormat numFormat = new DecimalFormat("0.##E0");
 
+
+        long Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
+        int Will1Owned = score.getInt("Will1",0);
         binding.WillBuy1.setText(String.valueOf(MiscMethods.Will1Cost(requireContext()))); //MAy not need as it is in run now.
-        binding.WillDescrip1.setText(String.valueOf(score.getInt("Will1",0)));
+        binding.WillDescrip1.setText(getString(R.string.DescriptionText,Will1Owned,numFormat.format(Will1MakeAmount)));
 
         binding.WillBuy2.setText(String.valueOf(MiscMethods.Will2Cost(requireContext())));
         binding.WillDescrip2.setText(String.valueOf(score.getInt("Will2",0)));
@@ -160,17 +166,38 @@ public class WillFragment extends Fragment  {
             int cost4 = MiscMethods.Will4Cost(requireContext());
             long score = saves.getLong("Will", 0);
 
+            NumberFormat numFormat = new DecimalFormat("0.00E0");
+
+
+
+            long Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
+            int Will1Owned = saves.getInt("Will1",0);
             binding.WillBuy1.setText(String.valueOf(cost1));
-            binding.WillDescrip1.setText(String.valueOf(saves.getInt("Will1",0)));
+            binding.WillDescrip1.setText(getString(R.string.DescriptionText,Will1Owned,numFormat.format(Will1MakeAmount)));
 
+            //binding.WillBuy2.setText(String.valueOf(cost2));
+            //binding.WillDescrip2.setText(String.valueOf(saves.getInt("Will2",0)));
+
+            long Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
+            int Will2Owned = saves.getInt("Will2",0);
             binding.WillBuy2.setText(String.valueOf(cost2));
-            binding.WillDescrip2.setText(String.valueOf(saves.getInt("Will2",0)));
+            binding.WillDescrip2.setText(getString(R.string.DescriptionText,Will2Owned,numFormat.format(Will2MakeAmount)));
 
+            //binding.WillBuy3.setText(String.valueOf(cost3));
+            //binding.WillDescrip3.setText(String.valueOf(saves.getInt("Will3",0)));
+
+            long Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
+            int Will3Owned = saves.getInt("Will3",0);
             binding.WillBuy3.setText(String.valueOf(cost3));
-            binding.WillDescrip3.setText(String.valueOf(saves.getInt("Will3",0)));
+            binding.WillDescrip3.setText(getString(R.string.DescriptionText,Will3Owned,numFormat.format(Will3MakeAmount)));
 
+            //binding.WillBuy4.setText(String.valueOf(cost4));
+            //binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
+
+            long Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
+            int Will4Owned = saves.getInt("Will4",0);
             binding.WillBuy4.setText(String.valueOf(cost4));
-            binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
+            binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,numFormat.format(Will4MakeAmount)));
 
 
             if (score >= cost1) {//Stops it going on forever.

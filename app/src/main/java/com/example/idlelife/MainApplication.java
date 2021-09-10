@@ -72,12 +72,22 @@ public class MainApplication extends Application {
             boolean Test5 = data.getBoolean("Test5Completed",false);
             boolean Test6 = data.getBoolean("Test6Completed",false);
 
-
+/*
             long WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
 
             if (Test1) {
                 WillAdd*=4; //Can just add effects like this
             }
+
+ */
+            long WillAdd = MiscMethods.Will1Gain(getBaseContext())+
+                    MiscMethods.Will2Gain(getBaseContext())+
+                    MiscMethods.Will3Gain(getBaseContext())+
+                    MiscMethods.Will4Gain(getBaseContext());
+
+            //WillAdd is amount per second so i will need to divide it by update time.
+
+            WillAdd = WillAdd/(1000/Update_Interval);
 
             editor.putLong("Will", currentWill + WillAdd);
 
