@@ -21,5 +21,7 @@
     <color name ="DarkMoney">#ff006600</color>
     <color name ="DarkSocial">#ff888800</color>
     <color name ="CompleteTestGrey">#44EEEEEE</color>
+    <color name ="AgeUpPurple">#7100d1</color>
+    <color name ="DarkAgeUpPurple">#3d0070</color>
 
 </resources>

@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -78,9 +80,24 @@ public class MainActivity extends AppCompatActivity {
                         ", <font color='green'>" + levelCost[3] + "</font>"));
             }
 
-            binding.Will.setText(numFormat.format(score.getLong("Will", 0)));
+            long will = score.getLong("Will", 0);
+            long intelligence = score.getLong("Int", 0);
+            long money = score.getLong("Money", 0);
+            long social = score.getLong("Social", 0);
 
-            binding.Intelligence.setText(numFormat.format(score.getLong("Int", 0)));
+            binding.Will.setText(numFormat.format(will));
+
+            binding.Intelligence.setText(numFormat.format(intelligence));
+
+
+            if (will>=levelCost[0]&&intelligence>=levelCost[1]&&social>=levelCost[2]&&money>=levelCost[3]){
+                ViewCompat.setBackgroundTintList(binding.AgeUp, ColorStateList.valueOf(getResources().getColor(R.color.AgeUpPurple)));
+            }
+            else{
+                ViewCompat.setBackgroundTintList(binding.AgeUp,ColorStateList.valueOf(getResources().getColor(R.color.DarkAgeUpPurple)));
+            }
+
+
 
 
             int currentTest = score.getInt("Test",0);
@@ -110,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
                 binding.BlockColor.getLayoutParams().width = 1;
                 binding.BlockColor.requestLayout(); // Sets it back to empty if there is no test, resetting it.
             }
+
+
 
 
             timerHandler.postDelayed(this, Update_Interval); //Repeat this runnable in the given time.
@@ -292,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void PlayerIconSelector(int age){
         if (0<=age && age<=2){
-            binding.playericon.setImageResource(R.drawable.babyplayersmaller4x);
+            binding.playericon.setImageResource(R.drawable.babyplayersmallersmallerx4);
         }
         else if (3<=age && age<=12){
             binding.playericon.setImageResource(R.drawable.newchildplayericon4xtrim);

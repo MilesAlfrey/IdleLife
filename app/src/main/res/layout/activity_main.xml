@@ -213,7 +213,7 @@
             android:layout_marginBottom="50dp"
             android:background="@drawable/age_up_thing"
             android:text="@string/AgeUpText"
-            app:backgroundTint="@color/IntColour"
+            app:backgroundTint="@color/AgeUpPurple"
             app:layout_constraintBottom_toTopOf="@+id/BotBlackLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -231,7 +231,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/newchildplayericon4xtrim" />
+            app:srcCompat="@drawable/babyplayersmallersmallerx4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
