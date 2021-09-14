@@ -127,6 +127,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Starts timer when the activity is created
 
+        SharedPreferences saves = getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int age = saves.getInt("Age",0);
+
+        PlayerIconSelector(age);
 
 
         timerHandler.post(timerRunnable);
@@ -209,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int age = level.getInt("Age",0);
 
+
+
                 long[] cost = MiscMethods.LevelCost(age);
 
 
@@ -228,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putInt("Age",age+1);
                     editor.apply();
                     MiscMethods.ageResult(MainActivity.super.getBaseContext());
+                    PlayerIconSelector(age+1);//The age +1 is a new age
 
                 }
 
@@ -247,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
-
 
         super.onStart();
     }
@@ -283,6 +290,22 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-
+    private void PlayerIconSelector(int age){
+        if (0<=age && age<=2){
+            binding.playericon.setImageResource(R.drawable.babyplayersmaller4x);
+        }
+        else if (3<=age && age<=12){
+            binding.playericon.setImageResource(R.drawable.newchildplayericon4xtrim);
+        }
+        else if (13<=age && age<=18){
+            binding.playericon.setImageResource(R.drawable.teenplayericonx4trim);
+        }
+        else if (19<=age && age<=60){
+            binding.playericon.setImageResource(R.drawable.adultplayericon4xtrim);
+        }
+        else if (61<=age){
+            binding.playericon.setImageResource(R.drawable.oldplayericon4xtrim);
+        }
+    }
 
 }

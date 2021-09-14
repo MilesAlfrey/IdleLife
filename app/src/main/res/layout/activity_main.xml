@@ -96,77 +96,6 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="171dp"
-        android:layout_height="134dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/Will"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="center|left"
-            android:paddingLeft="2dp"
-            android:text="0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/Intelligence"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="center|left"
-            android:paddingLeft="2dp"
-            android:text="idk 11"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/Social"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="center|left"
-            android:paddingLeft="2dp"
-            android:text="3?"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <TextView
-            android:id="@+id/Money"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="center|left"
-            android:paddingLeft="2dp"
-            android:text="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/Outlines"
-                android:layout_width="150dp"
-                android:layout_height="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/grey_outlined_rectangle" />
-
-            <ImageView
-                android:id="@+id/BlockColor"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/Darker_Grey"
-                app:layout_constraintBottom_toBottomOf="@+id/Outlines"
-                app:layout_constraintStart_toStartOf="@+id/Outlines"
-                app:layout_constraintTop_toTopOf="@+id/Outlines"
-                app:srcCompat="@drawable/filled_in_rectangle_drey" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
     <include
         android:id="@+id/include"
         layout="@layout/content_main"
@@ -177,7 +106,81 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="122dp"
+            android:layout_height="134dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/Will"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center|left"
+                android:paddingLeft="2dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/Intelligence"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center|left"
+                android:paddingLeft="2dp"
+                android:text="idk 11"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/Social"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center|left"
+                android:paddingLeft="2dp"
+                android:text="3?"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/Money"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center|left"
+                android:paddingLeft="2dp"
+                android:text="2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/Outlines"
+                    android:layout_width="100dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/grey_outlined_rectangle" />
+
+                <ImageView
+                    android:id="@+id/BlockColor"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/Darker_Grey"
+                    app:layout_constraintBottom_toBottomOf="@+id/Outlines"
+                    app:layout_constraintStart_toStartOf="@+id/Outlines"
+                    app:layout_constraintTop_toTopOf="@+id/Outlines"
+                    app:srcCompat="@drawable/filled_in_rectangle_drey" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/TopBlackLine"
@@ -214,6 +217,21 @@
             app:layout_constraintBottom_toTopOf="@+id/BotBlackLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/playericon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/TopBlackLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/newchildplayericon4xtrim" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
