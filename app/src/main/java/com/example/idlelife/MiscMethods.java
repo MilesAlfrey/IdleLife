@@ -2,17 +2,18 @@ package com.example.idlelife;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.util.Pair;
 import android.widget.Button;
 
-import androidx.core.view.ViewCompat;
+
 import androidx.fragment.app.FragmentActivity;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 public class MiscMethods {
 
-    public static int Will1Cost(Context context){
+    public static long Will1Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -38,7 +39,7 @@ public class MiscMethods {
         }
     }
 
-    public static int Will2Cost(Context context){
+    public static long Will2Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -64,7 +65,7 @@ public class MiscMethods {
         }
     }
 
-    public static int Will3Cost(Context context){
+    public static long Will3Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -90,7 +91,7 @@ public class MiscMethods {
         }
     }
 
-    public static int Will4Cost(Context context){
+    public static long Will4Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -119,7 +120,7 @@ public class MiscMethods {
 
 
 
-    public static int Int1Cost(Context context){
+    public static long Int1Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -129,7 +130,17 @@ public class MiscMethods {
         return (int) (100000+level*4000+ Math.floor(Math.pow((float)level,3.8)));
     }
 
-    public static int Int2Cost(Context context){
+    public static long Int1Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int1",0);
+
+        return level;
+    }
+
+    public static long Int2Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -139,7 +150,17 @@ public class MiscMethods {
         return (int) (100+level*200+ Math.floor(Math.pow((float)level,4)));
     }
 
-    public static int Int3Cost(Context context){
+    public static long Int2Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int2",0);
+
+        return level *10;
+    }
+
+    public static long Int3Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -148,15 +169,34 @@ public class MiscMethods {
 
         return (int) (50000+level*2000+ Math.floor(Math.pow(2.,(float)level))); //NEED CHANGING
     }
+    public static long Int3Gain(Context context){
 
-    public static int Int4Cost(Context context){
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int3",0);
+
+        return  20*level;
+    }
+
+    public static long Int4Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
 
         int level = data.getInt("Int4",0);
 
-        return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5))); // Need Changing
+        return (int) (200000+level*10000+ Math.floor(Math.pow((float)level,3.5))); // Need Changing
+    }
+
+    public static long Int4Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int4",0);
+
+        return level*50;
     }
 
 
@@ -260,6 +300,28 @@ public class MiscMethods {
 
         }
 
+
+    }
+
+    public static String FormatNumber(int number){
+        if (number < 100000){
+            return String.valueOf(number);
+        }
+        else{
+            NumberFormat numFormat = new DecimalFormat("0.00E0");
+            return numFormat.format(number);
+        }
+
+    }
+
+    public static String FormatNumber(long number){
+        if (number < 100000){
+            return String.valueOf(number);
+        }
+        else{
+            NumberFormat numFormat = new DecimalFormat("0.00E0");
+            return numFormat.format(number);
+        }
 
     }
 

@@ -2,6 +2,7 @@ package com.example.idlelife.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -9,14 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 
 import com.example.idlelife.Dialog.IntroDialog;
 import com.example.idlelife.MiscMethods;
+import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentIntelligenceBinding;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 public class IntelligenceFragment extends Fragment {
@@ -74,18 +79,63 @@ public class IntelligenceFragment extends Fragment {
 
         //END OF VISIBILITY SETTINGS
 
+        long cost1 = MiscMethods.Int1Cost(requireContext());
+        long cost2 = MiscMethods.Int2Cost(requireContext());
+        long cost3 = MiscMethods.Int3Cost(requireContext());
+        long cost4 = MiscMethods.Int4Cost(requireContext());
 
-        binding.IntBuy1.setText(String.valueOf(MiscMethods.Int1Cost(requireContext())));
-        binding.IntDescrip1.setText(String.valueOf(score.getInt("Int1",0)));
+        NumberFormat numFormat = new DecimalFormat("0.00E0");
 
-        binding.IntBuy2.setText(String.valueOf(MiscMethods.Int2Cost(requireContext())));
-        binding.IntDescrip2.setText(String.valueOf(score.getInt("Int2",0)));
+        long Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
+        int Int1Owned = score.getInt("Int1",0);
+        binding.IntBuy1.setText(String.valueOf(cost1));
+        binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
 
-        binding.IntBuy3.setText(String.valueOf(MiscMethods.Int3Cost(requireContext())));
-        binding.IntDescrip3.setText(String.valueOf(score.getInt("Int3",0)));
+        long Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
+        int Int2Owned = score.getInt("Int2",0);
+        binding.IntBuy2.setText(String.valueOf(cost2));
+        binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
 
-        binding.IntBuy4.setText(String.valueOf(MiscMethods.Int4Cost(requireContext())));
-        binding.IntDescrip4.setText(String.valueOf(score.getInt("Int4",0)));
+        long Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
+        int Int3Owned = score.getInt("Int3",0);
+        binding.IntBuy3.setText(String.valueOf(cost3));
+        binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
+
+        long Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
+        int Int4Owned = score.getInt("Int4",0);
+        binding.IntBuy4.setText(String.valueOf(cost4));
+        binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
+
+        long will = score.getLong("Will",0);
+        long intelligence = score.getLong("Int",0);
+
+        if (will >= cost1) {//Stops it going on forever.
+            ViewCompat.setBackgroundTintList(binding.IntBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour))); //Stop if red
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.IntBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+        }
+
+        if (intelligence >= cost2) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+        }
+
+        if (intelligence >= cost3) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+        }
+
+        if (intelligence >= cost4) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+        }
 
 
         binding.Reset.setOnClickListener(new View.OnClickListener() {
@@ -212,52 +262,62 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
         public void run() {
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            int cost1 = MiscMethods.Int1Cost(requireContext());
-            int cost2 = MiscMethods.Int2Cost(requireContext());
-            int cost3 = MiscMethods.Int3Cost(requireContext());
-            int cost4 = MiscMethods.Int4Cost(requireContext());
+            long cost1 = MiscMethods.Int1Cost(requireContext());
+            long cost2 = MiscMethods.Int2Cost(requireContext());
+            long cost3 = MiscMethods.Int3Cost(requireContext());
+            long cost4 = MiscMethods.Int4Cost(requireContext());
             long will = saves.getLong("Will", 0);
             long intelligence = saves.getLong("Int", 0);
 
+            NumberFormat numFormat = new DecimalFormat("0.00E0");
 
+            long Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
+            int Int1Owned = saves.getInt("Int1",0);
             binding.IntBuy1.setText(String.valueOf(cost1));
-            binding.IntDescrip1.setText(String.valueOf(saves.getInt("Int1",0)));
+            binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
 
+            long Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
+            int Int2Owned = saves.getInt("Int2",0);
             binding.IntBuy2.setText(String.valueOf(cost2));
-            binding.IntDescrip2.setText(String.valueOf(saves.getInt("Int2",0)));
+            binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
 
+            long Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
+            int Int3Owned = saves.getInt("Int3",0);
             binding.IntBuy3.setText(String.valueOf(cost3));
-            binding.IntDescrip3.setText(String.valueOf(saves.getInt("Int3",0)));
+            binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
 
+            long Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
+            int Int4Owned = saves.getInt("Int4",0);
             binding.IntBuy4.setText(String.valueOf(cost4));
-            binding.IntDescrip4.setText(String.valueOf(saves.getInt("Int4",0)));
+            binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
+
 
             if (will >= cost1) {//Stops it going on forever.
-                binding.IntBuy1.setBackgroundColor(0xffff0000); //Stop if red
+                ViewCompat.setBackgroundTintList(binding.IntBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour))); //Stop if red
             }
             else{
-                binding.IntBuy1.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.IntBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
             }
 
             if (intelligence >= cost2) {
-                binding.IntBuy2.setBackgroundColor(0xff0000ff);
+                ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
             }
             else{
-                binding.IntBuy2.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             }
 
             if (intelligence >= cost3) {
-                binding.IntBuy3.setBackgroundColor(0xff0000ff);
+                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
             }
             else{
-                binding.IntBuy3.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             }
 
             if (intelligence >= cost4) {
-                binding.IntBuy4.setBackgroundColor(0xff0000ff);
+                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
             }
             else{
-                binding.IntBuy4.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             }
 
             int age = saves.getInt("Age",0);

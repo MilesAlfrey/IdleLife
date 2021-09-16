@@ -47,19 +47,6 @@ public class MainApplication extends Application {
 
             long currentInt = data.getLong("Int",0);
 
-            int Will1 = data.getInt("Will1",0);
-
-            int Will2 = data.getInt("Will2",0);
-
-            int Will3 = data.getInt("Will3",0);
-
-            int Will4 = data.getInt("Will4",0);
-
-            int Int1 = data.getInt("Int1",0);
-
-            int Int2 = data.getInt("Int2",0);
-
-            int Int3 = data.getInt("Int3",0);
 
             int TestSpeed= data.getInt("TestSpeed",0);
 
@@ -80,6 +67,8 @@ public class MainApplication extends Application {
             }
 
  */
+            //WILL ADDITION
+
             long WillAdd = MiscMethods.Will1Gain(getBaseContext())+
                     MiscMethods.Will2Gain(getBaseContext())+
                     MiscMethods.Will3Gain(getBaseContext())+
@@ -91,9 +80,18 @@ public class MainApplication extends Application {
 
             editor.putLong("Will", currentWill + WillAdd);
 
-            long IntAdd = Int1+10*Int2+20*Int3;
+            //INT ADDITION
+
+            long IntAdd = MiscMethods.Int1Gain(getBaseContext())+
+                    MiscMethods.Int2Gain(getBaseContext())+
+                    MiscMethods.Int3Gain(getBaseContext())+
+                    MiscMethods.Int4Gain(getBaseContext());
+
+            IntAdd = IntAdd/(1000/Update_Interval);
 
             editor.putLong("Int",currentInt+IntAdd);
+
+            //TEST ADDITION
 
             editor.putInt("TestProgress",TestProgress+TestSpeed);//May want to change this to help adjust for smaller values
 
