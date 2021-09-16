@@ -19,8 +19,7 @@ import com.example.idlelife.MiscMethods;
 import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentWillBinding;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+
 
 
 public class WillFragment extends Fragment  {

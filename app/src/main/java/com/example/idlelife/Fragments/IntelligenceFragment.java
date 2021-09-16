@@ -147,6 +147,8 @@ public class IntelligenceFragment extends Fragment {
 
                 editor.putLong("Will", 10000000);
                 editor.putLong("Int", 0);
+                editor.putLong("Social", 0);
+                editor.putLong("Money", 0);
 
                 editor.putInt("Will1", 0);
                 editor.putInt("Will2", 0);

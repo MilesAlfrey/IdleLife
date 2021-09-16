@@ -47,17 +47,24 @@ public class MainApplication extends Application {
 
             long currentInt = data.getLong("Int",0);
 
+            long currentSocial = data.getLong("Social",0);
+
+            long currentMoney = data.getLong("Money",0);
+
 
             int TestSpeed= data.getInt("TestSpeed",0);
 
             int TestProgress=data.getInt("TestProgress",0);
 
+            /*
             boolean Test1 = data.getBoolean("Test1Completed",false);
             boolean Test2 = data.getBoolean("Test2Completed",false);
             boolean Test3 = data.getBoolean("Test3Completed",false);
             boolean Test4 = data.getBoolean("Test4Completed",false);
             boolean Test5 = data.getBoolean("Test5Completed",false);
             boolean Test6 = data.getBoolean("Test6Completed",false);
+
+             */
 
 /*
             long WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
@@ -90,6 +97,17 @@ public class MainApplication extends Application {
             IntAdd = IntAdd/(1000/Update_Interval);
 
             editor.putLong("Int",currentInt+IntAdd);
+
+            //SOCIAL ADDITION
+
+            long SocialAdd = MiscMethods.Social1Gain(getBaseContext())+
+                    MiscMethods.Social2Gain(getBaseContext())+
+                    MiscMethods.Social3Gain(getBaseContext())+
+                    MiscMethods.Social4Gain(getBaseContext());
+
+            SocialAdd = SocialAdd/(1000/Update_Interval);
+
+            editor.putLong("Social",currentSocial+SocialAdd);
 
             //TEST ADDITION
 

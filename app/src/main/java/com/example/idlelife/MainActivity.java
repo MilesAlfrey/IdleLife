@@ -82,12 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
             long will = score.getLong("Will", 0);
             long intelligence = score.getLong("Int", 0);
-            long money = score.getLong("Money", 0);
             long social = score.getLong("Social", 0);
+            long money = score.getLong("Money", 0);
 
-            binding.Will.setText(numFormat.format(will));
 
-            binding.Intelligence.setText(numFormat.format(intelligence));
+            binding.Will.setText(MiscMethods.FormatNumber(will));
+
+            binding.Intelligence.setText(MiscMethods.FormatNumber(intelligence));
+
+            binding.Social.setText(MiscMethods.FormatNumber(social));
+
+            binding.Money.setText(MiscMethods.FormatNumber(money));
 
 
             if (will>=levelCost[0]&&intelligence>=levelCost[1]&&social>=levelCost[2]&&money>=levelCost[3]){
