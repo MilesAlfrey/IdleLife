@@ -61,22 +61,22 @@ public class MainActivity extends AppCompatActivity {
             double[] levelCost = MiscMethods.LevelCost(score.getInt("Age", 0));
 
             if (levelCost[1] == 0){
-                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"));
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + MiscMethods.FormatNumber(levelCost[0])  + "</font>"));
             }
             else if (levelCost[2]==0){
-                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"+
-                        ", <font color='blue'>" + levelCost[1]  + "</font>"));
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + MiscMethods.FormatNumber(levelCost[0])  + "</font>"+
+                        ", <font color='blue'>" + MiscMethods.FormatNumber(levelCost[1])  + "</font>"));
             }
             else if (levelCost[3]==0){
-                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"+
-                        ", <font color='blue'>" + levelCost[1]  + "</font>" +
-                        ", <font color='yellow'>" + levelCost[2]  + "</font>"));
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + MiscMethods.FormatNumber(levelCost[0])  + "</font>"+
+                        ", <font color='blue'>" + MiscMethods.FormatNumber(levelCost[1])  + "</font>" +
+                        ", <font color='yellow'>" + MiscMethods.FormatNumber(levelCost[2])  + "</font>"));
             }
             else {
-                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0] + "</font>" +
-                        ", <font color='blue'>" + levelCost[1] + "</font>" +
-                        ", <font color='yellow'>" + levelCost[2] + "</font>" +
-                        ", <font color='green'>" + levelCost[3] + "</font>"));
+                binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + MiscMethods.FormatNumber(levelCost[0]) + "</font>" +
+                        ", <font color='blue'>" + MiscMethods.FormatNumber(levelCost[1]) + "</font>" +
+                        ", <font color='yellow'>" + MiscMethods.FormatNumber(levelCost[2]) + "</font>" +
+                        ", <font color='green'>" + MiscMethods.FormatNumber(levelCost[3]) + "</font>"));
             }
 
             double will = MiscMethods.getDouble(score,"Will", 0);

@@ -97,7 +97,7 @@ public class TestsFragment extends Fragment {
 
         //For editing the increase speed button
 
-        binding.IncreaseSpeed.setText(String.valueOf(cost));
+        binding.IncreaseSpeed.setText(MiscMethods.FormatNumber(cost));
 
         double owned = MiscMethods.getDouble(score,currency, 0);
 
@@ -191,7 +191,7 @@ public class TestsFragment extends Fragment {
                 Pair<String, Double> result2 = SpeedUpCost(currentTest12, Current + 1); //TO GET THE NEW PRICE
 
 
-                binding.IncreaseSpeed.setText(String.valueOf(result2.second));
+                binding.IncreaseSpeed.setText(MiscMethods.FormatNumber(result2.second));
 
                 colourChange(result2.second, resultScore, result2.first);
 
@@ -243,7 +243,7 @@ public class TestsFragment extends Fragment {
                     change.apply();
 
                     Pair<String, Double> result2 = SpeedUpCost(currentTest1, 0);
-                    binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
+                    binding.IncreaseSpeed.setText(MiscMethods.FormatNumber(result2.second));//Makes sure the text is updated
 
                 }
 
@@ -378,7 +378,7 @@ public class TestsFragment extends Fragment {
         editor.putInt("TestSpeed", 0);
         editor.putInt("TestLength", getTestLength(newTest));
         Pair<String, Double> cost = SpeedUpCost(newTest, 0);
-        binding.IncreaseSpeed.setText(String.valueOf(cost.second));
+        binding.IncreaseSpeed.setText(MiscMethods.FormatNumber(cost.second));
         editor.putBoolean("EnableTestButtons", true);
         binding.TakeTest.setEnabled(true);
         binding.IncreaseSpeed.setEnabled(true);
@@ -526,22 +526,28 @@ public class TestsFragment extends Fragment {
     }
 
     private void ConfirmationDialog(int TestChoice){
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View Message = inflater.inflate(R.layout.dialog_layout,null);
-        TextView text = Message.findViewById(R.id.confirmationText);
-        text.setText(getString(R.string.SwitchConfirmation, TestChoice));
+
+        SharedPreferences test = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
 
+        if (test.getInt("Test",0)!= TestChoice) {//Dont run this if in the same test already.
 
-        builder
-                .setView(Message)
-                .setPositiveButton(R.string.Yes, (dialogInterface, i) ->
-                        changeTest(TestChoice))
-                .setNegativeButton(R.string.No,(dialogInterface, i) -> {
-                    //Do Nothing
-                });
-        builder.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            LayoutInflater inflater = requireActivity().getLayoutInflater();
+            View Message = inflater.inflate(R.layout.dialog_layout, null);
+            TextView text = Message.findViewById(R.id.confirmationText);
+            text.setText(getString(R.string.SwitchConfirmation, TestChoice));
+
+
+            builder
+                    .setView(Message)
+                    .setPositiveButton(R.string.Yes, (dialogInterface, i) ->
+                            changeTest(TestChoice))
+                    .setNegativeButton(R.string.No, (dialogInterface, i) -> {
+                        //Do Nothing
+                    });
+            builder.show();
+        }
 
 
     }

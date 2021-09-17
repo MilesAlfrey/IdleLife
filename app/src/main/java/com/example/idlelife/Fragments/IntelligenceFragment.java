@@ -12,16 +12,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 
-import com.example.idlelife.Dialog.IntroDialog;
+
+
 import com.example.idlelife.MiscMethods;
 import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentIntelligenceBinding;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 
 public class IntelligenceFragment extends Fragment {
@@ -84,27 +82,26 @@ public class IntelligenceFragment extends Fragment {
         double cost3 = MiscMethods.Int3Cost(requireContext());
         double cost4 = MiscMethods.Int4Cost(requireContext());
 
-        NumberFormat numFormat = new DecimalFormat("0.00E0");
 
         double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
         int Int1Owned = score.getInt("Int1",0);
-        binding.IntBuy1.setText(String.valueOf(cost1));
-        binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
+        binding.IntBuy1.setText(MiscMethods.FormatNumber(cost1));
+        binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,MiscMethods.FormatNumber(Int1MakeAmount)));
 
         double Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
         int Int2Owned = score.getInt("Int2",0);
-        binding.IntBuy2.setText(String.valueOf(cost2));
-        binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
+        binding.IntBuy2.setText(MiscMethods.FormatNumber(cost2));
+        binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,MiscMethods.FormatNumber(Int2MakeAmount)));
 
         double Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
         int Int3Owned = score.getInt("Int3",0);
-        binding.IntBuy3.setText(String.valueOf(cost3));
-        binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
+        binding.IntBuy3.setText(MiscMethods.FormatNumber(cost3));
+        binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,MiscMethods.FormatNumber(Int3MakeAmount)));
 
         double Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
         int Int4Owned = score.getInt("Int4",0);
-        binding.IntBuy4.setText(String.valueOf(cost4));
-        binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
+        binding.IntBuy4.setText(MiscMethods.FormatNumber(cost4));
+        binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,MiscMethods.FormatNumber(Int4MakeAmount)));
 
         double will = MiscMethods.getDouble(score,"Will",0);
         double intelligence = MiscMethods.getDouble(score,"Int",0);
@@ -138,63 +135,60 @@ public class IntelligenceFragment extends Fragment {
         }
 
 
-        binding.Reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences toReset = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = toReset.edit();
-                editor.putInt("Age", 0);
+        binding.Reset.setOnClickListener(view15 -> {
+            SharedPreferences toReset = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = toReset.edit();
+            editor.putInt("Age", 0);
 
 
 
-                MiscMethods.putDouble(editor,"Will",100000000);
-                MiscMethods.putDouble(editor,"Int",0);
-                MiscMethods.putDouble(editor,"Social",0);
-                MiscMethods.putDouble(editor,"Money",0);
+            MiscMethods.putDouble(editor,"Will",100000000);
+            MiscMethods.putDouble(editor,"Int",0);
+            MiscMethods.putDouble(editor,"Social",0);
+            MiscMethods.putDouble(editor,"Money",0);
 
-                editor.putInt("Will1", 0);
-                editor.putInt("Will2", 0);
-                editor.putInt("Will3", 0);
-                editor.putInt("Will4", 0);
+            editor.putInt("Will1", 0);
+            editor.putInt("Will2", 0);
+            editor.putInt("Will3", 0);
+            editor.putInt("Will4", 0);
 
-                editor.putInt("Int1", 0);
-                editor.putInt("Int2", 0);
-                editor.putInt("Int3", 0);
-                editor.putInt("Int4", 0);
+            editor.putInt("Int1", 0);
+            editor.putInt("Int2", 0);
+            editor.putInt("Int3", 0);
+            editor.putInt("Int4", 0);
 
-                editor.putInt("Social1", 0);
-                editor.putInt("Social2", 0);
-                editor.putInt("Social3", 0);
-                editor.putInt("Social4", 0);
+            editor.putInt("Social1", 0);
+            editor.putInt("Social2", 0);
+            editor.putInt("Social3", 0);
+            editor.putInt("Social4", 0);
 
-                editor.putBoolean("ShowWill2", false);
-                editor.putBoolean("ShowWill3", false);
-                editor.putBoolean("ShowWill4", false);
+            editor.putBoolean("ShowWill2", false);
+            editor.putBoolean("ShowWill3", false);
+            editor.putBoolean("ShowWill4", false);
 
-                editor.putBoolean("ShowInt1", false);
-                editor.putBoolean("ShowInt2", false);
-                editor.putBoolean("ShowInt3", false);
-                editor.putBoolean("ShowInt4", false);
+            editor.putBoolean("ShowInt1", false);
+            editor.putBoolean("ShowInt2", false);
+            editor.putBoolean("ShowInt3", false);
+            editor.putBoolean("ShowInt4", false);
 
-                editor.putBoolean("ShowSocial1", false);
-                editor.putBoolean("ShowSocial2", false);
-                editor.putBoolean("ShowSocial3", false);
-                editor.putBoolean("ShowSocial4", false);
+            editor.putBoolean("ShowSocial1", false);
+            editor.putBoolean("ShowSocial2", false);
+            editor.putBoolean("ShowSocial3", false);
+            editor.putBoolean("ShowSocial4", false);
 
-                editor.putInt("TestSpeed",0);
-                editor.putInt("Test",0);
-                editor.putInt("TestProgress",0);
-                //editor.putInt("TestLength",10000); Shouldnt be needed
+            editor.putInt("TestSpeed",0);
+            editor.putInt("Test",0);
+            editor.putInt("TestProgress",0);
+            //editor.putInt("TestLength",10000); Shouldn't be needed
 
-                editor.putBoolean("Test1Completed",false);
-                editor.putBoolean("Test2Completed",false);
-                editor.putBoolean("Test3Completed",false);
-                editor.putBoolean("Test4Completed",false);
-                editor.putBoolean("Test5Completed",false);
-                editor.putBoolean("Test6Completed",false);
+            editor.putBoolean("Test1Completed",false);
+            editor.putBoolean("Test2Completed",false);
+            editor.putBoolean("Test3Completed",false);
+            editor.putBoolean("Test4Completed",false);
+            editor.putBoolean("Test5Completed",false);
+            editor.putBoolean("Test6Completed",false);
 
-                editor.apply();
-            }
+            editor.apply();
         });
 
 
@@ -243,27 +237,26 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
 
-            NumberFormat numFormat = new DecimalFormat("0.00E0");
 
             double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
             int Int1Owned = saves.getInt("Int1",0);
-            binding.IntBuy1.setText(String.valueOf(cost1));
-            binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
+            binding.IntBuy1.setText(MiscMethods.FormatNumber(cost1));
+            binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,MiscMethods.FormatNumber(Int1MakeAmount)));
 
             double Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
             int Int2Owned = saves.getInt("Int2",0);
-            binding.IntBuy2.setText(String.valueOf(cost2));
-            binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
+            binding.IntBuy2.setText(MiscMethods.FormatNumber(cost2));
+            binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,MiscMethods.FormatNumber(Int2MakeAmount)));
 
             double Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
             int Int3Owned = saves.getInt("Int3",0);
-            binding.IntBuy3.setText(String.valueOf(cost3));
-            binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
+            binding.IntBuy3.setText(MiscMethods.FormatNumber(cost3));
+            binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,MiscMethods.FormatNumber(Int3MakeAmount)));
 
             double Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
             int Int4Owned = saves.getInt("Int4",0);
-            binding.IntBuy4.setText(String.valueOf(cost4));
-            binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
+            binding.IntBuy4.setText(MiscMethods.FormatNumber(cost4));
+            binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,MiscMethods.FormatNumber(Int4MakeAmount)));
 
 
             if (will >= cost1) {//Stops it going on forever.
