@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 
+import com.example.idlelife.MiscMethods;
 import com.example.idlelife.R;
 import com.example.idlelife.databinding.FragmentTestsBinding;
 
@@ -88,17 +89,17 @@ public class TestsFragment extends Fragment {
 
         int TestSpeed = score.getInt("TestSpeed", 0);
 
-        Pair<String, Long> result = SpeedUpCost(currentTest, TestSpeed);
+        Pair<String, Double> result = SpeedUpCost(currentTest, TestSpeed);
 
         String currency = result.first;
-        long cost = result.second;
+        double cost = result.second;
 
 
         //For editing the increase speed button
 
         binding.IncreaseSpeed.setText(String.valueOf(cost));
 
-        long owned = score.getLong(currency, 0);
+        double owned = MiscMethods.getDouble(score,currency, 0);
 
 
         colourChange(cost, owned, currency); //changes the colours depending on currency and amount owned
@@ -167,18 +168,18 @@ public class TestsFragment extends Fragment {
             int TestSpeed1 = UpdateAmount.getInt("TestSpeed", 0);
             int currentTest12 = UpdateAmount.getInt("Test", 0);
 
-            Pair<String, Long> result1 = SpeedUpCost(currentTest12, TestSpeed1);
+            Pair<String, Double> result1 = SpeedUpCost(currentTest12, TestSpeed1);
 
-            long CurrentScore = UpdateAmount.getLong(result1.first, 0);
+            double CurrentScore = MiscMethods.getDouble(UpdateAmount,result1.first, 0);
 
             if (CurrentScore >= result1.second) {
 
 
                 SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
 
-                long resultScore = CurrentScore - result1.second;
+                double resultScore = CurrentScore - result1.second;
 
-                AmountEditor.putLong(result1.first, resultScore);
+                MiscMethods.putDouble(AmountEditor,result1.first, resultScore);
 
                 int Current = UpdateAmount.getInt("TestSpeed", 0);
 
@@ -187,7 +188,7 @@ public class TestsFragment extends Fragment {
                 AmountEditor.apply();//Rest should work
 
 
-                Pair<String, Long> result2 = SpeedUpCost(currentTest12, Current + 1); //TO GET THE NEW PRICE
+                Pair<String, Double> result2 = SpeedUpCost(currentTest12, Current + 1); //TO GET THE NEW PRICE
 
 
                 binding.IncreaseSpeed.setText(String.valueOf(result2.second));
@@ -241,7 +242,7 @@ public class TestsFragment extends Fragment {
                     change.putInt("TestSpeed", 0);//RESET TO 0
                     change.apply();
 
-                    Pair<String, Long> result2 = SpeedUpCost(currentTest1, 0);
+                    Pair<String, Double> result2 = SpeedUpCost(currentTest1, 0);
                     binding.IncreaseSpeed.setText(String.valueOf(result2.second));//Makes sure the text is updated
 
                 }
@@ -282,8 +283,8 @@ public class TestsFragment extends Fragment {
             int TestSpeed = saves.getInt("TestSpeed", 0);
 
 
-            Pair<String, Long> Cost = SpeedUpCost(currentTest, TestSpeed);
-            colourChange(Cost.second, saves.getLong(Cost.first, 0), Cost.first);//Checks and sets the colour if  it can be bought or not
+            Pair<String, Double> Cost = SpeedUpCost(currentTest, TestSpeed);
+            colourChange(Cost.second, MiscMethods.getDouble(saves,Cost.first, 0), Cost.first);//Checks and sets the colour if  it can be bought or not
 
 
             //FOR THE CURRENT TEST, SPEEDING UP AND SETTING LENGTH OF THE BAR
@@ -376,13 +377,13 @@ public class TestsFragment extends Fragment {
         editor.putInt("Test", newTest);
         editor.putInt("TestSpeed", 0);
         editor.putInt("TestLength", getTestLength(newTest));
-        Pair<String, Long> cost = SpeedUpCost(newTest, 0);
+        Pair<String, Double> cost = SpeedUpCost(newTest, 0);
         binding.IncreaseSpeed.setText(String.valueOf(cost.second));
         editor.putBoolean("EnableTestButtons", true);
         binding.TakeTest.setEnabled(true);
         binding.IncreaseSpeed.setEnabled(true);
 
-        colourChange(cost.second, Values.getLong(cost.first, 0), cost.first);
+        colourChange(cost.second, MiscMethods.getDouble(Values,cost.first, 0), cost.first);
 
 
         editor.apply();
@@ -407,9 +408,9 @@ public class TestsFragment extends Fragment {
 
     }
 
-    public static Pair<String, Long> SpeedUpCost(int Test, int amountBought) {
+    public static Pair<String, Double> SpeedUpCost(int Test, int amountBought) {
 
-        long cost;
+        double cost;
         switch (Test) {
             case 1:
                 cost = 10000 + 5000 * amountBought + amountBought * amountBought * 1000;
@@ -431,7 +432,7 @@ public class TestsFragment extends Fragment {
                 return new Pair<>("Will", cost);
             //TODO: ADD A FORMULA FOR EVERY TEST
         }
-        return new Pair<>("Will", (long) 0);
+        return new Pair<>("Will", (double) 0);
         //Create individual costs for each test, similar to cost of bars.
 
         //First will have a will cost for now
@@ -439,7 +440,7 @@ public class TestsFragment extends Fragment {
     }
 
 
-    private void colourChange(Long Cost, Long Owned, String Currency) {
+    private void colourChange(double Cost, double Owned, String Currency) {
         SharedPreferences Values = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
         if (!Values.getBoolean("EnableTestButtons", true)) {

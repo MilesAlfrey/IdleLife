@@ -78,11 +78,11 @@ public class WillFragment extends Fragment  {
 
 
 
-        long cost1 = MiscMethods.Will1Cost(requireContext());
-        long cost2 = MiscMethods.Will2Cost(requireContext());
-        long cost3 = MiscMethods.Will3Cost(requireContext());
-        long cost4 = MiscMethods.Will4Cost(requireContext());
-        long willAmount = score.getLong("Will", 0);
+        double cost1 = MiscMethods.Will1Cost(requireContext());
+        double cost2 = MiscMethods.Will2Cost(requireContext());
+        double cost3 = MiscMethods.Will3Cost(requireContext());
+        double cost4 = MiscMethods.Will4Cost(requireContext());
+        double willAmount = MiscMethods.getDouble(score,"Will", 0);
 
         if (willAmount >= cost1) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.WillBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
@@ -124,22 +124,22 @@ public class WillFragment extends Fragment  {
 
 
 
-        long Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
+        double Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
         int Will1Owned = score.getInt("Will1",0);
         binding.WillBuy1.setText(MiscMethods.FormatNumber(MiscMethods.Will1Cost(requireContext())));
         binding.WillDescrip1.setText(getString(R.string.DescriptionText,Will1Owned,MiscMethods.FormatNumber(Will1MakeAmount)));
 
-        long Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
+        double Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
         int Will2Owned = score.getInt("Will2",0);
         binding.WillBuy2.setText(MiscMethods.FormatNumber(MiscMethods.Will2Cost(requireContext())));
         binding.WillDescrip2.setText(getString(R.string.DescriptionText,Will2Owned,MiscMethods.FormatNumber(Will2MakeAmount)));
 
-        long Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
+        double Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
         int Will3Owned = score.getInt("Will3",0);
         binding.WillBuy3.setText(MiscMethods.FormatNumber(MiscMethods.Will3Cost(requireContext())));
         binding.WillDescrip3.setText(getString(R.string.DescriptionText,Will3Owned,MiscMethods.FormatNumber(Will3MakeAmount)));
 
-        long Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
+        double Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
         int Will4Owned = score.getInt("Will4",0);
         binding.WillBuy4.setText(MiscMethods.FormatNumber(MiscMethods.Will4Cost(requireContext())));
         binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,MiscMethods.FormatNumber(Will4MakeAmount)));
@@ -168,17 +168,17 @@ public class WillFragment extends Fragment  {
         public void run() { //This will just always run and check everything as i am dumb and cant do it better.
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            long cost1 = MiscMethods.Will1Cost(requireContext());
-            long cost2 = MiscMethods.Will2Cost(requireContext());
-            long cost3 = MiscMethods.Will3Cost(requireContext());
-            long cost4 = MiscMethods.Will4Cost(requireContext());
-            long score = saves.getLong("Will", 0);
+            double cost1 = MiscMethods.Will1Cost(requireContext());
+            double cost2 = MiscMethods.Will2Cost(requireContext());
+            double cost3 = MiscMethods.Will3Cost(requireContext());
+            double cost4 = MiscMethods.Will4Cost(requireContext());
+            double score = MiscMethods.getDouble(saves,"Will", 0);
 
 
 
 
 
-            long Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
+            double Will1MakeAmount = MiscMethods.Will1Gain(requireContext());
             int Will1Owned = saves.getInt("Will1",0);
             binding.WillBuy1.setText(MiscMethods.FormatNumber(cost1));
             binding.WillDescrip1.setText(getString(R.string.DescriptionText,Will1Owned,MiscMethods.FormatNumber(Will1MakeAmount)));
@@ -186,7 +186,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy2.setText(String.valueOf(cost2));
             //binding.WillDescrip2.setText(String.valueOf(saves.getInt("Will2",0)));
 
-            long Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
+            double Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
             int Will2Owned = saves.getInt("Will2",0);
             binding.WillBuy2.setText(MiscMethods.FormatNumber(cost2));
             binding.WillDescrip2.setText(getString(R.string.DescriptionText,Will2Owned,MiscMethods.FormatNumber(Will2MakeAmount)));
@@ -194,7 +194,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy3.setText(String.valueOf(cost3));
             //binding.WillDescrip3.setText(String.valueOf(saves.getInt("Will3",0)));
 
-            long Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
+            double Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
             int Will3Owned = saves.getInt("Will3",0);
             binding.WillBuy3.setText(MiscMethods.FormatNumber(cost3));
             binding.WillDescrip3.setText(getString(R.string.DescriptionText,Will3Owned,MiscMethods.FormatNumber(Will3MakeAmount)));
@@ -202,7 +202,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy4.setText(String.valueOf(cost4));
             //binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
 
-            long Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
+            double Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
             int Will4Owned = saves.getInt("Will4",0);
             binding.WillBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,MiscMethods.FormatNumber(Will4MakeAmount)));

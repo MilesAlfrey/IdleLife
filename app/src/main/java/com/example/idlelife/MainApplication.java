@@ -20,7 +20,7 @@ public class MainApplication extends Application {
 
         editor.apply();
 
-        System.out.println(data.getLong("Data",5));
+        System.out.println(MiscMethods.getDouble(data,"Data",5));
         */
 
 
@@ -28,7 +28,7 @@ public class MainApplication extends Application {
 
     }
 
-    long startTime=0;
+    double startTime=0;
 
     private final static int Update_Interval= 50; // IMPORTANT HOW OFTEN APP UPDATES.
 
@@ -43,13 +43,13 @@ public class MainApplication extends Application {
 
             SharedPreferences.Editor editor = data.edit();
 
-            long currentWill = data.getLong("Will",0);
+            double currentWill = MiscMethods.getDouble(data,"Will",0);
 
-            long currentInt = data.getLong("Int",0);
+            double currentInt = MiscMethods.getDouble(data,"Int",0);
 
-            long currentSocial = data.getLong("Social",0);
+            double currentSocial = MiscMethods.getDouble(data,"Social",0);
 
-            long currentMoney = data.getLong("Money",0);
+            double currentMoney = MiscMethods.getDouble(data,"Money",0);
 
 
             int TestSpeed= data.getInt("TestSpeed",0);
@@ -67,7 +67,7 @@ public class MainApplication extends Application {
              */
 
 /*
-            long WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
+            double WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
 
             if (Test1) {
                 WillAdd*=4; //Can just add effects like this
@@ -76,41 +76,39 @@ public class MainApplication extends Application {
  */
             //WILL ADDITION
 
-            long WillAdd = MiscMethods.Will1Gain(getBaseContext())+
+            double WillAdd = MiscMethods.Will1Gain(getBaseContext())+
                     MiscMethods.Will2Gain(getBaseContext())+
                     MiscMethods.Will3Gain(getBaseContext())+
                     MiscMethods.Will4Gain(getBaseContext());
 
             //WillAdd is amount per second so i will need to divide it by update time.
 
-            WillAdd = WillAdd/(1000/Update_Interval);
+            WillAdd = WillAdd/(1000./Update_Interval);
 
-            editor.putLong("Will", currentWill + WillAdd);
+            MiscMethods.putDouble(editor,"Will", currentWill + WillAdd);
 
             //INT ADDITION
 
-            long IntAdd = MiscMethods.Int1Gain(getBaseContext())+
+            double IntAdd = MiscMethods.Int1Gain(getBaseContext())+
                     MiscMethods.Int2Gain(getBaseContext())+
                     MiscMethods.Int3Gain(getBaseContext())+
                     MiscMethods.Int4Gain(getBaseContext());
 
-            IntAdd = IntAdd/(1000/Update_Interval);
+            IntAdd = IntAdd/(1000./Update_Interval);
 
-            editor.putLong("Int",currentInt+IntAdd);
+            MiscMethods.putDouble(editor,"Int",currentInt+IntAdd);
 
             //SOCIAL ADDITION
 
-            long SocialAdd = MiscMethods.Social1Gain(getBaseContext())+
+            double SocialAdd = MiscMethods.Social1Gain(getBaseContext())+
                     MiscMethods.Social2Gain(getBaseContext())+
                     MiscMethods.Social3Gain(getBaseContext())+
                     MiscMethods.Social4Gain(getBaseContext());
 
 
-            SocialAdd = SocialAdd/(1000/Update_Interval);
+            SocialAdd = SocialAdd/(1000./Update_Interval);
 
-
-
-            editor.putLong("Social",currentSocial+SocialAdd);
+            MiscMethods.putDouble(editor,"Social",currentSocial+SocialAdd);
 
 
 

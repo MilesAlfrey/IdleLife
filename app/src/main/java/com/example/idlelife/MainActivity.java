@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences score = getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            NumberFormat numFormat = new DecimalFormat("0.###E0"); //Makes it into the right notation
 
             if (score.getBoolean("ShowAgeUp",true)){
                 binding.AgeUp.setVisibility(View.VISIBLE);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
             //binding.imageView2.setColorFilter(new );
 
-            long[] levelCost = MiscMethods.LevelCost(score.getInt("Age", 0));
+            double[] levelCost = MiscMethods.LevelCost(score.getInt("Age", 0));
 
             if (levelCost[1] == 0){
                 binding.AgeUp.setText(Html.fromHtml("Age up? Cost: <br><font color='red'>" + levelCost[0]  + "</font>"));
@@ -80,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
                         ", <font color='green'>" + levelCost[3] + "</font>"));
             }
 
-            long will = score.getLong("Will", 0);
-            long intelligence = score.getLong("Int", 0);
-            long social = score.getLong("Social", 0);
-            long money = score.getLong("Money", 0);
+            double will = MiscMethods.getDouble(score,"Will", 0);
+            double intelligence = MiscMethods.getDouble(score,"Int", 0);
+            double social = MiscMethods.getDouble(score,"Social", 0);
+            double money = MiscMethods.getDouble(score,"Money", 0);
 
 
             binding.Will.setText(MiscMethods.FormatNumber(will));
@@ -240,22 +239,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                long[] cost = MiscMethods.LevelCost(age);
+                double[] cost = MiscMethods.LevelCost(age);
 
 
-                long will = level.getLong("Will",0);
-                long intelligence = level.getLong("Int",0);
-                long social = level.getLong("Social",0);
-                long money = level.getLong("Money",0);
+                double will = MiscMethods.getDouble(level,"Will",0);
+                double intelligence = MiscMethods.getDouble(level,"Int",0);
+                double social = MiscMethods.getDouble(level,"Social",0);
+                double money = MiscMethods.getDouble(level,"Money",0);
 
                 if (will>=cost[0]&&intelligence>=cost[1]&&social>=cost[2]&&money>=cost[3]) {
                     //Still need colour changing ugh
                     System.out.println(age);
                     SharedPreferences.Editor editor = level.edit();
-                    editor.putLong("Will",will-cost[0]);
-                    editor.putLong("Int",intelligence-cost[1]);
-                    editor.putLong("Social",social-cost[2]);
-                    editor.putLong("Money",money-cost[3]);
+                    MiscMethods.putDouble(editor,"Will",will-cost[0]);
+                    MiscMethods.putDouble(editor,"Int",intelligence-cost[1]);
+                    MiscMethods.putDouble(editor,"Social",social-cost[2]);
+                    MiscMethods.putDouble(editor,"Money",money-cost[3]);
                     editor.putInt("Age",age+1);
                     editor.apply();
                     MiscMethods.ageResult(MainActivity.super.getBaseContext());
@@ -295,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up button, so double
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 

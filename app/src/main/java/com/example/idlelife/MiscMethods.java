@@ -13,7 +13,7 @@ import java.text.NumberFormat;
 
 public class MiscMethods {
 
-    public static long Will1Cost(Context context){
+    public static double Will1Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -23,7 +23,7 @@ public class MiscMethods {
         return (int) (level*10+ Math.floor(Math.pow((float)level,2.5)));
     }
 
-    public static long Will1Gain(Context context){
+    public static double Will1Gain(Context context){
 
         //Returns the total amount of will per second that will1 will give.
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -39,7 +39,7 @@ public class MiscMethods {
         }
     }
 
-    public static long Will2Cost(Context context){
+    public static double Will2Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -49,7 +49,7 @@ public class MiscMethods {
         return (int) (1000+level*100+ Math.floor(Math.pow((float)level,2.5)));
     }
 
-    public static long Will2Gain(Context context){
+    public static double Will2Gain(Context context){
 
         //Returns the total amount of will per second that will1 will give.
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -65,7 +65,7 @@ public class MiscMethods {
         }
     }
 
-    public static long Will3Cost(Context context){
+    public static double Will3Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -75,7 +75,7 @@ public class MiscMethods {
         return (int) (10000+level*1000+ Math.floor(Math.pow((float)level,3)));
     }
 
-    public static long Will3Gain(Context context){
+    public static double Will3Gain(Context context){
 
         //Returns the total amount of will per second that will1 will give.
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -91,7 +91,7 @@ public class MiscMethods {
         }
     }
 
-    public static long Will4Cost(Context context){
+    public static double Will4Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -101,7 +101,7 @@ public class MiscMethods {
         return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5)));
     }
 
-    public static long Will4Gain(Context context){
+    public static double Will4Gain(Context context){
 
         //Returns the total amount of will per second that will1 will give.
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -120,7 +120,7 @@ public class MiscMethods {
 
 
 
-    public static long Int1Cost(Context context){
+    public static double Int1Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -130,7 +130,7 @@ public class MiscMethods {
         return (int) (100000+level*4000+ Math.floor(Math.pow((float)level,3.8)));
     }
 
-    public static long Int1Gain(Context context){
+    public static double Int1Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -140,7 +140,7 @@ public class MiscMethods {
         return level;
     }
 
-    public static long Int2Cost(Context context){
+    public static double Int2Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -150,7 +150,7 @@ public class MiscMethods {
         return (int) (100+level*200+ Math.floor(Math.pow((float)level,4)));
     }
 
-    public static long Int2Gain(Context context){
+    public static double Int2Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -160,7 +160,7 @@ public class MiscMethods {
         return level *10;
     }
 
-    public static long Int3Cost(Context context){
+    public static double Int3Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -169,7 +169,7 @@ public class MiscMethods {
 
         return (int) (50000+level*2000+ Math.floor(Math.pow(2.,(float)level))); //NEED CHANGING
     }
-    public static long Int3Gain(Context context){
+    public static double Int3Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -179,7 +179,7 @@ public class MiscMethods {
         return  20*level;
     }
 
-    public static long Int4Cost(Context context){
+    public static double Int4Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -189,7 +189,7 @@ public class MiscMethods {
         return (int) (200000+level*10000+ Math.floor(Math.pow((float)level,3.5))); // Need Changing
     }
 
-    public static long Int4Gain(Context context){
+    public static double Int4Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -199,7 +199,7 @@ public class MiscMethods {
         return level*50;
     }
 
-    public static long Social1Cost(Context context){
+    public static double Social1Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -209,7 +209,7 @@ public class MiscMethods {
         return (int) (1000000+level*6000+ Math.floor(Math.pow((float)level,4)));
     }
 
-    public static long Social1Gain(Context context){
+    public static double Social1Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -219,7 +219,7 @@ public class MiscMethods {
         return level;
     }
 
-    public static long Social2Cost(Context context){
+    public static double Social2Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -229,7 +229,7 @@ public class MiscMethods {
         return (int) (1000+level*300+ Math.floor(Math.pow((float)level,4)));
     }
 
-    public static long Social2Gain(Context context){
+    public static double Social2Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -239,7 +239,7 @@ public class MiscMethods {
         return level *14;
     }
 
-    public static long Social3Cost(Context context){
+    public static double Social3Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -248,7 +248,7 @@ public class MiscMethods {
 
         return (int) (100000+level*20000+ Math.floor(Math.pow(2.5,(float)level))); //NEED CHANGING
     }
-    public static long Social3Gain(Context context){
+    public static double Social3Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -258,7 +258,7 @@ public class MiscMethods {
         return  20*level;
     }
 
-    public static long Social4Cost(Context context){
+    public static double Social4Cost(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -268,7 +268,7 @@ public class MiscMethods {
         return (int) (30000+level*10000+ Math.floor(Math.pow((float)level,7))); // Need Changing
     }
 
-    public static long Social4Gain(Context context){
+    public static double Social4Gain(Context context){
 
 
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
@@ -283,19 +283,19 @@ public class MiscMethods {
 
 
 
-    public static long[] LevelCost(int age){
+    public static double[] LevelCost(int age){
 
 
         //Need to work out how im going to do the costs here (hard code these)
 
         if (age == 0) {
-            return new long[]{1000, 0, 0, 0};
+            return new double[]{1000, 0, 0, 0};
         }
         else if (age==1){
-            return new long[]{10000,0,0,0};
+            return new double[]{10000,0,0,0};
         }
         else{
-            return new long[]{100000,0,0,0};
+            return new double[]{100000,0,0,0};
         }
     }
 
@@ -347,21 +347,21 @@ public class MiscMethods {
         editor.apply();
     }
 
-    public static void ButtonPressAction(Button buyButton, long cost , String name, String currency, FragmentActivity activity){
+    public static void ButtonPressAction(Button buyButton, double cost , String name, String currency, FragmentActivity activity){
 
         SharedPreferences UpdateAmount = activity.getSharedPreferences("Values", Context.MODE_PRIVATE );
 
 
-        long CurrentScore = UpdateAmount.getLong(currency,0);
+        double CurrentScore = getDouble(UpdateAmount,currency,0);
 
         if (CurrentScore>=cost) {
 
 
             SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
 
-            long resultScore = CurrentScore- cost;
+            double resultScore = CurrentScore- cost;
 
-            AmountEditor.putLong(currency,resultScore);
+            putDouble(AmountEditor, currency,resultScore);
 
             int Current = UpdateAmount.getInt(name, 0);
 
@@ -405,9 +405,9 @@ public class MiscMethods {
 
     }
 
-    public static String FormatNumber(long number){
+    public static String FormatNumber(double number){
         if (number < 100000){
-            return String.valueOf(number);
+            return String.valueOf( (long) Math.floor(number)); //Can convert to long as it is less than 100,000 thus getting rid of the .
         }
         else{
             NumberFormat numFormat = new DecimalFormat("0.00E0");
@@ -416,5 +416,12 @@ public class MiscMethods {
 
     }
 
+    public static SharedPreferences.Editor putDouble(final SharedPreferences.Editor edit, final String saveLocation, final double value){
+        return edit.putLong(saveLocation, Double.doubleToRawLongBits(value));
+    }
+
+    public static double getDouble(final SharedPreferences preferences, final String saveLocation, final double defaultValue){
+        return Double.longBitsToDouble(preferences.getLong(saveLocation, Double.doubleToLongBits(defaultValue)));
+    }
 
 }

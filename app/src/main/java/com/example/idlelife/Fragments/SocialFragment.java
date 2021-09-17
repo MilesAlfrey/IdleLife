@@ -77,14 +77,15 @@ public class SocialFragment extends Fragment  {
 
 
 
-        long cost1 = MiscMethods.Social1Cost(requireContext());
-        long cost2 = MiscMethods.Social2Cost(requireContext());
-        long cost3 = MiscMethods.Social3Cost(requireContext());
-        long cost4 = MiscMethods.Social4Cost(requireContext());
-        long will = score.getLong("Will", 0);
-        long intelligence = score.getLong("Int", 0);
-        long social = score.getLong("Social", 0);
-        long money = score.getLong("Money", 0);
+        double cost1 = MiscMethods.Social1Cost(requireContext());
+        double cost2 = MiscMethods.Social2Cost(requireContext());
+        double cost3 = MiscMethods.Social3Cost(requireContext());
+        double cost4 = MiscMethods.Social4Cost(requireContext());
+
+        double will = MiscMethods.getDouble(score,"Will",0);
+        double intelligence = MiscMethods.getDouble(score,"Int",0);
+        double social = MiscMethods.getDouble(score,"Social",0);
+        double money = MiscMethods.getDouble(score,"Money",0);
 
         if (will >= cost1) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.SocialBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
@@ -126,22 +127,22 @@ public class SocialFragment extends Fragment  {
 
 
 
-        long Social1MakeAmount = MiscMethods.Social1Gain(requireContext());
+        double Social1MakeAmount = MiscMethods.Social1Gain(requireContext());
         int Social1Owned = score.getInt("Social1",0);
         binding.SocialBuy1.setText(MiscMethods.FormatNumber(MiscMethods.Social1Cost(requireContext())));
         binding.SocialDescrip1.setText(getString(R.string.DescriptionText,Social1Owned,MiscMethods.FormatNumber(Social1MakeAmount)));
 
-        long Social2MakeAmount = MiscMethods.Social2Gain(requireContext());
+        double Social2MakeAmount = MiscMethods.Social2Gain(requireContext());
         int Social2Owned = score.getInt("Social2",0);
         binding.SocialBuy2.setText(MiscMethods.FormatNumber(MiscMethods.Social2Cost(requireContext())));
         binding.SocialDescrip2.setText(getString(R.string.DescriptionText,Social2Owned,MiscMethods.FormatNumber(Social2MakeAmount)));
 
-        long Social3MakeAmount = MiscMethods.Social3Gain(requireContext());
+        double Social3MakeAmount = MiscMethods.Social3Gain(requireContext());
         int Social3Owned = score.getInt("Social3",0);
         binding.SocialBuy3.setText(MiscMethods.FormatNumber(MiscMethods.Social3Cost(requireContext())));
         binding.SocialDescrip3.setText(getString(R.string.DescriptionText,Social3Owned,MiscMethods.FormatNumber(Social3MakeAmount)));
 
-        long Social4MakeAmount = MiscMethods.Social4Gain(requireContext());
+        double Social4MakeAmount = MiscMethods.Social4Gain(requireContext());
         int Social4Owned = score.getInt("Social4",0);
         binding.SocialBuy4.setText(MiscMethods.FormatNumber(MiscMethods.Social4Cost(requireContext())));
         binding.SocialDescrip4.setText(getString(R.string.DescriptionText,Social4Owned,MiscMethods.FormatNumber(Social4MakeAmount)));
@@ -170,41 +171,42 @@ public class SocialFragment extends Fragment  {
         public void run() { //This Social just always run and check everything as i am dumb and cant do it better.
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            long cost1 = MiscMethods.Social1Cost(requireContext());
-            long cost2 = MiscMethods.Social2Cost(requireContext());
-            long cost3 = MiscMethods.Social3Cost(requireContext());
-            long cost4 = MiscMethods.Social4Cost(requireContext());
+            double cost1 = MiscMethods.Social1Cost(requireContext());
+            double cost2 = MiscMethods.Social2Cost(requireContext());
+            double cost3 = MiscMethods.Social3Cost(requireContext());
+            double cost4 = MiscMethods.Social4Cost(requireContext());
 
 
 
 
-            long Social1MakeAmount = MiscMethods.Social1Gain(requireContext());
+            double Social1MakeAmount = MiscMethods.Social1Gain(requireContext());
             int Social1Owned = saves.getInt("Social1",0);
             binding.SocialBuy1.setText(MiscMethods.FormatNumber(cost1));
             binding.SocialDescrip1.setText(getString(R.string.DescriptionText,Social1Owned,MiscMethods.FormatNumber(Social1MakeAmount)));
 
 
 
-            long Social2MakeAmount = MiscMethods.Social2Gain(requireContext());
+            double Social2MakeAmount = MiscMethods.Social2Gain(requireContext());
             int Social2Owned = saves.getInt("Social2",0);
             binding.SocialBuy2.setText(MiscMethods.FormatNumber(cost2));
             binding.SocialDescrip2.setText(getString(R.string.DescriptionText,Social2Owned,MiscMethods.FormatNumber(Social2MakeAmount)));
 
 
-            long Social3MakeAmount = MiscMethods.Social3Gain(requireContext());
+            double Social3MakeAmount = MiscMethods.Social3Gain(requireContext());
             int Social3Owned = saves.getInt("Social3",0);
             binding.SocialBuy3.setText(MiscMethods.FormatNumber(cost3));
             binding.SocialDescrip3.setText(getString(R.string.DescriptionText,Social3Owned,MiscMethods.FormatNumber(Social3MakeAmount)));
 
-            long Social4MakeAmount = MiscMethods.Social4Gain(requireContext());
+            double Social4MakeAmount = MiscMethods.Social4Gain(requireContext());
             int Social4Owned = saves.getInt("Social4",0);
             binding.SocialBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.SocialDescrip4.setText(getString(R.string.DescriptionText,Social4Owned,MiscMethods.FormatNumber(Social4MakeAmount)));
 
-            long will = saves.getLong("Will",0);
-            long intelligence = saves.getLong("Int",0);
-            long social = saves.getLong("Social",0);
-            long money = saves.getLong("Money",0);
+
+            double will = MiscMethods.getDouble(saves,"Will",0);
+            double intelligence = MiscMethods.getDouble(saves,"Int",0);
+            double social = MiscMethods.getDouble(saves,"Social",0);
+            double money = MiscMethods.getDouble(saves,"Money",0);
 
             if (will >= cost1) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));

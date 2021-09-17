@@ -79,35 +79,35 @@ public class IntelligenceFragment extends Fragment {
 
         //END OF VISIBILITY SETTINGS
 
-        long cost1 = MiscMethods.Int1Cost(requireContext());
-        long cost2 = MiscMethods.Int2Cost(requireContext());
-        long cost3 = MiscMethods.Int3Cost(requireContext());
-        long cost4 = MiscMethods.Int4Cost(requireContext());
+        double cost1 = MiscMethods.Int1Cost(requireContext());
+        double cost2 = MiscMethods.Int2Cost(requireContext());
+        double cost3 = MiscMethods.Int3Cost(requireContext());
+        double cost4 = MiscMethods.Int4Cost(requireContext());
 
         NumberFormat numFormat = new DecimalFormat("0.00E0");
 
-        long Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
+        double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
         int Int1Owned = score.getInt("Int1",0);
         binding.IntBuy1.setText(String.valueOf(cost1));
         binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
 
-        long Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
+        double Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
         int Int2Owned = score.getInt("Int2",0);
         binding.IntBuy2.setText(String.valueOf(cost2));
         binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
 
-        long Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
+        double Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
         int Int3Owned = score.getInt("Int3",0);
         binding.IntBuy3.setText(String.valueOf(cost3));
         binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
 
-        long Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
+        double Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
         int Int4Owned = score.getInt("Int4",0);
         binding.IntBuy4.setText(String.valueOf(cost4));
         binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
 
-        long will = score.getLong("Will",0);
-        long intelligence = score.getLong("Int",0);
+        double will = MiscMethods.getDouble(score,"Will",0);
+        double intelligence = MiscMethods.getDouble(score,"Int",0);
 
         if (will >= cost1) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.IntBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour))); //Stop if red
@@ -145,10 +145,12 @@ public class IntelligenceFragment extends Fragment {
                 SharedPreferences.Editor editor = toReset.edit();
                 editor.putInt("Age", 0);
 
-                editor.putLong("Will", 10000000);
-                editor.putLong("Int", 0);
-                editor.putLong("Social", 0);
-                editor.putLong("Money", 0);
+
+
+                MiscMethods.putDouble(editor,"Will",100000000);
+                MiscMethods.putDouble(editor,"Int",0);
+                MiscMethods.putDouble(editor,"Social",0);
+                MiscMethods.putDouble(editor,"Money",0);
 
                 editor.putInt("Will1", 0);
                 editor.putInt("Will2", 0);
@@ -197,48 +199,7 @@ public class IntelligenceFragment extends Fragment {
 
 
 
-        binding.IntBuy1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    MiscMethods.ButtonPressAction(binding.IntBuy1,MiscMethods.Int1Cost(requireContext()),"Int1","Will",requireActivity());
-
-                    /* Backup
-
-                    SharedPreferences UpdateAmount = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-
-                    int cost = MiscMethods.Int1Cost(requireContext());
-
-                    long CurrentScore = UpdateAmount.getLong("Will",0);
-
-                    if (CurrentScore>=cost) {
-
-
-                        SharedPreferences.Editor AmountEditor = UpdateAmount.edit();
-
-                        long resultScore = CurrentScore- cost;
-
-                        AmountEditor.putLong("Will",resultScore);
-
-                        int Current = UpdateAmount.getInt("Int1", 0);
-
-                        AmountEditor.putInt("Int1", Current + 1);
-
-                        AmountEditor.apply();
-
-                        if (resultScore<cost) {
-                            binding.IntBuy1.setBackgroundColor(0xff555555);
-                        }
-
-
-                        binding.IntBuy1.setText(String.valueOf(MiscMethods.Int1Cost(requireContext())));
-                        binding.IntDescrip1.setText(String.valueOf(Current+1));
-                    }
-
-                     */
-                }
-            });
+        binding.IntBuy1.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.IntBuy1,MiscMethods.Int1Cost(requireContext()),"Int1","Will",requireActivity()));
 
         binding.IntBuy2.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity()));
 
@@ -274,31 +235,32 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
         public void run() {
             SharedPreferences saves = requireActivity().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
-            long cost1 = MiscMethods.Int1Cost(requireContext());
-            long cost2 = MiscMethods.Int2Cost(requireContext());
-            long cost3 = MiscMethods.Int3Cost(requireContext());
-            long cost4 = MiscMethods.Int4Cost(requireContext());
-            long will = saves.getLong("Will", 0);
-            long intelligence = saves.getLong("Int", 0);
+            double cost1 = MiscMethods.Int1Cost(requireContext());
+            double cost2 = MiscMethods.Int2Cost(requireContext());
+            double cost3 = MiscMethods.Int3Cost(requireContext());
+            double cost4 = MiscMethods.Int4Cost(requireContext());
+
+            double will = MiscMethods.getDouble(saves,"Will",0);
+            double intelligence = MiscMethods.getDouble(saves,"Int",0);
 
             NumberFormat numFormat = new DecimalFormat("0.00E0");
 
-            long Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
+            double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
             int Int1Owned = saves.getInt("Int1",0);
             binding.IntBuy1.setText(String.valueOf(cost1));
             binding.IntDescrip1.setText(getString(R.string.DescriptionText,Int1Owned,numFormat.format(Int1MakeAmount)));
 
-            long Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
+            double Int2MakeAmount = MiscMethods.Int2Gain(requireContext());
             int Int2Owned = saves.getInt("Int2",0);
             binding.IntBuy2.setText(String.valueOf(cost2));
             binding.IntDescrip2.setText(getString(R.string.DescriptionText,Int2Owned,numFormat.format(Int2MakeAmount)));
 
-            long Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
+            double Int3MakeAmount = MiscMethods.Int3Gain(requireContext());
             int Int3Owned = saves.getInt("Int3",0);
             binding.IntBuy3.setText(String.valueOf(cost3));
             binding.IntDescrip3.setText(getString(R.string.DescriptionText,Int3Owned,numFormat.format(Int3MakeAmount)));
 
-            long Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
+            double Int4MakeAmount = MiscMethods.Int4Gain(requireContext());
             int Int4Owned = saves.getInt("Int4",0);
             binding.IntBuy4.setText(String.valueOf(cost4));
             binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,numFormat.format(Int4MakeAmount)));
