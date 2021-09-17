@@ -160,6 +160,11 @@ public class IntelligenceFragment extends Fragment {
                 editor.putInt("Int3", 0);
                 editor.putInt("Int4", 0);
 
+                editor.putInt("Social1", 0);
+                editor.putInt("Social2", 0);
+                editor.putInt("Social3", 0);
+                editor.putInt("Social4", 0);
+
                 editor.putBoolean("ShowWill2", false);
                 editor.putBoolean("ShowWill3", false);
                 editor.putBoolean("ShowWill4", false);
@@ -168,6 +173,11 @@ public class IntelligenceFragment extends Fragment {
                 editor.putBoolean("ShowInt2", false);
                 editor.putBoolean("ShowInt3", false);
                 editor.putBoolean("ShowInt4", false);
+
+                editor.putBoolean("ShowSocial1", false);
+                editor.putBoolean("ShowSocial2", false);
+                editor.putBoolean("ShowSocial3", false);
+                editor.putBoolean("ShowSocial4", false);
 
                 editor.putInt("TestSpeed",0);
                 editor.putInt("Test",0);

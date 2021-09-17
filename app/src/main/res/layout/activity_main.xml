@@ -61,6 +61,7 @@
                 android:insetRight="20dp"
                 android:insetBottom="20dp"
                 android:text="@string/Social"
+                android:textColor="@color/Background_grey"
                 app:backgroundTint="@color/SocialColour"
                 app:rippleColor="#00FFFFFF" />
 
@@ -124,7 +125,8 @@
                 android:gravity="center|left"
                 android:paddingLeft="2dp"
                 android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/WillColour" />
 
             <TextView
                 android:id="@+id/Intelligence"
@@ -133,7 +135,8 @@
                 android:gravity="center|left"
                 android:paddingLeft="2dp"
                 android:text="idk 11"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/IntColour" />
 
             <TextView
                 android:id="@+id/Social"
@@ -142,7 +145,8 @@
                 android:gravity="center|left"
                 android:paddingLeft="2dp"
                 android:text="3?"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/SocialColour" />
 
             <TextView
                 android:id="@+id/Money"
@@ -151,7 +155,8 @@
                 android:gravity="center|left"
                 android:paddingLeft="2dp"
                 android:text="2"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/MoneyColour" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

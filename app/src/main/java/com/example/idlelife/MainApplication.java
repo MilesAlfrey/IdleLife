@@ -105,9 +105,14 @@ public class MainApplication extends Application {
                     MiscMethods.Social3Gain(getBaseContext())+
                     MiscMethods.Social4Gain(getBaseContext());
 
+
             SocialAdd = SocialAdd/(1000/Update_Interval);
 
+
+
             editor.putLong("Social",currentSocial+SocialAdd);
+
+
 
             //TEST ADDITION
 
