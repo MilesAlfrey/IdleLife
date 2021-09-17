@@ -105,6 +105,9 @@ public class IntelligenceFragment extends Fragment {
 
         double will = MiscMethods.getDouble(score,"Will",0);
         double intelligence = MiscMethods.getDouble(score,"Int",0);
+        double social = MiscMethods.getDouble(score,"Social",0);
+        double money = MiscMethods.getDouble(score,"Money",0);
+
 
         if (will >= cost1) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.IntBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour))); //Stop if red
@@ -246,6 +249,8 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
 
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
+            double social = MiscMethods.getDouble(saves,"Social",0);
+            double money = MiscMethods.getDouble(saves,"Money",0);
 
 
             double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());

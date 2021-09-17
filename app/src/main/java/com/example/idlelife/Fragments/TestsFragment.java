@@ -219,7 +219,6 @@ public class TestsFragment extends Fragment {
                     //On pass
 
                     String TestCompleted = "Test" + currentTest1 + "Completed";
-                    System.out.println(TestCompleted);
                     change.putBoolean(TestCompleted, true);
 
                     change.putInt("TestProgress", total);
@@ -237,7 +236,6 @@ public class TestsFragment extends Fragment {
 
                     greyCompleted(currentTest1);
                 } else {
-                    System.out.println("LOOOSERRRR");
                     change.putInt("TestProgress", 0);
                     change.putInt("TestSpeed", 0);//RESET TO 0
                     change.apply();
@@ -299,7 +297,6 @@ public class TestsFragment extends Fragment {
 
                 int TestProgress = saves.getInt("TestProgress", 0);
 
-                //System.out.println(TestProgress);
 
                 if (TestProgress >= TestLength) {
                     //I guess do nothing?
@@ -317,7 +314,6 @@ public class TestsFragment extends Fragment {
                     binding.FullBar.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
                     binding.FullBar.requestLayout(); // Simple division to set a fraction
 
-                    //System.out.println((int) Math.floor(divide*100));
 
                     binding.PercentageFill.setText(getString(R.string.Percentage, (int) Math.floor(divide * 100)));
                 }
@@ -530,7 +526,7 @@ public class TestsFragment extends Fragment {
         SharedPreferences test = requireContext().getSharedPreferences("Values", Context.MODE_PRIVATE);
 
 
-        if (test.getInt("Test",0)!= TestChoice) {//Dont run this if in the same test already.
+        if (test.getInt("Test",0)!= TestChoice) {//Don't run this if in the same test already.
 
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
             LayoutInflater inflater = requireActivity().getLayoutInflater();

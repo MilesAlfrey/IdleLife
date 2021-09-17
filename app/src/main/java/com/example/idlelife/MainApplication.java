@@ -12,23 +12,9 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        /*
-        SharedPreferences data = getSharedPreferences("Values", Context.MODE_PRIVATE );
-
-        SharedPreferences.Editor editor = data.edit();
-
-
-        editor.apply();
-
-        System.out.println(MiscMethods.getDouble(data,"Data",5));
-        */
-
-
         timerHandler.post(timerRunnable);
 
     }
-
-    double startTime=0;
 
     private final static int Update_Interval= 50; // IMPORTANT HOW OFTEN APP UPDATES.
 
@@ -36,7 +22,7 @@ public class MainApplication extends Application {
     Runnable timerRunnable = new Runnable() {
         @Override
         public void run() { //Could put the "brain" here, where it checks and updates every value, updating it elsewhere independently.
-            //Right now this does the maths and thats it.
+            //Right now this does the maths and that's it.
 
 
             SharedPreferences data = getSharedPreferences("Values", Context.MODE_PRIVATE );
@@ -66,14 +52,6 @@ public class MainApplication extends Application {
 
              */
 
-/*
-            double WillAdd = Will1 + 5 * Will2 + 20 * Will3 + 100 * Will4;
-
-            if (Test1) {
-                WillAdd*=4; //Can just add effects like this
-            }
-
- */
             //WILL ADDITION
 
             double WillAdd = MiscMethods.Will1Gain(getBaseContext())+

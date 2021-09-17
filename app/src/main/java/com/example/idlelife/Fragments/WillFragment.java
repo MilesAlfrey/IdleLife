@@ -82,9 +82,14 @@ public class WillFragment extends Fragment  {
         double cost2 = MiscMethods.Will2Cost(requireContext());
         double cost3 = MiscMethods.Will3Cost(requireContext());
         double cost4 = MiscMethods.Will4Cost(requireContext());
-        double willAmount = MiscMethods.getDouble(score,"Will", 0);
 
-        if (willAmount >= cost1) {//Stops it going on forever.
+
+        double will = MiscMethods.getDouble(score,"Will", 0);
+        double intelligence = MiscMethods.getDouble(score,"Int",0);
+        double social = MiscMethods.getDouble(score,"Social",0);
+        double money = MiscMethods.getDouble(score,"Money",0);
+
+        if (will >= cost1) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.WillBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             //binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
         }
@@ -93,7 +98,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy1.setBackgroundColor(0xff555555);
         }
 
-        if (willAmount >= cost2) {//Stops it going on forever.
+        if (will >= cost2) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             //binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
         }
@@ -102,7 +107,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy2.setBackgroundColor(0xff555555);
         }
 
-        if (willAmount >= cost3) {//Stops it going on forever.
+        if (will >= cost3) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.WillBuy3,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             //binding.WillBuy3.setBackgroundColor(0xffff0000); //Stop if red
         }
@@ -111,7 +116,7 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy3.setBackgroundColor(0xff555555);
         }
 
-        if (willAmount >= cost4) {//Stops it going on forever.
+        if (will >= cost4) {//Stops it going on forever.
             ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
         }
@@ -172,9 +177,6 @@ public class WillFragment extends Fragment  {
             double cost2 = MiscMethods.Will2Cost(requireContext());
             double cost3 = MiscMethods.Will3Cost(requireContext());
             double cost4 = MiscMethods.Will4Cost(requireContext());
-            double score = MiscMethods.getDouble(saves,"Will", 0);
-
-
 
 
 
@@ -183,32 +185,31 @@ public class WillFragment extends Fragment  {
             binding.WillBuy1.setText(MiscMethods.FormatNumber(cost1));
             binding.WillDescrip1.setText(getString(R.string.DescriptionText,Will1Owned,MiscMethods.FormatNumber(Will1MakeAmount)));
 
-            //binding.WillBuy2.setText(String.valueOf(cost2));
-            //binding.WillDescrip2.setText(String.valueOf(saves.getInt("Will2",0)));
 
             double Will2MakeAmount = MiscMethods.Will2Gain(requireContext());
             int Will2Owned = saves.getInt("Will2",0);
             binding.WillBuy2.setText(MiscMethods.FormatNumber(cost2));
             binding.WillDescrip2.setText(getString(R.string.DescriptionText,Will2Owned,MiscMethods.FormatNumber(Will2MakeAmount)));
 
-            //binding.WillBuy3.setText(String.valueOf(cost3));
-            //binding.WillDescrip3.setText(String.valueOf(saves.getInt("Will3",0)));
 
             double Will3MakeAmount = MiscMethods.Will3Gain(requireContext());
             int Will3Owned = saves.getInt("Will3",0);
             binding.WillBuy3.setText(MiscMethods.FormatNumber(cost3));
             binding.WillDescrip3.setText(getString(R.string.DescriptionText,Will3Owned,MiscMethods.FormatNumber(Will3MakeAmount)));
 
-            //binding.WillBuy4.setText(String.valueOf(cost4));
-            //binding.WillDescrip4.setText(String.valueOf(saves.getInt("Will4",0)));
 
             double Will4MakeAmount = MiscMethods.Will4Gain(requireContext());
             int Will4Owned = saves.getInt("Will4",0);
             binding.WillBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,MiscMethods.FormatNumber(Will4MakeAmount)));
 
+            double will = MiscMethods.getDouble(saves,"Will",0);
+            double intelligence = MiscMethods.getDouble(saves,"Int",0);
+            double social = MiscMethods.getDouble(saves,"Social",0);
+            double money = MiscMethods.getDouble(saves,"Money",0);
 
-            if (score >= cost1) {//Stops it going on forever.
+
+            if (will >= cost1) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.WillBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
                 //binding.WillBuy1.setBackgroundColor(0xffff0000); //Stop if red
             }
@@ -217,7 +218,7 @@ public class WillFragment extends Fragment  {
                 //binding.WillBuy1.setBackgroundColor(0xff555555);
             }
 
-            if (score >= cost2) {//Stops it going on forever.
+            if (will >= cost2) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
                 //binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
             }
@@ -226,7 +227,7 @@ public class WillFragment extends Fragment  {
                 //binding.WillBuy2.setBackgroundColor(0xff555555);
             }
 
-            if (score >= cost3) {//Stops it going on forever.
+            if (will >= cost3) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.WillBuy3,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
                 //binding.WillBuy3.setBackgroundColor(0xffff0000); //Stop if red
             }
@@ -235,7 +236,7 @@ public class WillFragment extends Fragment  {
                 //binding.WillBuy3.setBackgroundColor(0xff555555);
             }
 
-            if (score >= cost4) {//Stops it going on forever.
+            if (will >= cost4) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
                 //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
             }

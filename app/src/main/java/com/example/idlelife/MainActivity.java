@@ -1,36 +1,25 @@
 package com.example.idlelife;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Handler;
 import android.text.Html;
-import android.view.View;
-
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.idlelife.Dialog.IntroDialog;
-import com.example.idlelife.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
+
+
+import com.example.idlelife.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
 
@@ -106,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             int currentTest = score.getInt("Test",0);
 
+            // Sets it back to empty if there is no test, resetting it.
             if (currentTest != 0){
                 int TestLength = score.getInt("TestLength", 0);
                 int TestProgress = score.getInt("TestProgress", 0);
@@ -125,14 +115,11 @@ public class MainActivity extends AppCompatActivity {
                     binding.BlockColor.getLayoutParams().width = (int) Math.floor(divide * (float) MaxWidth);
 
                 }
-                binding.BlockColor.requestLayout(); //Either way the new width is updated
             }
             else{
                 binding.BlockColor.getLayoutParams().width = 1;
-                binding.BlockColor.requestLayout(); // Sets it back to empty if there is no test, resetting it.
             }
-
-
+            binding.BlockColor.requestLayout(); //Either way the new width is updated
 
 
             timerHandler.postDelayed(this, Update_Interval); //Repeat this runnable in the given time.
@@ -162,115 +149,95 @@ public class MainActivity extends AppCompatActivity {
 
         //NAVIGATION
 
-        binding.NavWill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.NavWill.setOnClickListener(view -> {
 
-                FragmentManager fragMgr = getSupportFragmentManager();
+            FragmentManager fragMgr = getSupportFragmentManager();
 
-                NavHostFragment.findNavController(fragMgr.getFragments().get(0))//Uses the fragmentManager to get a fragment in use
-                        .navigate(R.id.action_global_WillFragment); //Then uses that as a base to navigate to desired fragment from.
+            NavHostFragment.findNavController(fragMgr.getFragments().get(0))//Uses the fragmentManager to get a fragment in use
+                    .navigate(R.id.action_global_WillFragment); //Then uses that as a base to navigate to desired fragment from.
 
-            }
         });
 
-        binding.NavIntelligence.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.NavIntelligence.setOnClickListener(view -> {
 
-                FragmentManager fragMgr = getSupportFragmentManager();
+            FragmentManager fragMgr = getSupportFragmentManager();
 
-                NavHostFragment.findNavController(fragMgr.getFragments().get(0))
-                        .navigate(R.id.action_global_IntelligenceFragment);
+            NavHostFragment.findNavController(fragMgr.getFragments().get(0))
+                    .navigate(R.id.action_global_IntelligenceFragment);
 
-            }
         });
 
-        binding.NavSocial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.NavSocial.setOnClickListener(view -> {
 
-                FragmentManager fragMgr = getSupportFragmentManager();
+            FragmentManager fragMgr = getSupportFragmentManager();
 
-                NavHostFragment.findNavController(fragMgr.getFragments().get(0))
-                        .navigate(R.id.action_global_socialFragment);
+            NavHostFragment.findNavController(fragMgr.getFragments().get(0))
+                    .navigate(R.id.action_global_socialFragment);
 
-            }
         });
 
-        binding.NavMoney.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.NavMoney.setOnClickListener(view -> {
 
-                FragmentManager fragMgr = getSupportFragmentManager();
+            FragmentManager fragMgr = getSupportFragmentManager();
 
-                NavHostFragment.findNavController(fragMgr.getFragments().get(0))
-                        .navigate(R.id.action_global_moneyFragment);
+            NavHostFragment.findNavController(fragMgr.getFragments().get(0))
+                    .navigate(R.id.action_global_moneyFragment);
 
-            }
         });
 
-        binding.NavTests.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.NavTests.setOnClickListener(view -> {
 
-                FragmentManager fragMgr = getSupportFragmentManager();
+            FragmentManager fragMgr = getSupportFragmentManager();
 
-                NavHostFragment.findNavController(fragMgr.getFragments().get(0))
-                        .navigate(R.id.action_global_testsFragment);
+            NavHostFragment.findNavController(fragMgr.getFragments().get(0))
+                    .navigate(R.id.action_global_testsFragment);
 
-            }
         });
 
 
         //LEVEL UP
 
 
-        binding.AgeUp.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
+        binding.AgeUp.setOnClickListener(view -> {
 
 
 
-                SharedPreferences level = getSharedPreferences("Values",Context.MODE_PRIVATE);
+            SharedPreferences level = getSharedPreferences("Values",Context.MODE_PRIVATE);
 
-                int age = level.getInt("Age",0);
-
-
-
-                double[] cost = MiscMethods.LevelCost(age);
+            int age1 = level.getInt("Age",0);
 
 
-                double will = MiscMethods.getDouble(level,"Will",0);
-                double intelligence = MiscMethods.getDouble(level,"Int",0);
-                double social = MiscMethods.getDouble(level,"Social",0);
-                double money = MiscMethods.getDouble(level,"Money",0);
 
-                if (will>=cost[0]&&intelligence>=cost[1]&&social>=cost[2]&&money>=cost[3]) {
-                    //Still need colour changing ugh
-                    System.out.println(age);
-                    SharedPreferences.Editor editor = level.edit();
-                    MiscMethods.putDouble(editor,"Will",will-cost[0]);
-                    MiscMethods.putDouble(editor,"Int",intelligence-cost[1]);
-                    MiscMethods.putDouble(editor,"Social",social-cost[2]);
-                    MiscMethods.putDouble(editor,"Money",money-cost[3]);
-                    editor.putInt("Age",age+1);
-                    editor.apply();
-                    MiscMethods.ageResult(MainActivity.super.getBaseContext());
-                    PlayerIconSelector(age+1);//The age +1 is a new age
-
-                }
+            double[] cost = MiscMethods.LevelCost(age1);
 
 
-                //TODO: USE DIALOG CORRECTLY
+            double will = MiscMethods.getDouble(level,"Will",0);
+            double intelligence = MiscMethods.getDouble(level,"Int",0);
+            double social = MiscMethods.getDouble(level,"Social",0);
+            double money = MiscMethods.getDouble(level,"Money",0);
 
-                //IntroDialog test = new IntroDialog();
-                //test.show(getSupportFragmentManager(),"test");
-
-
+            if (will>=cost[0]&&intelligence>=cost[1]&&social>=cost[2]&&money>=cost[3]) {
+                //Still need colour changing ugh
+                SharedPreferences.Editor editor = level.edit();
+                MiscMethods.putDouble(editor,"Will",will-cost[0]);
+                MiscMethods.putDouble(editor,"Int",intelligence-cost[1]);
+                MiscMethods.putDouble(editor,"Social",social-cost[2]);
+                MiscMethods.putDouble(editor,"Money",money-cost[3]);
+                editor.putInt("Age", age1 +1);
+                editor.apply();
+                MiscMethods.ageResult(MainActivity.super.getBaseContext());
+                PlayerIconSelector(age1 +1);//The age +1 is a new age
 
             }
+
+
+            //TODO: USE DIALOG CORRECTLY
+
+            //IntroDialog test = new IntroDialog();
+            //test.show(getSupportFragmentManager(),"test");
+
+
+
         });
     }
 
@@ -306,12 +273,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /* IDK WHAT THIS DOES SO ILL JUST LEAVE IT HERE
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+     */
 
     private void PlayerIconSelector(int age){
         if (0<=age && age<=2){
