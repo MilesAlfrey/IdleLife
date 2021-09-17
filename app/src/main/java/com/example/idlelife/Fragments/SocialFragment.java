@@ -53,7 +53,6 @@ public class SocialFragment extends Fragment  {
         ButtonRemover.putBoolean("ShowAgeUp", true);
         ButtonRemover.apply();
 
-        //TODO: TO EDIT TO MAKE IT SPECIFIC TO SOCIAL.
 
         if(score.getBoolean("ShowSocial1",false)){
             binding.SocialBuy1.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.

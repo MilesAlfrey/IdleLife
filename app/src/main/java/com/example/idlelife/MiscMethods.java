@@ -279,6 +279,86 @@ public class MiscMethods {
     }
 
 
+    public static double Money1Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money1",0);
+
+        return (int) (10000+level*4000+ Math.floor(Math.pow(2,(float)level)));
+    }
+
+    public static double Money1Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money1",0);
+
+        return level;
+    }
+
+    public static double Money2Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money2",0);
+
+        return (int) (1000000+level*300000+ Math.floor(Math.pow((float)level,20)));
+    }
+
+    public static double Money2Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money2",0);
+
+        return level *12;
+    }
+
+    public static double Money3Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money3",0);
+
+        return (int) (100000+level*20000+ Math.floor(Math.pow(3,(float)level))); //NEED CHANGING
+    }
+    public static double Money3Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money3",0);
+
+        return  30*level;
+    }
+
+    public static double Money4Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money4",0);
+
+        return (int) (30000+level*30000+ Math.floor(Math.pow((float)level,5))); // Need Changing
+    }
+
+    public static double Money4Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money4",0);
+
+        return level*10;
+    }
+
+
 
 
 
@@ -334,6 +414,7 @@ public class MiscMethods {
                 break;
             case 8:
                 editor.putBoolean("ShowInt4",true);
+                editor.putBoolean("ShowMoney1",true);
                 break;
             case 9:
                 break;
@@ -342,6 +423,15 @@ public class MiscMethods {
                 break;
             case 11:
                 editor.putBoolean("ShowSocial4",true);
+                break;
+            case 14:
+                editor.putBoolean("ShowMoney2",true);
+                break;
+            case 17:
+                editor.putBoolean("ShowMoney3",true);
+                break;
+            case 19:
+                editor.putBoolean("ShowMoney4",true);
                 break;
         }
         editor.apply();

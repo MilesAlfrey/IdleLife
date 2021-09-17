@@ -110,6 +110,18 @@ public class MainApplication extends Application {
 
             MiscMethods.putDouble(editor,"Social",currentSocial+SocialAdd);
 
+            //MONEY ADDITION
+
+            double MoneyAdd = MiscMethods.Money1Gain(getBaseContext())+
+                    MiscMethods.Money2Gain(getBaseContext())+
+                    MiscMethods.Money3Gain(getBaseContext())+
+                    MiscMethods.Money4Gain(getBaseContext());
+
+
+            MoneyAdd = MoneyAdd/(1000./Update_Interval);
+
+            MiscMethods.putDouble(editor,"Money",currentMoney+MoneyAdd);
+
 
 
             //TEST ADDITION
