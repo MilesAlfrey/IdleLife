@@ -71,6 +71,10 @@ public class SocialFragment extends Fragment  {
             binding.SocialBuy4.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.SocialDescrip4.setVisibility(View.VISIBLE);
         }
+        if(score.getBoolean("ShowSocial5",false)){
+            binding.SocialBuy5.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
+            binding.SocialDescrip5.setVisibility(View.VISIBLE);
+        }
 
         //END OF VISIBILITY SETTINGS
 
@@ -80,46 +84,46 @@ public class SocialFragment extends Fragment  {
         double cost2 = MiscMethods.Social2Cost(requireContext());
         double cost3 = MiscMethods.Social3Cost(requireContext());
         double cost4 = MiscMethods.Social4Cost(requireContext());
+        double cost5 = MiscMethods.Social4Cost(requireContext());
 
         double will = MiscMethods.getDouble(score,"Will",0);
         double intelligence = MiscMethods.getDouble(score,"Int",0);
         double social = MiscMethods.getDouble(score,"Social",0);
         double money = MiscMethods.getDouble(score,"Money",0);
 
-        if (will >= cost1) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.SocialBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
-            //binding.SocialBuy1.setBackgroundColor(0xffff0000); //Stop if red
+        if (intelligence >= cost1) {
+            ViewCompat.setBackgroundTintList(binding.SocialBuy1, ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
-            //binding.SocialBuy1.setBackgroundColor(0xff555555);
+            ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
         }
 
-        if (social >= cost2) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-            //binding.SocialBuy2.setBackgroundColor(0xffff0000); //Stop if red
+        if (will >= cost2) {
+            ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-            //binding.SocialBuy2.setBackgroundColor(0xff555555);
+            ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
         }
 
-        if (intelligence >= cost3) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
-            //binding.SocialBuy3.setBackgroundColor(0xffff0000); //Stop if red
+        if (money >= cost3) {
+            ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
-            //binding.SocialBuy3.setBackgroundColor(0xff555555);
+            ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
         }
 
-        if (social >= cost4) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-            //binding.SocialBuy4.setBackgroundColor(0xffff0000); //Stop if red
+        if (will >= cost4) {
+            ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-            //binding.SocialBuy4.setBackgroundColor(0xff555555);
+            ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+        }
+
+        if (social >= cost5) {
+            ViewCompat.setBackgroundTintList(binding.SocialBuy5,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.SocialBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
         }
 
 
@@ -146,18 +150,25 @@ public class SocialFragment extends Fragment  {
         binding.SocialBuy4.setText(MiscMethods.FormatNumber(MiscMethods.Social4Cost(requireContext())));
         binding.SocialDescrip4.setText(getString(R.string.DescriptionText,Social4Owned,MiscMethods.FormatNumber(Social4MakeAmount)));
 
+        double Social5MakeAmount = MiscMethods.Social5Gain(requireContext());
+        int Social5Owned = score.getInt("Social5",0);
+        binding.SocialBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Social5Cost(requireContext())));
+        binding.SocialDescrip5.setText(getString(R.string.DescriptionText,Social5Owned,MiscMethods.FormatNumber(Social5MakeAmount)));
+
 
 
 
         timerHandler.post(timerRunnable);
 
-        binding.SocialBuy1.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.SocialBuy1,MiscMethods.Social1Cost(requireContext()),"Social1","Will",requireActivity()));
+        binding.SocialBuy1.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.SocialBuy1,MiscMethods.Social1Cost(requireContext()),"Social1","Int",requireActivity()));
 
-        binding.SocialBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.SocialBuy2,MiscMethods.Social2Cost(requireContext()),"Social2","Social",requireActivity()));
+        binding.SocialBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.SocialBuy2,MiscMethods.Social2Cost(requireContext()),"Social2","Will",requireActivity()));
 
-        binding.SocialBuy3.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.SocialBuy3,MiscMethods.Social3Cost(requireContext()),"Social3","Int",requireActivity()));
+        binding.SocialBuy3.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.SocialBuy3,MiscMethods.Social3Cost(requireContext()),"Social3","Money",requireActivity()));
 
-        binding.SocialBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.SocialBuy4,MiscMethods.Social4Cost(requireContext()),"Social4","Social",requireActivity()));
+        binding.SocialBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.SocialBuy4,MiscMethods.Social4Cost(requireContext()),"Social4","Will",requireActivity()));
+
+        binding.SocialBuy5.setOnClickListener(view15 -> MiscMethods.ButtonPressAction(binding.SocialBuy5,MiscMethods.Social5Cost(requireContext()),"Social5","Social",requireActivity()));
 
 
     }
@@ -174,6 +185,7 @@ public class SocialFragment extends Fragment  {
             double cost2 = MiscMethods.Social2Cost(requireContext());
             double cost3 = MiscMethods.Social3Cost(requireContext());
             double cost4 = MiscMethods.Social4Cost(requireContext());
+            double cost5 = MiscMethods.Social5Cost(requireContext());
 
 
 
@@ -201,53 +213,57 @@ public class SocialFragment extends Fragment  {
             binding.SocialBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.SocialDescrip4.setText(getString(R.string.DescriptionText,Social4Owned,MiscMethods.FormatNumber(Social4MakeAmount)));
 
+            double Social5MakeAmount = MiscMethods.Social5Gain(requireContext());
+            int Social5Owned = saves.getInt("Social5",0);
+            binding.SocialBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Social5Cost(requireContext())));
+            binding.SocialDescrip5.setText(getString(R.string.DescriptionText,Social5Owned,MiscMethods.FormatNumber(Social5MakeAmount)));
+
 
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
             double social = MiscMethods.getDouble(saves,"Social",0);
             double money = MiscMethods.getDouble(saves,"Money",0);
 
-            if (will >= cost1) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
-                //binding.SocialBuy1.setBackgroundColor(0xffff0000); //Stop if red
+            if (intelligence >= cost1) {
+                ViewCompat.setBackgroundTintList(binding.SocialBuy1, ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
-                //binding.SocialBuy1.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.SocialBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             }
 
-            if (social >= cost2) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-                //binding.SocialBuy2.setBackgroundColor(0xffff0000); //Stop if red
+            if (will >= cost2) {
+                ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-                //binding.SocialBuy2.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.SocialBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
             }
 
-            if (intelligence >= cost3) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
-                //binding.SocialBuy3.setBackgroundColor(0xffff0000); //Stop if red
+            if (money >= cost3) {
+                ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
-                //binding.SocialBuy3.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.SocialBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
             }
 
-            if (social >= cost4) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-                //binding.SocialBuy4.setBackgroundColor(0xffff0000); //Stop if red
+            if (will >= cost4) {
+                ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-                //binding.SocialBuy4.setBackgroundColor(0xff555555);
+                ViewCompat.setBackgroundTintList(binding.SocialBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+            }
+
+            if (social >= cost5) {
+                ViewCompat.setBackgroundTintList(binding.SocialBuy5,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
+            }
+            else{
+                ViewCompat.setBackgroundTintList(binding.SocialBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
             }
 
             int age = saves.getInt("Age",0);
 
             //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non Social things.
             switch(age){
-                case 5:
+                case 4:
                     binding.SocialBuy1.setVisibility(View.VISIBLE);
                     binding.SocialDescrip1.setVisibility(View.VISIBLE);
                     break;
@@ -255,13 +271,17 @@ public class SocialFragment extends Fragment  {
                     binding.SocialBuy2.setVisibility(View.VISIBLE);
                     binding.SocialDescrip2.setVisibility(View.VISIBLE);
                     break;
-                case 10:
+                case 9:
                     binding.SocialBuy3.setVisibility(View.VISIBLE);
                     binding.SocialDescrip3.setVisibility(View.VISIBLE);
                     break;
-                case 11:
+                case 12:
                     binding.SocialBuy4.setVisibility(View.VISIBLE);
                     binding.SocialDescrip4.setVisibility(View.VISIBLE);
+                    break;
+                case 19:
+                    binding.SocialBuy5.setVisibility(View.VISIBLE);
+                    binding.SocialDescrip5.setVisibility(View.VISIBLE);
                     break;
             }
 

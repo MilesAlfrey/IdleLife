@@ -118,7 +118,7 @@
                     android:insetLeft="2dp"
                     android:text="Button"
                     android:visibility="gone"
-                    app:backgroundTint="@color/WillColour"
+                    app:backgroundTint="@color/IntColour"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>
@@ -187,8 +187,44 @@
                     android:background="@drawable/buttonwithoutside"
                     android:insetLeft="2dp"
                     android:text="Button"
+                    android:textColor="@color/Background_grey"
                     android:visibility="gone"
-                    app:backgroundTint="@color/WillColour"
+                    app:backgroundTint="@color/SocialColour"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/WillDescrip5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
+                    android:checkable="false"
+                    android:clickable="false"
+                    android:insetRight="2dp"
+                    android:text="Button"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/Darker_Grey"
+                    app:rippleColor="#00FFFFFF"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/WillBuy5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonwithoutside"
+                    android:insetLeft="2dp"
+                    android:text="Button"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/MoneyColour"
                     app:rippleColor="#00FFFFFF"
                     tools:visibility="visible" />
             </LinearLayout>

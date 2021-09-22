@@ -73,6 +73,10 @@ public class WillFragment extends Fragment  {
             binding.WillBuy4.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.WillDescrip4.setVisibility(View.VISIBLE);
         }
+        if(score.getBoolean("ShowWill5",false)){
+            binding.WillBuy5.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
+            binding.WillDescrip5.setVisibility(View.VISIBLE);
+        }
 
         //END OF VISIBILITY SETTINGS
 
@@ -82,6 +86,7 @@ public class WillFragment extends Fragment  {
         double cost2 = MiscMethods.Will2Cost(requireContext());
         double cost3 = MiscMethods.Will3Cost(requireContext());
         double cost4 = MiscMethods.Will4Cost(requireContext());
+        double cost5 = MiscMethods.Will5Cost(requireContext());
 
 
         double will = MiscMethods.getDouble(score,"Will", 0);
@@ -98,12 +103,12 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy1.setBackgroundColor(0xff555555);
         }
 
-        if (will >= cost2) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+        if (intelligence >= cost2) {//Stops it going on forever.
+            ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
             //binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+            ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             //binding.WillBuy2.setBackgroundColor(0xff555555);
         }
 
@@ -116,12 +121,21 @@ public class WillFragment extends Fragment  {
             //binding.WillBuy3.setBackgroundColor(0xff555555);
         }
 
-        if (will >= cost4) {//Stops it going on forever.
-            ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+        if (social >= cost4) {//Stops it going on forever.
+            ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
             //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+            ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
+            //binding.WillBuy4.setBackgroundColor(0xff555555);
+        }
+
+        if (money >= cost5) {//Stops it going on forever.
+            ViewCompat.setBackgroundTintList(binding.WillBuy5,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
+            //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.WillBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
             //binding.WillBuy4.setBackgroundColor(0xff555555);
         }
 
@@ -149,6 +163,11 @@ public class WillFragment extends Fragment  {
         binding.WillBuy4.setText(MiscMethods.FormatNumber(MiscMethods.Will4Cost(requireContext())));
         binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,MiscMethods.FormatNumber(Will4MakeAmount)));
 
+        double Will5MakeAmount = MiscMethods.Will5Gain(requireContext());
+        int Will5Owned = score.getInt("Will5",0);
+        binding.WillBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Will5Cost(requireContext())));
+        binding.WillDescrip5.setText(getString(R.string.DescriptionText,Will5Owned,MiscMethods.FormatNumber(Will5MakeAmount)));
+
 
 
 
@@ -156,11 +175,13 @@ public class WillFragment extends Fragment  {
 
         binding.WillBuy1.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.WillBuy1,MiscMethods.Will1Cost(requireContext()),"Will1","Will",requireActivity()));
 
-        binding.WillBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Will",requireActivity()));
+        binding.WillBuy2.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.WillBuy2,MiscMethods.Will2Cost(requireContext()),"Will2","Int",requireActivity()));
 
         binding.WillBuy3.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.WillBuy3,MiscMethods.Will3Cost(requireContext()),"Will3","Will",requireActivity()));
 
-        binding.WillBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Will",requireActivity()));
+        binding.WillBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.WillBuy4,MiscMethods.Will4Cost(requireContext()),"Will4","Social",requireActivity()));
+
+        binding.WillBuy5.setOnClickListener(view15 -> MiscMethods.ButtonPressAction(binding.WillBuy5,MiscMethods.Will5Cost(requireContext()),"Will5","Money",requireActivity()));
 
 
     }
@@ -177,6 +198,7 @@ public class WillFragment extends Fragment  {
             double cost2 = MiscMethods.Will2Cost(requireContext());
             double cost3 = MiscMethods.Will3Cost(requireContext());
             double cost4 = MiscMethods.Will4Cost(requireContext());
+            double cost5 = MiscMethods.Will5Cost(requireContext());
 
 
 
@@ -203,6 +225,11 @@ public class WillFragment extends Fragment  {
             binding.WillBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.WillDescrip4.setText(getString(R.string.DescriptionText,Will4Owned,MiscMethods.FormatNumber(Will4MakeAmount)));
 
+            double Will5MakeAmount = MiscMethods.Will5Gain(requireContext());
+            int Will5Owned = saves.getInt("Will5",0);
+            binding.WillBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Will5Cost(requireContext())));
+            binding.WillDescrip5.setText(getString(R.string.DescriptionText,Will5Owned,MiscMethods.FormatNumber(Will5MakeAmount)));
+
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
             double social = MiscMethods.getDouble(saves,"Social",0);
@@ -218,12 +245,12 @@ public class WillFragment extends Fragment  {
                 //binding.WillBuy1.setBackgroundColor(0xff555555);
             }
 
-            if (will >= cost2) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+            if (intelligence >= cost2) {//Stops it going on forever.
+                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
                 //binding.WillBuy2.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                ViewCompat.setBackgroundTintList(binding.WillBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
                 //binding.WillBuy2.setBackgroundColor(0xff555555);
             }
 
@@ -236,12 +263,21 @@ public class WillFragment extends Fragment  {
                 //binding.WillBuy3.setBackgroundColor(0xff555555);
             }
 
-            if (will >= cost4) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
+            if (social >= cost4) {//Stops it going on forever.
+                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
                 //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+                ViewCompat.setBackgroundTintList(binding.WillBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
+                //binding.WillBuy4.setBackgroundColor(0xff555555);
+            }
+
+            if (money >= cost5) {//Stops it going on forever.
+                ViewCompat.setBackgroundTintList(binding.WillBuy5,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
+                //binding.WillBuy4.setBackgroundColor(0xffff0000); //Stop if red
+            }
+            else{
+                ViewCompat.setBackgroundTintList(binding.WillBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
                 //binding.WillBuy4.setBackgroundColor(0xff555555);
             }
 
@@ -249,18 +285,22 @@ public class WillFragment extends Fragment  {
 
             //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non will things.
             switch(age){
-                case 1:
+                case 2:
                     binding.WillBuy2.setVisibility(View.VISIBLE);
                     binding.WillDescrip2.setVisibility(View.VISIBLE);//On age 1 we show will2
                     break;
-                case 2:
+                case 5:
                     binding.WillBuy3.setVisibility(View.VISIBLE);
                     binding.WillDescrip3.setVisibility(View.VISIBLE);//On age 2 we show will3
                     break;
                     //What do on age 2... and so on
-                case 3:
+                case 11:
                     binding.WillBuy4.setVisibility(View.VISIBLE);
                     binding.WillDescrip4.setVisibility(View.VISIBLE);//On age 3 we show will4
+                    break;
+                case 15:
+                    binding.WillBuy5.setVisibility(View.VISIBLE);
+                    binding.WillDescrip5.setVisibility(View.VISIBLE);//On age 3 we show will4
                     break;
             }
 

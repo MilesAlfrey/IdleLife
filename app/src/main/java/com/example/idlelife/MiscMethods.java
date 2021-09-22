@@ -117,6 +117,32 @@ public class MiscMethods {
         }
     }
 
+    public static double Will5Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Will5",0);
+
+        return (int) (50000+level*2000+ Math.floor(Math.pow((float)level,3.5)));
+    }
+
+    public static double Will5Gain(Context context){
+
+        //Returns the total amount of will per second that will1 will give.
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+        int will1Amount = data.getInt("Will5",0);
+        boolean Test1 = data.getBoolean("Test1Completed",false);
+
+
+        if (Test1){
+            return 4*will1Amount*2000;//Times 20 because 20 updates a second and each update gives 1;
+        }
+        else{
+            return will1Amount*2000;
+        }
+    }
+
 
 
 
@@ -199,6 +225,26 @@ public class MiscMethods {
         return level*50;
     }
 
+    public static double Int5Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int5",0);
+
+        return (int) (200000+level*10000+ Math.floor(Math.pow((float)level,3.5))); // Need Changing
+    }
+
+    public static double Int5Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Int5",0);
+
+        return level*50;
+    }
+
     public static double Social1Cost(Context context){
 
 
@@ -274,6 +320,25 @@ public class MiscMethods {
         SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
 
         int level = data.getInt("Social4",0);
+
+        return level*50;
+    }
+
+    public static double Social5Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Social5",0);
+
+        return (int) (30000+level*10000+ Math.floor(Math.pow((float)level,7))); // Need Changing
+    }
+    public static double Social5Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Social5",0);
 
         return level*50;
     }
@@ -358,6 +423,26 @@ public class MiscMethods {
         return level*10;
     }
 
+    public static double Money5Cost(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money5",0);
+
+        return (int) (30000+level*30000+ Math.floor(Math.pow((float)level,5))); // Need Changing
+    }
+
+    public static double Money5Gain(Context context){
+
+
+        SharedPreferences data = context.getSharedPreferences("Values",Context.MODE_PRIVATE);
+
+        int level = data.getInt("Money5",0);
+
+        return level*10;
+    }
+
 
 
 
@@ -390,21 +475,19 @@ public class MiscMethods {
         SharedPreferences.Editor editor = data.edit();
         switch(age){
             case 1:
-                editor.putBoolean("ShowWill2",true); //On age 2 we show will2
-                break;
-            case 2:
-                editor.putBoolean("ShowWill3",true); //On age 2 we show will2
-                break;
-            case 3:
-                editor.putBoolean("ShowWill4",true); //On age 2 we show will2
                 editor.putBoolean("ShowInt1",true);
                 break;
-            case 4:
-
+            case 2:
+                editor.putBoolean("ShowWill2",true);
+                break;
+            case 3:
                 editor.putBoolean("ShowInt2",true);
                 break;
-            case 5:
+            case 4:
                 editor.putBoolean("ShowSocial1",true);
+                break;
+            case 5:
+                editor.putBoolean("ShowWill3",true);
                 break;
             case 6:
                 editor.putBoolean("ShowInt3",true);
@@ -413,25 +496,47 @@ public class MiscMethods {
                 editor.putBoolean("ShowSocial2",true);
                 break;
             case 8:
-                editor.putBoolean("ShowInt4",true);
                 editor.putBoolean("ShowMoney1",true);
                 break;
             case 9:
-                break;
-            case 10:
                 editor.putBoolean("ShowSocial3",true);
                 break;
-            case 11:
-                editor.putBoolean("ShowSocial4",true);
+            case 10:
+                editor.putBoolean("ShowInt4",true);
                 break;
-            case 14:
+            case 11:
+                editor.putBoolean("ShowWill4",true);
+                break;
+            case 12:
+                editor.putBoolean("ShowSocial4",true);//Test here too
+                break;
+            case 13:
                 editor.putBoolean("ShowMoney2",true);
+                break;
+            case 14://There is a test here
+                break;
+            case 15:
+                editor.putBoolean("ShowWill5",true);
+                break;
+            case 16://Test here
                 break;
             case 17:
                 editor.putBoolean("ShowMoney3",true);
                 break;
+            case 18:
+                editor.putBoolean("ShowInt5",true);
+                break;
             case 19:
+                editor.putBoolean("ShowSocial5",true);
+                break;
+            case 20:
                 editor.putBoolean("ShowMoney4",true);
+                break;
+            case 21:
+                //Test here
+                break;
+            case 22:
+                editor.putBoolean("ShowMoney5",true);
                 break;
         }
         editor.apply();

@@ -71,6 +71,10 @@ public class MoneyFragment extends Fragment  {
             binding.MoneyBuy4.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.MoneyDescrip4.setVisibility(View.VISIBLE);
         }
+        if(score.getBoolean("ShowMoney5",false)){
+            binding.MoneyBuy5.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
+            binding.MoneyDescrip5.setVisibility(View.VISIBLE);
+        }
 
         //END OF VISIBILITY SETTINGS
 
@@ -80,46 +84,45 @@ public class MoneyFragment extends Fragment  {
         double cost2 = MiscMethods.Money2Cost(requireContext());
         double cost3 = MiscMethods.Money3Cost(requireContext());
         double cost4 = MiscMethods.Money4Cost(requireContext());
+        double cost5 = MiscMethods.Money5Cost(requireContext());
 
         double will = MiscMethods.getDouble(score,"Will",0);
         double intelligence = MiscMethods.getDouble(score,"Int",0);
         double social = MiscMethods.getDouble(score,"Social",0);
         double money = MiscMethods.getDouble(score,"Money",0);
 
-        if (social >= cost1) {//Stops it going on forever.
+        if (social >= cost1) {
             ViewCompat.setBackgroundTintList(binding.MoneyBuy1, ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-            //binding.MoneyBuy1.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
             ViewCompat.setBackgroundTintList(binding.MoneyBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-            //binding.MoneyBuy1.setBackgroundColor(0xff555555);
         }
 
-        if (will >= cost2) {//Stops it going on forever.
+        if (will >= cost2) {
             ViewCompat.setBackgroundTintList(binding.MoneyBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
-            //binding.MoneyBuy2.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
             ViewCompat.setBackgroundTintList(binding.MoneyBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
-            //binding.MoneyBuy2.setBackgroundColor(0xff555555);
         }
 
-        if (intelligence >= cost3) {//Stops it going on forever.
+        if (intelligence >= cost3) {
             ViewCompat.setBackgroundTintList(binding.MoneyBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
-            //binding.MoneyBuy3.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
             ViewCompat.setBackgroundTintList(binding.MoneyBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
-            //binding.MoneyBuy3.setBackgroundColor(0xff555555);
         }
 
-        if (money >= cost4) {//Stops it going on forever.
+        if (money >= cost4) {
             ViewCompat.setBackgroundTintList(binding.MoneyBuy4,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
-            //binding.MoneyBuy4.setBackgroundColor(0xffff0000); //Stop if red
         }
         else{
             ViewCompat.setBackgroundTintList(binding.MoneyBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
-            //binding.MoneyBuy4.setBackgroundColor(0xff555555);
+        }
+        if (social >= cost4) {
+            ViewCompat.setBackgroundTintList(binding.MoneyBuy5,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.MoneyBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
         }
 
 
@@ -146,6 +149,11 @@ public class MoneyFragment extends Fragment  {
         binding.MoneyBuy4.setText(MiscMethods.FormatNumber(MiscMethods.Money4Cost(requireContext())));
         binding.MoneyDescrip4.setText(getString(R.string.DescriptionText,Money4Owned,MiscMethods.FormatNumber(Money4MakeAmount)));
 
+        double Money5MakeAmount = MiscMethods.Money5Gain(requireContext());
+        int Money5Owned = score.getInt("Money5",0);
+        binding.MoneyBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Money5Cost(requireContext())));
+        binding.MoneyDescrip5.setText(getString(R.string.DescriptionText,Money5Owned,MiscMethods.FormatNumber(Money5MakeAmount)));
+
 
 
 
@@ -158,6 +166,8 @@ public class MoneyFragment extends Fragment  {
         binding.MoneyBuy3.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.MoneyBuy3,MiscMethods.Money3Cost(requireContext()),"Money3","Int",requireActivity()));
 
         binding.MoneyBuy4.setOnClickListener(view14 -> MiscMethods.ButtonPressAction(binding.MoneyBuy4,MiscMethods.Money4Cost(requireContext()),"Money4","Money",requireActivity()));
+
+        binding.MoneyBuy5.setOnClickListener(view15 -> MiscMethods.ButtonPressAction(binding.MoneyBuy5,MiscMethods.Money4Cost(requireContext()),"Money5","Social",requireActivity()));
 
 
     }
@@ -174,7 +184,7 @@ public class MoneyFragment extends Fragment  {
             double cost2 = MiscMethods.Money2Cost(requireContext());
             double cost3 = MiscMethods.Money3Cost(requireContext());
             double cost4 = MiscMethods.Money4Cost(requireContext());
-
+            double cost5 = MiscMethods.Money4Cost(requireContext());
 
 
 
@@ -201,46 +211,49 @@ public class MoneyFragment extends Fragment  {
             binding.MoneyBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.MoneyDescrip4.setText(getString(R.string.DescriptionText,Money4Owned,MiscMethods.FormatNumber(Money4MakeAmount)));
 
+            double Money5MakeAmount = MiscMethods.Money5Gain(requireContext());
+            int Money5Owned = saves.getInt("Money5",0);
+            binding.MoneyBuy5.setText(MiscMethods.FormatNumber(MiscMethods.Money5Cost(requireContext())));
+            binding.MoneyDescrip5.setText(getString(R.string.DescriptionText,Money5Owned,MiscMethods.FormatNumber(Money5MakeAmount)));
+
 
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
             double social = MiscMethods.getDouble(saves,"Social",0);
             double money = MiscMethods.getDouble(saves,"Money",0);
 
-            if (social >= cost1) {//Stops it going on forever.
-                ViewCompat.setBackgroundTintList(binding.MoneyBuy1,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
-                //binding.MoneyBuy1.setBackgroundColor(0xffff0000); //Stop if red
+            if (social >= cost1) {
+                ViewCompat.setBackgroundTintList(binding.MoneyBuy1, ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
             }
             else{
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy1,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
-                //binding.MoneyBuy1.setBackgroundColor(0xff555555);
             }
 
-            if (will >= cost2) {//Stops it going on forever.
+            if (will >= cost2) {
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy2,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
-                //binding.MoneyBuy2.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
-                //binding.MoneyBuy2.setBackgroundColor(0xff555555);
             }
 
-            if (intelligence >= cost3) {//Stops it going on forever.
+            if (intelligence >= cost3) {
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
-                //binding.MoneyBuy3.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
-                //binding.MoneyBuy3.setBackgroundColor(0xff555555);
             }
 
-            if (money >= cost4) {//Stops it going on forever.
+            if (money >= cost4) {
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy4,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
-                //binding.MoneyBuy4.setBackgroundColor(0xffff0000); //Stop if red
             }
             else{
                 ViewCompat.setBackgroundTintList(binding.MoneyBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
-                //binding.MoneyBuy4.setBackgroundColor(0xff555555);
+            }
+            if (social >= cost4) {
+                ViewCompat.setBackgroundTintList(binding.MoneyBuy5,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
+            }
+            else{
+                ViewCompat.setBackgroundTintList(binding.MoneyBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
             }
 
             int age = saves.getInt("Age",0);
@@ -251,7 +264,7 @@ public class MoneyFragment extends Fragment  {
                     binding.MoneyBuy1.setVisibility(View.VISIBLE);
                     binding.MoneyDescrip1.setVisibility(View.VISIBLE);
                     break;
-                case 14:
+                case 13:
                     binding.MoneyBuy2.setVisibility(View.VISIBLE);
                     binding.MoneyDescrip2.setVisibility(View.VISIBLE);
                     break;
@@ -259,9 +272,13 @@ public class MoneyFragment extends Fragment  {
                     binding.MoneyBuy3.setVisibility(View.VISIBLE);
                     binding.MoneyDescrip3.setVisibility(View.VISIBLE);
                     break;
-                case 19:
+                case 20:
                     binding.MoneyBuy4.setVisibility(View.VISIBLE);
                     binding.MoneyDescrip4.setVisibility(View.VISIBLE);
+                    break;
+                case 22:
+                    binding.MoneyBuy5.setVisibility(View.VISIBLE);
+                    binding.MoneyDescrip5.setVisibility(View.VISIBLE);
                     break;
             }
 

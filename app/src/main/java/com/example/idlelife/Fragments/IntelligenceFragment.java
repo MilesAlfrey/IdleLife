@@ -74,6 +74,10 @@ public class IntelligenceFragment extends Fragment {
             binding.IntDescrip4.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
             binding.IntBuy4.setVisibility(View.VISIBLE);
         }
+        if(score.getBoolean("ShowInt5",false)){
+            binding.IntDescrip5.setVisibility(View.VISIBLE); //Makes sure it always appears correctly.
+            binding.IntBuy5.setVisibility(View.VISIBLE);
+        }
 
         //END OF VISIBILITY SETTINGS
 
@@ -81,6 +85,7 @@ public class IntelligenceFragment extends Fragment {
         double cost2 = MiscMethods.Int2Cost(requireContext());
         double cost3 = MiscMethods.Int3Cost(requireContext());
         double cost4 = MiscMethods.Int4Cost(requireContext());
+        double cost5 = MiscMethods.Int5Cost(requireContext());
 
 
         double Int1MakeAmount = MiscMethods.Int1Gain(requireContext());
@@ -103,6 +108,11 @@ public class IntelligenceFragment extends Fragment {
         binding.IntBuy4.setText(MiscMethods.FormatNumber(cost4));
         binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,MiscMethods.FormatNumber(Int4MakeAmount)));
 
+        double Int5MakeAmount = MiscMethods.Int5Gain(requireContext());
+        int Int5Owned = score.getInt("Int5",0);
+        binding.IntBuy5.setText(MiscMethods.FormatNumber(cost5));
+        binding.IntDescrip5.setText(getString(R.string.DescriptionText,Int5Owned,MiscMethods.FormatNumber(Int5MakeAmount)));
+
         double will = MiscMethods.getDouble(score,"Will",0);
         double intelligence = MiscMethods.getDouble(score,"Int",0);
         double social = MiscMethods.getDouble(score,"Social",0);
@@ -123,18 +133,25 @@ public class IntelligenceFragment extends Fragment {
             ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
         }
 
-        if (intelligence >= cost3) {
-            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+        if (social >= cost3) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+            ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
         }
 
-        if (intelligence >= cost4) {
-            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+        if (will >= cost4) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
         }
         else{
-            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+            ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
+        }
+
+        if (money >= cost5) {
+            ViewCompat.setBackgroundTintList(binding.IntBuy5,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
+        }
+        else{
+            ViewCompat.setBackgroundTintList(binding.IntBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
         }
 
 
@@ -154,40 +171,48 @@ public class IntelligenceFragment extends Fragment {
             editor.putInt("Will2", 0);
             editor.putInt("Will3", 0);
             editor.putInt("Will4", 0);
+            editor.putInt("Will5", 0);
 
             editor.putInt("Int1", 0);
             editor.putInt("Int2", 0);
             editor.putInt("Int3", 0);
             editor.putInt("Int4", 0);
+            editor.putInt("Int5", 0);
 
             editor.putInt("Social1", 0);
             editor.putInt("Social2", 0);
             editor.putInt("Social3", 0);
             editor.putInt("Social4", 0);
+            editor.putInt("Social5", 0);
 
             editor.putInt("Money1", 0);
             editor.putInt("Money2", 0);
             editor.putInt("Money3", 0);
             editor.putInt("Money4", 0);
+            editor.putInt("Money5", 0);
 
             editor.putBoolean("ShowWill2", false);
             editor.putBoolean("ShowWill3", false);
             editor.putBoolean("ShowWill4", false);
+            editor.putBoolean("ShowWill5", false);
 
             editor.putBoolean("ShowInt1", false);
             editor.putBoolean("ShowInt2", false);
             editor.putBoolean("ShowInt3", false);
             editor.putBoolean("ShowInt4", false);
+            editor.putBoolean("ShowInt5", false);
 
             editor.putBoolean("ShowSocial1", false);
             editor.putBoolean("ShowSocial2", false);
             editor.putBoolean("ShowSocial3", false);
             editor.putBoolean("ShowSocial4", false);
+            editor.putBoolean("ShowSocial5", false);
 
             editor.putBoolean("ShowMoney1", false);
             editor.putBoolean("ShowMoney2", false);
             editor.putBoolean("ShowMoney3", false);
             editor.putBoolean("ShowMoney4", false);
+            editor.putBoolean("ShowMoney5", false);
 
             editor.putInt("TestSpeed",0);
             editor.putInt("Test",0);
@@ -210,9 +235,12 @@ public class IntelligenceFragment extends Fragment {
 
         binding.IntBuy2.setOnClickListener(view13 -> MiscMethods.ButtonPressAction(binding.IntBuy2,MiscMethods.Int2Cost(requireContext()),"Int2","Int",requireActivity()));
 
-        binding.IntBuy3.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Int",requireActivity()));
+        binding.IntBuy3.setOnClickListener(view1 -> MiscMethods.ButtonPressAction(binding.IntBuy3,MiscMethods.Int3Cost(requireContext()),"Int3","Social",requireActivity()));
 
-        binding.IntBuy4.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Int",requireActivity()));
+        binding.IntBuy4.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.IntBuy4,MiscMethods.Int4Cost(requireContext()),"Int4","Will",requireActivity()));
+
+        binding.IntBuy5.setOnClickListener(view12 -> MiscMethods.ButtonPressAction(binding.IntBuy5,MiscMethods.Int5Cost(requireContext()),"Int5","Money",requireActivity()));
+
 
         timerHandler.post(timerRunnable);
 
@@ -246,6 +274,7 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
             double cost2 = MiscMethods.Int2Cost(requireContext());
             double cost3 = MiscMethods.Int3Cost(requireContext());
             double cost4 = MiscMethods.Int4Cost(requireContext());
+            double cost5 = MiscMethods.Int5Cost(requireContext());
 
             double will = MiscMethods.getDouble(saves,"Will",0);
             double intelligence = MiscMethods.getDouble(saves,"Int",0);
@@ -273,6 +302,11 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
             binding.IntBuy4.setText(MiscMethods.FormatNumber(cost4));
             binding.IntDescrip4.setText(getString(R.string.DescriptionText,Int4Owned,MiscMethods.FormatNumber(Int4MakeAmount)));
 
+            double Int5MakeAmount = MiscMethods.Int5Gain(requireContext());
+            int Int5Owned = saves.getInt("Int5",0);
+            binding.IntBuy5.setText(MiscMethods.FormatNumber(cost5));
+            binding.IntDescrip5.setText(getString(R.string.DescriptionText,Int5Owned,MiscMethods.FormatNumber(Int5MakeAmount)));
+
 
             if (will >= cost1) {//Stops it going on forever.
                 ViewCompat.setBackgroundTintList(binding.IntBuy1, ColorStateList.valueOf(getResources().getColor(R.color.WillColour))); //Stop if red
@@ -288,29 +322,37 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
                 ViewCompat.setBackgroundTintList(binding.IntBuy2,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
             }
 
-            if (intelligence >= cost3) {
-                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+            if (social >= cost3) {
+                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.SocialColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+                ViewCompat.setBackgroundTintList(binding.IntBuy3,ColorStateList.valueOf(getResources().getColor(R.color.DarkSocial)));
             }
 
-            if (intelligence >= cost4) {
-                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.IntColour)));
+            if (will >= cost4) {
+                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.WillColour)));
             }
             else{
-                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkInt)));
+                ViewCompat.setBackgroundTintList(binding.IntBuy4,ColorStateList.valueOf(getResources().getColor(R.color.DarkWill)));
             }
+
+            if (money >= cost5) {
+                ViewCompat.setBackgroundTintList(binding.IntBuy5,ColorStateList.valueOf(getResources().getColor(R.color.MoneyColour)));
+            }
+            else{
+                ViewCompat.setBackgroundTintList(binding.IntBuy5,ColorStateList.valueOf(getResources().getColor(R.color.DarkMoney)));
+            }
+
 
             int age = saves.getInt("Age",0);
 
             //JUST COPY AND PASTE THE ONE IN MISC METHODS HERE just do same and remove all non int things.
             switch(age){
-                case 3:
+                case 1:
                     binding.IntBuy1.setVisibility(View.VISIBLE);
                     binding.IntDescrip1.setVisibility(View.VISIBLE);//On age 1 we show will2
                     break;
-                case 4:
+                case 3:
                     binding.IntBuy2.setVisibility(View.VISIBLE);
                     binding.IntDescrip2.setVisibility(View.VISIBLE);//On age 2 we show will3
                     break;
@@ -319,9 +361,13 @@ private final static int Update_Interval= 100; // IMPORTANT HOW OFTEN Checks for
                     binding.IntBuy3.setVisibility(View.VISIBLE);
                     binding.IntDescrip3.setVisibility(View.VISIBLE);//On age 3 we show will4
                     break;
-                case 8:
+                case 10:
                     binding.IntBuy4.setVisibility(View.VISIBLE);
                     binding.IntDescrip4.setVisibility(View.VISIBLE);//On age 3 we show will4
+                    break;
+                case 18:
+                    binding.IntBuy5.setVisibility(View.VISIBLE);
+                    binding.IntDescrip5.setVisibility(View.VISIBLE);//On age 3 we show will4
                     break;
             }
 
