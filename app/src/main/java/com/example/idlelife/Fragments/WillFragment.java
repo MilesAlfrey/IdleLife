@@ -48,7 +48,7 @@ public class WillFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
 
-
+//test
 
 
         //WHERE I WILL PUT ALL OF VISIBILITY SETTINGS
