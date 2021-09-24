@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-
+//test
     private final static int Update_Interval= 50; // IMPORTANT HOW OFTEN APP UPDATES.
 
     Handler timerHandler = new Handler();
